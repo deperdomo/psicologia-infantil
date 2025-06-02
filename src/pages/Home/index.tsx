@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import WhyChooseUs from '../../components/sections/WhyChooseUs';
 import Footer from '../../components/Footer';
 import About from '../../components/sections/About';

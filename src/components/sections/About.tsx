@@ -7,13 +7,13 @@ export default function About() {
             👩‍⚕ Sobre mí
           </h2>
           <p className="text-[var(--muted-text)] leading-relaxed mb-6 text-lg">
-            Hola, soy <strong>LLenia Monteagudo Rodríguez</strong>, psicóloga especializada en infancia, familias y vínculos.
+            Hola, soy <strong>Llenia Monteagudo Rodríguez</strong>, psicóloga especializada en infancia, familias y vínculos.
           </p>
           <p className="text-[var(--muted-text)] leading-relaxed mb-6">
             Trabajo acompañando a niñas, niños y a sus familias cuando las emociones se hacen grandes, cuando los cambios desordenan un poco la casa, y cuando lo que más se necesita no es una solución rápida, sino alguien que escuche, sostenga y oriente con respeto.
           </p>
           <p className="text-[var(--muted-text)] leading-relaxed mb-8">
-            Llevo más de 20 años trabajando con infancia y parentalidad, en procesos de duelo, divorcio, inseguridad emocional, miedos, problemas de conducta y desbordes afectivos.
+            Llevo más de 15 años trabajando con infancia y parentalidad, en procesos de duelo, divorcio, inseguridad emocional, miedos, problemas de conducta y desbordes afectivos.
           </p>
             <div className="mb-8">
             <h3 className="text-xl font-bold text-[var(--highlight)] mb-4">💬 ¿Cómo trabajo?</h3>
@@ -25,7 +25,7 @@ export default function About() {
           <div className="mb-8">
             <h3 className="text-xl font-bold text-[var(--highlight)] mb-4">📍 Modalidad de trabajo</h3>
             <p className="text-[var(--muted-text)] mb-4">
-              Actualmente trabajo en modalidad presencial en [ciudad] y también online para todo el país.
+              Actualmente trabajo en modalidad presencial en Madrid y también online para todo el país.
             </p>
             <p className="text-[var(--text)] font-medium">
               Si quieres saber si puedo ayudarte en tu caso particular, puedes escribirme sin compromiso.

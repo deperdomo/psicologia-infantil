@@ -120,11 +120,11 @@ export default function WhyChooseUs() {
                 </p>
 
                 {/* Hover indicator */}
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <svg className="w-5 h-5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                   </svg>
-                </div>
+                </div> */}
               </div>
 
               {/* Decorative element */}
@@ -147,9 +147,9 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
+      <style dangerouslySetInnerHTML={{
+        __html: `
+           @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
         }
@@ -157,7 +157,8 @@ export default function WhyChooseUs() {
         .group:hover .floating {
           animation: float 2s ease-in-out infinite;
         }
-      `}</style>
+        `
+      }} />
     </section>
   );
 }
