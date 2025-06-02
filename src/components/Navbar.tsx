@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar si el menú móvil está abierto
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -12,219 +13,100 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
+  const navItems = [
+    { to: '/', label: 'Inicio' },
+    { to: '/sobre-mi', label: 'Sobre mí' },
+    { to: '/servicios', label: 'Servicios' },
+    { to: '/blog', label: 'Blog' },
+    { to: '/testimonios', label: 'Testimonios' },
+    { to: '/preguntas-frecuentes', label: 'FAQ' },
+    { to: '/contacto', label: 'Contacto' },
+  ];
+
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-blue-600">Psicología</h1>
-
-        {/* Botón de hamburguesa para móviles */}
-        <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
-            aria-label="Abrir menú"
-          >
-            {isOpen ? (
-              // Icono de cerrar (X)
+    <nav className="bg-[var(--background)] shadow-sm border-b border-[var(--nav-border)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex-shrink-0">
+            <h1 className="text-xl font-bold text-[var(--highlight)] tracking-tight">
+              Psicología
+            </h1>
+          </div>
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navItems.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className={`nav-link nav-transition px-3 py-2 rounded-md text-sm font-medium ${
+                    isActive(to)
+                      ? 'text-[var(--highlight)] bg-[var(--hover-bg)]'
+                      : 'text-[var(--text)] hover:text-[var(--highlight)] hover:bg-[var(--hover-bg)]'
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+              <Link
+                to="/reserva-cita"
+                className="nav-button nav-transition ml-4 px-4 py-2 rounded-md text-sm font-semibold bg-[var(--accent)] text-[var(--button-text)] hover:bg-[var(--button-hover)] shadow-sm"
+              >
+                Reservar Cita
+              </Link>
+            </div>
+          </div>
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="hamburger-button text-[var(--text)] hover:text-[var(--highlight)] focus:outline-none"
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+            >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
               </svg>
-            ) : (
-              // Icono de hamburguesa
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+            </button>
+          </div>
         </div>
-
-        {/* Menú de navegación para desktop */}
-        <ul className="hidden md:flex gap-6 text-sm font-medium">
-          <li>
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold' : 'hover:text-blue-500'
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/sobre-mi"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold' : 'hover:text-blue-500'
-              }
-            >
-              Sobre mí
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/servicios"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold' : 'hover:text-blue-500'
-              }
-            >
-              Servicios
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold' : 'hover:text-blue-500'
-              }
-            >
-              Blog
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/testimonios"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold' : 'hover:text-blue-500'
-              }
-            >
-              Testimonios
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/preguntas-frecuentes"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold' : 'hover:text-blue-500'
-              }
-            >
-              FAQ
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contacto"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold' : 'hover:text-blue-500'
-              }
-            >
-              Contacto
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/reserva-cita"
-              className={({ isActive }) =>
-                isActive
-                  ? 'bg-blue-600 text-white px-3 py-1 rounded-md'
-                  : 'bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600'
-              }
-            >
-              Reserva
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-
-      {/* Menú de navegación para móviles (aparece al abrir la hamburguesa) */}
-      <div
-        className={`${
-          isOpen ? 'block' : 'hidden'
-        } md:hidden bg-white shadow-lg py-2`}
-      >
-        <ul className="flex flex-col gap-4 text-sm font-medium px-4">
-          <li>
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold block py-2' : 'hover:text-blue-500 block py-2'
-              }
-              onClick={closeMenu} // Cerrar menú al hacer clic en un enlace
-            >
-              Inicio
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/sobre-mi"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold block py-2' : 'hover:text-blue-500 block py-2'
-              }
-              onClick={closeMenu}
-            >
-              Sobre mí
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/servicios"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold block py-2' : 'hover:text-blue-500 block py-2'
-              }
-              onClick={closeMenu}
-            >
-              Servicios
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold block py-2' : 'hover:text-blue-500 block py-2'
-              }
-              onClick={closeMenu}
-            >
-              Blog
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/testimonios"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold block py-2' : 'hover:text-blue-500 block py-2'
-              }
-              onClick={closeMenu}
-            >
-              Testimonios
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/preguntas-frecuentes"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold block py-2' : 'hover:text-blue-500 block py-2'
-              }
-              onClick={closeMenu}
-            >
-              FAQ
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contacto"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-600 font-semibold block py-2' : 'hover:text-blue-500 block py-2'
-              }
-              onClick={closeMenu}
-            >
-              Contacto
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/reserva-cita"
-              className={({ isActive }) =>
-                isActive
-                  ? 'bg-blue-600 text-white px-3 py-1 rounded-md block text-center mt-2' // Añadido mt-2 para espaciado
-                  : 'bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 block text-center mt-2'
-              }
-              onClick={closeMenu}
-            >
-              Reserva
-            </NavLink>
-          </li>
-        </ul>
+        <div
+          className={`md:hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          } overflow-hidden mobile-menu`}
+        >
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-[var(--card-background)] rounded-b-lg mt-1">
+            {navItems.map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className={`nav-transition block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive(to)
+                    ? 'text-[var(--highlight)] bg-[var(--hover-bg)]'
+                    : 'text-[var(--text)] hover:text-[var(--highlight)] hover:bg-[var(--hover-bg)]'
+                }`}
+                onClick={closeMenu}
+              >
+                {label}
+              </Link>
+            ))}
+            <div className="pt-4 pb-2 border-t border-[var(--nav-border)]">
+              <Link
+                to="/reserva-cita"
+                className="nav-button nav-transition block w-full text-center px-4 py-3 rounded-md text-base font-semibold bg-[var(--accent)] text-[var(--button-text)] hover:bg-[var(--button-hover)]"
+                onClick={closeMenu}
+              >
+                Reservar Cita
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );
