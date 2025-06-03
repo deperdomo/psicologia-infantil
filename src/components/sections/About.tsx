@@ -15,22 +15,6 @@ export default function About() {
           <p className="text-[var(--muted-text)] leading-relaxed mb-8">
             Llevo más de 15 años trabajando con infancia y parentalidad, en procesos de duelo, divorcio, inseguridad emocional, miedos, problemas de conducta y desbordes afectivos.
           </p>
-            <div className="mb-8">
-            <h3 className="text-xl font-bold text-[var(--highlight)] mb-4">💬 ¿Cómo trabajo?</h3>
-            <p className="text-[var(--muted-text)] mb-4">
-              Creo en una terapia cálida, respetuosa y adaptada a cada familia. No busco "etiquetar" ni corregir desde fuera, sino comprender qué necesita ese niño o niña para sentirse más seguro, más valioso, más libre para ser quien es.
-            </p>
-          </div>
-          
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-[var(--highlight)] mb-4">📍 Modalidad de trabajo</h3>
-            <p className="text-[var(--muted-text)] mb-4">
-              Actualmente trabajo en modalidad presencial en Madrid y también online para todo el país.
-            </p>
-            <p className="text-[var(--text)] font-medium">
-              Si quieres saber si puedo ayudarte en tu caso particular, puedes escribirme sin compromiso.
-            </p>
-          </div>
           
           <a
             href="/sobre-mi"
