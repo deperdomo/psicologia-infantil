@@ -21,6 +21,7 @@ export default function Navbar() {
     { to: '/', label: 'Inicio' },
     { to: '/sobre-mi', label: 'Sobre mí' },
     { to: '/servicios', label: 'Servicios' },
+    { to: '/recursos', label: 'Recursos' },
     { to: '/blog', label: 'Blog' },
     { to: '/testimonios', label: 'Testimonios' },
     { to: '/preguntas-frecuentes', label: 'FAQ' },

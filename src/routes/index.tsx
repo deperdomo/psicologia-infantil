@@ -12,6 +12,7 @@ import Contacto from '../pages/Contacto';
 import PreguntasFrecuentes from '../pages/PreguntasFrecuentes';
 import Testimonios from '../pages/Testimonios';
 import ReservaCita from '../pages/ReservaCita';
+import Recursos from '../pages/Recursos';
 
 const AppRoutes: React.FC = () => (
   <Routes>
@@ -21,6 +22,7 @@ const AppRoutes: React.FC = () => (
     <Route path="/servicios/terapia-individual" element={<TerapiaIndividual />} />
     <Route path="/servicios/terapia-de-pareja" element={<TerapiaDePareja />} />
     <Route path="/servicios/terapia-infantil" element={<TerapiaInfantil />} />
+    <Route path="/recursos" element={<Recursos />} />
     <Route path="/blog" element={<Blog />} />
     <Route path="/contacto" element={<Contacto />} />
     <Route path="/preguntas-frecuentes" element={<PreguntasFrecuentes />} />
