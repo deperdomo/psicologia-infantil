@@ -34,7 +34,7 @@ export default function ParentQuestions() {
           {questions.map(({ question, icon }, index) => (
             <div
               key={index}
-              className="group bg-white border border-[var(--border-light)] rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+              className="group bg-white border border-[var(--border-light)] rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-start space-x-4">
