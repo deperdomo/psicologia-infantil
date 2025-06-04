@@ -77,7 +77,7 @@ export default function WhyChooseUs() {
                       <span className="text-2xl filter drop-shadow-sm">{benefit.icon}</span>
                     </div>
                     {/* Floating dots */}
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--highlight)] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+                    <div className={`absolute -top-3 -right-3 w-3 h-3 bg-gradient-to-br ${benefit.color} rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300`}></div>
                   </div>
 
                   {/* Content */}
@@ -96,7 +96,7 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Decorative corner element */}
-                <div className="absolute top-4 right-4 w-2 h-2 bg-[var(--highlight)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className={`absolute top-6 right-6 w-1 h-1 bg-gradient-to-br ${benefit.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
               </div>
             </div>
           ))}
