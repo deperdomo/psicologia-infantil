@@ -62,7 +62,7 @@ export default function WhyChooseUs() {
           {benefits.map((benefit, index) => (
             <div
               key={benefit.title}
-              className="card-hover group relative animate-fadeInUp"
+              className="card-hover group relative animate-fadeInUp rounded-2xl"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               {/* Main card */}

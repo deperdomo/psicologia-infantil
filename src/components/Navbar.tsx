@@ -44,7 +44,7 @@ export default function Navbar() {
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo mejorado */}
+          {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="group flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -94,7 +94,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Botón hamburguesa mejorado */}
+          {/* Botón hamburguesa */}
           <div className="lg:hidden">
             <button
               onClick={toggleMenu}
@@ -114,10 +114,10 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Menú móvil mejorado */}
+        {/* Menú móvil */}
         <div
-          className={`lg:hidden transition-all duration-300 ease-out ${isOpen
-              ? 'max-h-screen opacity-100 visible'
+          className={`lg:hidden transition-all rounded-2xl duration-300 ease-out ${isOpen
+              ? 'max-h-screen mt-2 opacity-100 visible'
               : 'max-h-0 opacity-0 invisible'
             } overflow-hidden`}
         >
