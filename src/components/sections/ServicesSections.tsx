@@ -15,9 +15,9 @@ export default function ServicesSections() {
       iconBg: "bg-pink-100"
     },
     {
-      title: "📖 Cuentos y herramientas emocionales",
-      description: "Cuentos terapéuticos, guías prácticas y recursos descargables para hablar de lo que a veces cuesta decir con palabras.",
-      icon: "📚",
+      title: "🧩 Acompañamiento en momentos de cambio familiar",
+      description: "Separaciones, mudanzas, llegada de nuevas parejas o hermanos...Te acompaño a ti y/o a tu hijo/a en el proceso de adaptación emocional, ayudando a que lo transiten con mayor seguridad, contención y herramientas para hablar de lo que sienten.",
+      icon: "👨‍👩‍👧‍👦",
       gradient: "from-green-50 to-emerald-100",
       iconBg: "bg-green-100"
     },
