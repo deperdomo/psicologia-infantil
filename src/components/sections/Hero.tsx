@@ -1,6 +1,17 @@
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function Hero() {
+  const { elementRef: heroRef } = useScrollAnimation<HTMLElement>();
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: subtitleRef, isVisible: subtitleVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: buttonsRef, isVisible: buttonsVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: trustRef, isVisible: trustVisible } = useScrollAnimation<HTMLDivElement>();
+
   return (
-    <section className="relative bg-gradient-to-br from-[var(--primary)] via-[var(--secondary)] to-[var(--accent)] py-24 lg:py-32 overflow-hidden min-h-screen flex items-center">
+    <section 
+      ref={heroRef}
+      className="relative bg-gradient-to-br from-[var(--primary)] via-[var(--secondary)] to-[var(--accent)] py-24 lg:py-32 overflow-hidden min-h-screen flex items-center"
+    >
       {/* Background effects */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
       <div className="absolute top-10 left-10 w-72 h-72 bg-[var(--highlight)]/10 rounded-full blur-3xl animate-float"></div>
@@ -9,17 +20,35 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
         <div className="space-y-8">
           {/* Main heading with staggered animation */}
-          <div className="animate-fadeInUp">
+          <div 
+            ref={titleRef}
+            className={`transition-all duration-1000 ${
+              titleVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[var(--text)] mb-6 leading-tight">
               Acompañando la infancia con
-              <span className="block text-[var(--highlight)] mt-2 animate-fadeInScale" style={{ animationDelay: '0.3s' }}>
+              <span className={`block text-[var(--highlight)] mt-2 transition-all duration-1000 delay-300 ${
+                titleVisible 
+                  ? 'opacity-100 scale-100' 
+                  : 'opacity-0 scale-95'
+              }`}>
                 ternura, límites y herramientas emocionales
               </span>
             </h1>
           </div>
 
           {/* Subtitle with delayed animation */}
-          <div className="max-w-4xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
+          <div 
+            ref={subtitleRef}
+            className={`max-w-4xl mx-auto transition-all duration-1000 delay-500 ${
+              subtitleVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             <p className="text-lg md:text-xl lg:text-2xl text-[var(--muted-text)] mb-8 leading-relaxed font-light">
               En este espacio encontrarás acompañamiento profesional para niñas, niños y sus familias,
               en momentos de cambio, conflicto o malestar emocional.
@@ -27,7 +56,14 @@ export default function Hero() {
           </div>
 
           {/* CTA buttons with enhanced styling */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fadeInUp" style={{ animationDelay: '0.9s' }}>
+          <div 
+            ref={buttonsRef}
+            className={`flex flex-col sm:flex-row gap-6 justify-center items-center transition-all duration-1000 delay-700 ${
+              buttonsVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             <a
               href="/reserva-cita"
               className="btn-primary group inline-flex items-center space-x-3 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
@@ -44,7 +80,14 @@ export default function Hero() {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-16 animate-fadeInUp" style={{ animationDelay: '1.2s' }}>
+          <div 
+            ref={trustRef}
+            className={`mt-16 transition-all duration-1000 delay-1000 ${
+              trustVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
               <div className="flex items-center space-x-2 text-[var(--muted-text)]">
                 <span className="text-2xl">🎓</span>

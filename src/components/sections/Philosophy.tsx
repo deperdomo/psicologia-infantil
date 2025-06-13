@@ -1,8 +1,31 @@
+import AnimatedSection from '../AnimatedSection';
+import { useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function Philosophy() {
+  const { setRef, visibleItems } = useStaggeredScrollAnimation(3, 200);
+
+  const principles = [
+    {
+      icon: "🤗",
+      title: "Acompañamiento",
+      description: "Estamos contigo en cada paso del proceso emocional"
+    },
+    {
+      icon: "🌱",
+      title: "Crecimiento", 
+      description: "Cada emoción es una oportunidad para crecer y aprender"
+    },
+    {
+      icon: "💕",
+      title: "Ternura",
+      description: "Con respeto y calidez en cada encuentro terapéutico"
+    }
+  ];
+
   return (
     <section className="bg-gradient-to-br from-[var(--secondary)] to-[var(--primary)] py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mb-12">
+        <AnimatedSection className="mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">
             Un espacio donde el dolor no se evita, se acompaña
           </h2>
@@ -14,32 +37,26 @@ export default function Philosophy() {
               La diferencia está en cómo acompañamos a los niños a transitar esas emociones, y cómo ayudamos a los adultos a hacerlo sin sentirse perdidos o solos.
             </p>
           </div>
-        </div>
+        </AnimatedSection>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
-            <div className="text-4xl mb-4">🤗</div>
-            <h3 className="text-xl font-bold text-[var(--highlight)] mb-3">Acompañamiento</h3>
-            <p className="text-[var(--muted-text)]">
-              Estamos contigo en cada paso del proceso emocional
-            </p>
-          </div>
-          
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
-            <div className="text-4xl mb-4">🌱</div>
-            <h3 className="text-xl font-bold text-[var(--highlight)] mb-3">Crecimiento</h3>
-            <p className="text-[var(--muted-text)]">
-              Cada emoción es una oportunidad para crecer y aprender
-            </p>
-          </div>
-          
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
-            <div className="text-4xl mb-4">💕</div>
-            <h3 className="text-xl font-bold text-[var(--highlight)] mb-3">Ternura</h3>
-            <p className="text-[var(--muted-text)]">
-              Con respeto y calidez en cada encuentro terapéutico
-            </p>
-          </div>
+          {principles.map((principle, index) => (
+            <div
+              key={principle.title}
+              ref={setRef(index)}
+              className={`bg-white/20 backdrop-blur-sm rounded-xl p-6 transition-all duration-1000 hover:bg-white/30 hover:scale-105 ${
+                visibleItems.has(index)
+                  ? 'opacity-100 translate-y-0 scale-100'
+                  : 'opacity-0 translate-y-8 scale-95'
+              }`}
+            >
+              <div className="text-4xl mb-4 animate-pulse-soft">{principle.icon}</div>
+              <h3 className="text-xl font-bold text-[var(--highlight)] mb-3">{principle.title}</h3>
+              <p className="text-[var(--muted-text)]">
+                {principle.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

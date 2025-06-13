@@ -1,4 +1,9 @@
+import AnimatedSection from '../AnimatedSection';
+import { useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function ParentQuestions() {
+  const { setRef, visibleItems } = useStaggeredScrollAnimation(4, 150);
+
   const questions = [
     {
       question: "¿Notas que tu hija llora con facilidad, se siente insegura o reacciona con rabietas intensas?",
@@ -21,24 +26,28 @@ export default function ParentQuestions() {
   return (
     <section className="bg-[var(--card-background)] py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <AnimatedSection className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">
             ¿Te identificas con alguna de estas situaciones?
           </h2>
           <p className="text-lg text-[var(--muted-text)] max-w-3xl mx-auto">
             Es normal sentirse abrumado/a ante los desafíos emocionales de la crianza. No estás solo/a en este proceso.
           </p>
-        </div>
+        </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {questions.map(({ question, icon }, index) => (
             <div
               key={index}
-              className="group bg-white border border-[var(--border-light)] rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              ref={setRef(index)}
+              className={`group bg-white border border-[var(--border-light)] rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-1000 hover:scale-105 ${
+                visibleItems.has(index)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
+              }`}
             >
               <div className="flex items-start space-x-4">
-                <div className="text-3xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                <div className="text-3xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0 animate-pulse-soft">
                   {icon}
                 </div>
                 <div>
@@ -51,7 +60,7 @@ export default function ParentQuestions() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <AnimatedSection className="text-center mt-12" delay={600}>
           <div className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] rounded-xl p-8">
             <p className="text-lg text-[var(--text)] font-medium mb-6">
               Si has respondido "sí" a alguna de estas preguntas, puedo ayudarte a encontrar herramientas y estrategias para acompañar a tu hijo/a con mayor seguridad y tranquilidad.
@@ -66,7 +75,7 @@ export default function ParentQuestions() {
               </svg>
             </a>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   )

@@ -1,5 +1,11 @@
 
+import { useScrollAnimation, useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function WhyChooseUs() {
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
+  const { setRef, visibleItems } = useStaggeredScrollAnimation(6, 200); // 6 benefits, 200ms delay
+  const { elementRef: bottomRef, isVisible: bottomVisible } = useScrollAnimation<HTMLDivElement>();
+
   const benefits = [
     {
       title: "Enfoque Personalizado",
@@ -45,8 +51,14 @@ export default function WhyChooseUs() {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-[var(--primary)]/20 to-transparent rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-gradient-to-tl from-[var(--accent)]/20 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20 animate-fadeInUp">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">        <div 
+          ref={headerRef}
+          className={`text-center mb-20 transition-all duration-1000 ${
+            headerVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-3xl mb-8 shadow-lg">
             <span className="text-3xl">💫</span>
           </div>
@@ -56,14 +68,16 @@ export default function WhyChooseUs() {
           <p className="text-lg md:text-xl text-[var(--muted-text)] max-w-4xl mx-auto leading-relaxed">
             Nuestra filosofía se basa en crear un espacio seguro y personalizado donde puedas crecer y sanar a tu propio ritmo
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        </div>        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {benefits.map((benefit, index) => (
             <div
               key={benefit.title}
-              className="card-hover group relative animate-fadeInUp rounded-2xl"
-              style={{ animationDelay: `${index * 0.15}s` }}
+              ref={setRef(index)}
+              className={`card-hover group relative rounded-2xl transition-all duration-1000 ${
+                visibleItems.has(index)
+                  ? 'opacity-100 translate-y-0 scale-100'
+                  : 'opacity-0 translate-y-8 scale-95'
+              }`}
             >
               {/* Main card */}
               <div className="relative h-full glass-card p-8 rounded-2xl border border-[var(--border-light)] shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
@@ -100,10 +114,15 @@ export default function WhyChooseUs() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Enhanced bottom section */}
-        <div className="text-center mt-20 animate-fadeInUp" style={{ animationDelay: '1s' }}>
+        </div>        {/* Enhanced bottom section */}
+        <div 
+          ref={bottomRef}
+          className={`text-center mt-20 transition-all duration-1000 delay-500 ${
+            bottomVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="glass-card inline-block p-8 rounded-3xl border border-[var(--border-light)] shadow-xl">
             <div className="flex items-center justify-center space-x-4">
               <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] rounded-full animate-pulse">

@@ -1,24 +1,49 @@
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function About() {
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: cardRef, isVisible: cardVisible } = useScrollAnimation<HTMLDivElement>();
+
   return (
     <section className="max-w-6xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">
-            👩‍⚕ Sobre mí
-          </h2>
-          <p className="text-[var(--muted-text)] leading-relaxed mb-6 text-lg">
-            Hola, soy <strong>Llenia Monteagudo Rodríguez</strong>, psicóloga especializada en infancia, familias y vínculos.
-          </p>
-          <p className="text-[var(--muted-text)] leading-relaxed mb-6">
-            Trabajo acompañando a niñas, niños y a sus familias cuando las emociones se hacen grandes, cuando los cambios desordenan un poco la casa, y cuando lo que más se necesita no es una solución rápida, sino alguien que escuche, sostenga y oriente con respeto.
-          </p>
-          <p className="text-[var(--muted-text)] leading-relaxed mb-8">
-            Llevo más de 15 años trabajando con infancia y parentalidad, en procesos de duelo, divorcio, inseguridad emocional, miedos, problemas de conducta y desbordes afectivos.
-          </p>
+        <div 
+          ref={contentRef}
+          className={`transition-all duration-1000 ${
+            contentVisible 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 -translate-x-8'
+          }`}
+        >
+          <div 
+            ref={titleRef}
+            className={`transition-all duration-1000 delay-200 ${
+              titleVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">
+              👩‍⚕ Sobre mí
+            </h2>
+          </div>
+          
+          <div className="space-y-6">
+            <p className="text-[var(--muted-text)] leading-relaxed text-lg">
+              Hola, soy <strong>Llenia Monteagudo Rodríguez</strong>, psicóloga especializada en infancia, familias y vínculos.
+            </p>
+            <p className="text-[var(--muted-text)] leading-relaxed">
+              Trabajo acompañando a niñas, niños y a sus familias cuando las emociones se hacen grandes, cuando los cambios desordenan un poco la casa, y cuando lo que más se necesita no es una solución rápida, sino alguien que escuche, sostenga y oriente con respeto.
+            </p>
+            <p className="text-[var(--muted-text)] leading-relaxed mb-8">
+              Llevo más de 15 años trabajando con infancia y parentalidad, en procesos de duelo, divorcio, inseguridad emocional, miedos, problemas de conducta y desbordes afectivos.
+            </p>
+          </div>
           
           <a
             href="/sobre-mi"
-            className="nav-button bg-[var(--accent)] text-[var(--button-text)] px-6 py-3 rounded-lg hover:bg-[var(--button-hover)] shadow-sm font-semibold inline-flex items-center"
+            className="nav-button bg-[var(--accent)] text-[var(--button-text)] px-6 py-3 rounded-lg hover:bg-[var(--button-hover)] shadow-sm font-semibold inline-flex items-center transition-all duration-300 hover:translate-y-[-2px]"
           >
             Conoce más sobre mi trabajo
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,9 +52,16 @@ export default function About() {
           </a>
         </div>
         
-        <div className="bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl p-8">
+        <div 
+          ref={cardRef}
+          className={`bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl p-8 transition-all duration-1000 delay-500 ${
+            cardVisible 
+              ? 'opacity-100 translate-x-0 scale-100' 
+              : 'opacity-0 translate-x-8 scale-95'
+          }`}
+        >
           <div className="text-center mb-6">
-            <div className="text-6xl mb-4">🤍</div>
+            <div className="text-6xl mb-4 animate-pulse-soft">🤍</div>
             <h3 className="text-2xl font-bold text-[var(--text)] mb-4">
               ¿Por qué elegí esta profesión?
             </h3>

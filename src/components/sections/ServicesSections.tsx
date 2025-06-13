@@ -1,4 +1,10 @@
+import { useScrollAnimation, useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function ServicesSections() {
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
+  const { setRef: setServiceRef, visibleItems: visibleServices } = useStaggeredScrollAnimation(3, 250);
+  const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLDivElement>();
+
   const services = [
     {
       title: "🧠 Terapia infantil",
@@ -29,8 +35,14 @@ export default function ServicesSections() {
       <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-[var(--primary)]/20 to-transparent rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-tl from-[var(--accent)]/20 to-transparent rounded-full blur-3xl"></div>
 
-      <div className="relative z-10">
-        <div className="text-center mb-20 animate-fadeInUp">
+      <div className="relative z-10">        <div 
+          ref={headerRef}
+          className={`text-center mb-20 transition-all duration-1000 ${
+            headerVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl mb-6">
             <span className="text-2xl">✨</span>
           </div>
@@ -41,14 +53,16 @@ export default function ServicesSections() {
             Trabajo desde un enfoque respetuoso, integrador y cercano, que combina psicología infantil,
             orientación a madres y padres, y recursos terapéuticos como los cuentos, el juego o la palabra sencilla.
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        </div>        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {services.map(({ title, description, icon, gradient, iconBg }, index) => (
             <div
               key={title}
-              className="card-hover group relative bg-white/80 backdrop-blur-sm border border-[var(--border-light)] rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 animate-fadeInUp"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              ref={setServiceRef(index)}
+              className={`card-hover group relative bg-white/80 backdrop-blur-sm border border-[var(--border-light)] rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-1000 ${
+                visibleServices.has(index)
+                  ? 'opacity-100 translate-y-0 scale-100'
+                  : 'opacity-0 translate-y-8 scale-95'
+              }`}
             >
               {/* Card gradient background */}
               <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`}></div>
@@ -84,10 +98,15 @@ export default function ServicesSections() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Call to action */}
-        <div className="text-center mt-16 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
+        </div>        {/* Call to action */}
+        <div 
+          ref={ctaRef}
+          className={`text-center mt-16 transition-all duration-1000 delay-300 ${
+            ctaVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="glass-card inline-block p-8 rounded-2xl">
             <h3 className="text-2xl font-bold text-[var(--text)] mb-4">
               ¿Necesitas orientación personalizada?

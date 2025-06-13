@@ -10,12 +10,10 @@ import CallToAction from '../../components/sections/CallToAction';
 import ParentQuestions from '../../components/sections/ParentQuestions';
 import Navbar from '../../components/Navbar';
 
-
-
 export default function Home() {
  
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--text)] hardware-acceleration"> 
       <Navbar />
       <Hero />
       <ParentQuestions />
