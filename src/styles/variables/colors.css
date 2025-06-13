@@ -1,0 +1,84 @@
+/* ===================================
+   🎨 VARIABLES DE COLORES Y TEMA
+   =================================== */
+
+:root {
+  /* 🌅 Paleta de colores principal - Tonos suaves y profesionales */
+  --primary: #F8E8E7;
+  --secondary: #FFF3E1;
+  --accent: #E3D5F1;
+  --background: #FDFDFD;
+  --text: #1A1A1A;
+  --muted-text: #5A5A5A;
+  --platinum: #E8EAED;
+
+  /* 🎯 Colores de acción y contraste */
+  --highlight: #E06B74;
+  --button-hover: #D45260;
+  --button-text: #ffffff;
+  --nav-border: #F0F0F0;
+
+  /* 🌫️ Sombras y profundidad */
+  --shadow: rgba(26, 26, 26, 0.08);
+  --shadow-lg: rgba(26, 26, 26, 0.12);
+  --shadow-xl: rgba(26, 26, 26, 0.16);
+
+  /* 🎴 UI Components */
+  --card-background: #FFFFFF;
+  --hover-bg: rgba(224, 107, 116, 0.06);
+  --active-bg: rgba(224, 107, 116, 0.12);
+  --border-light: rgba(26, 26, 26, 0.08);
+  --border-medium: rgba(26, 26, 26, 0.12);
+  --text-on-primary: #1A1A1A;
+
+  /* 🌈 Gradientes */
+  --gradient-1: linear-gradient(135deg, #F8E8E7 0%, #FFF3E1 50%, #E3D5F1 100%);
+  --gradient-2: linear-gradient(135deg, #E06B74 0%, #D45260 100%);
+
+  /* 🧊 Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+/* ===================================
+   🌙 MODO OSCURO
+   =================================== */
+
+.dark,
+:root[class~='dark'] {
+  /* Paleta oscura */
+  --primary: #2A2A2A;
+  --secondary: #3A3A3A;
+  --accent: #4A4A4A;
+  --background: #0F0F0F;
+  --text: #F5F5F5;
+  --muted-text: #B0B0B0;
+  --platinum: #6A6A6A;
+
+  /* Colores de acción en modo oscuro */
+  --highlight: #E06B74;
+  --button-hover: #D45260;
+  --nav-border: #2A2A2A;
+  --button-text: #ffffff;
+
+  /* Sombras para modo oscuro */
+  --shadow: rgba(245, 245, 245, 0.05);
+  --shadow-lg: rgba(245, 245, 245, 0.08);
+  --shadow-xl: rgba(245, 245, 245, 0.12);
+
+  /* UI Components en modo oscuro */
+  --card-background: #1A1A1A;
+  --hover-bg: rgba(224, 107, 116, 0.1);
+  --active-bg: rgba(224, 107, 116, 0.15);
+  --border-light: rgba(245, 245, 245, 0.1);
+  --border-medium: rgba(245, 245, 245, 0.15);
+  --text-on-primary: #F5F5F5;
+
+  /* Gradientes para modo oscuro */
+  --gradient-1: linear-gradient(135deg, #2A2A2A 0%, #3A3A3A 50%, #4A4A4A 100%);
+  --gradient-2: linear-gradient(135deg, #E06B74 0%, #D45260 100%);
+
+  /* Glassmorphism para modo oscuro */
+  --glass-bg: rgba(26, 26, 26, 0.85);
+  --glass-border: rgba(26, 26, 26, 0.3);
+}

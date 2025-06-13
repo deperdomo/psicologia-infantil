@@ -1,0 +1,60 @@
+/* ===================================
+   🎯 EJEMPLO DE USO DEL SISTEMA MODULAR
+   =================================== */
+
+/* Ejemplo de componente que usa el sistema modular */
+.ejemplo-recursos-card {
+  /* Variables del sistema */
+  background: var(--card-background);
+  border: 1px solid var(--border-light);
+  color: var(--text);
+  
+  /* Aplicar clases del sistema directamente en HTML: */
+  /* class="shadow-soft container-padding glass-card animate-fadeInUp" */
+  
+  /* O extender estilos existentes */
+  padding: 1.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ejemplo-recursos-card:hover {
+  /* Efectos al hover */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.ejemplo-boton-principal {
+  /* Extender del componente base */
+  background: linear-gradient(135deg, var(--highlight), var(--accent));
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ejemplo-texto-titulo {
+  /* Tipografía responsiva personalizada */
+  background: linear-gradient(135deg, var(--highlight), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* Usar clase de animación en HTML: class="animate-slideInRight delay-300" */
+}
+
+/* Ejemplo de uso de variables para tema personalizado */
+.ejemplo-seccion-especial {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Ejemplo de animación personalizada usando las bases */
+.ejemplo-entrada-especial {
+  animation: fadeInUp 0.8s ease-out, float 3s ease-in-out infinite;
+  animation-delay: 0s, 1s;
+}

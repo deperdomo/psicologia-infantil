@@ -1,0 +1,28 @@
+/* ===================================
+   🎨 SISTEMA DE ESTILOS MODULAR
+   Archivo principal que importa todos los módulos
+   =================================== */
+
+@import 'tailwindcss';
+
+/* 🔧 Variables y configuración base */
+@import './variables/colors.css';
+
+/* 🏗️ Estilos base */
+@import './base/global.css';
+
+/* 🎬 Animaciones */
+@import './animations/basic.css';
+@import './animations/floating.css';
+@import './animations/resources.css';
+@import './animations/classes.css';
+
+/* 🧩 Componentes */
+@import './components/navigation.css';
+@import './components/cards.css';
+@import './components/buttons.css';
+
+/* 🛠️ Utilidades */
+@import './utilities/shadows.css';
+@import './utilities/spacing.css';
+@import './utilities/typography.css';
