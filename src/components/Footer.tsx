@@ -126,7 +126,7 @@ export default function Footer() {
                 placeholder="tu@email.com"
                 className="px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] backdrop-blur-sm"
               />
-              <button className="btn-primary px-6 py-3 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white font-semibold rounded-xl hover:scale-105 transition-transform duration-300">
+              <button className="btn-primary">
                 Suscribirse
               </button>
             </div>

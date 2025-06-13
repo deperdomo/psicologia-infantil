@@ -1,10 +1,10 @@
 import Navbar from "../../components/Navbar";
-import HeroSection from "./components/HeroSection";
-import ApproachSection from "./components/ApproachSection";
-import PhilosophySection from "./components/PhilosophySection";
-import WorkMethodSection from "./components/WorkMethodSection";
-import CTASection from "./components/CTASection";
-import SharedStyles from "./components/SharedStyles";
+import HeroSection from "../../components/sobreMi/HeroSection";
+import ApproachSection from "../../components/sobreMi/ApproachSection";
+import PhilosophySection from "../../components/sobreMi/PhilosophySection";
+import WorkMethodSection from "../../components/sobreMi/WorkMethodSection";
+import CTASection from "../../components/sobreMi/CTASection";
+import SharedStyles from "../../components/sobreMi/SharedStyles";
 import Footer from "../../components/Footer";
 
 export default function SobreMi() {

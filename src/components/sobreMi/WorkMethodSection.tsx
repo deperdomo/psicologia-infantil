@@ -1,31 +1,70 @@
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function WorkMethodSection() {
+  // Hooks para animaciones de scroll
+  const { elementRef: sectionRef } = useScrollAnimation<HTMLElement>();
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation<HTMLDivElement>();
+
   return (
-    <section className="py-24 lg:py-32">
+    <section 
+      ref={sectionRef}
+      className="py-24 lg:py-32"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
           {/* Contenido principal */}
           <div className="lg:col-span-3 space-y-12">
-            <div className="space-y-8">
+            <div 
+              ref={headerRef}
+              className={`space-y-8 transition-all duration-1000 ${
+                headerVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+            >
               <div className="flex items-center space-x-4">
-                <div className="w-14 h-14 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl flex items-center justify-center">
+                <div className={`w-14 h-14 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl flex items-center justify-center transition-all duration-1000 delay-200 ${
+                  headerVisible 
+                    ? 'opacity-100 scale-100 rotate-0' 
+                    : 'opacity-0 scale-75 rotate-12'
+                }`}>
                   <span className="text-2xl">💬</span>
                 </div>
                 <div>
-                  <h2 className="text-4xl md:text-5xl font-bold text-[var(--text)]">¿Cómo trabajo?</h2>
-                  <div className="w-16 h-1 bg-[var(--highlight)] rounded-full mt-2"></div>
+                  <h2 className={`text-4xl md:text-5xl font-bold text-[var(--text)] transition-all duration-1000 delay-400 ${
+                    headerVisible 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}>¿Cómo trabajo?</h2>
+                  <div className={`w-16 h-1 bg-[var(--highlight)] rounded-full mt-2 transition-all duration-1000 delay-600 ${
+                    headerVisible 
+                      ? 'opacity-100 scale-100' 
+                      : 'opacity-0 scale-75'
+                  }`}></div>
                 </div>
               </div>
               
               <div className="prose prose-lg max-w-none">
-                <p className="text-xl text-[var(--muted-text)] leading-relaxed">
+                <p className={`text-xl text-[var(--muted-text)] leading-relaxed transition-all duration-1000 delay-800 ${
+                  headerVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}>
                   Acompaño a niñas, niños y sus familias cuando las emociones se hacen grandes, cuando los cambios desordenan un poco la casa, y cuando lo que más se necesita no es una solución rápida, sino alguien que escuche, sostenga y oriente con respeto.
                 </p>
               </div>
             </div>
 
             {/* Cards de metodología */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 nav-transition hover:shadow-lg hover:border-[var(--primary)]/50">
+            <div 
+              ref={contentRef}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >              <div className={`bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 shadow-md transition-all duration-1000 delay-300 ${
+                contentVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--primary)]/20 rounded-xl flex items-center justify-center">
                     <span className="text-xl">🎯</span>
@@ -37,7 +76,11 @@ export default function WorkMethodSection() {
                 </div>
               </div>
               
-              <div className="bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 nav-transition hover:shadow-lg hover:border-[var(--secondary)]/50">
+              <div className={`bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 shadow-md transition-all duration-1000 delay-500 ${
+                contentVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--secondary)]/20 rounded-xl flex items-center justify-center">
                     <span className="text-xl">🤝</span>
@@ -48,8 +91,11 @@ export default function WorkMethodSection() {
                   </p>
                 </div>
               </div>
-              
-              <div className="bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 nav-transition hover:shadow-lg hover:border-[var(--accent)]/50">
+                <div className={`bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 shadow-md transition-all duration-1000 delay-700 ${
+                contentVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--accent)]/20 rounded-xl flex items-center justify-center">
                     <span className="text-xl">🌟</span>
@@ -60,8 +106,11 @@ export default function WorkMethodSection() {
                   </p>
                 </div>
               </div>
-              
-              <div className="bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 nav-transition hover:shadow-lg hover:border-[var(--highlight)]/50">
+                <div className={`bg-[var(--card-background)] border border-[var(--border-light)] rounded-2xl p-6 shadow-md transition-all duration-1000 delay-900 ${
+                contentVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--highlight)]/20 rounded-xl flex items-center justify-center">
                     <span className="text-xl">📈</span>

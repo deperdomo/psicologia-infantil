@@ -1,26 +1,54 @@
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+
 export default function ApproachSection() {
+  // Hooks para animaciones de scroll
+  const { elementRef: sectionRef, isVisible: sectionVisible } = useScrollAnimation<HTMLElement>();
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
+
   return (
-    <section className="py-24 lg:py-32">
+    <section 
+      ref={sectionRef}
+      className="py-24 lg:py-32"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header de sección */}
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl mb-6">
+        <div 
+          ref={headerRef}
+          className={`max-w-4xl mx-auto text-center mb-20 transition-all duration-1000 ${
+            headerVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl mb-6 transition-all duration-1000 delay-200 ${
+            headerVisible 
+              ? 'opacity-100 scale-100 rotate-0' 
+              : 'opacity-0 scale-75 -rotate-12'
+          }`}>
             <span className="text-2xl">🌱</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-6">
+          <h2 className={`text-4xl md:text-5xl font-bold text-[var(--text)] mb-6 transition-all duration-1000 delay-400 ${
+            headerVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
             Mi enfoque terapéutico
           </h2>
-          <p className="text-xl text-[var(--muted-text)] leading-relaxed">
+          <p className={`text-xl text-[var(--muted-text)] leading-relaxed transition-all duration-1000 delay-600 ${
+            headerVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
             Una mirada integral que honra la singularidad de cada familia y respeta los tiempos de cada proceso de crecimiento.
           </p>
-        </div>
-
-        {/* Grid de enfoques con diseño moderno */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Enfoque Sistémico */}
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-            <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full nav-transition hover:shadow-xl hover:border-[var(--primary)]/50 hover:-translate-y-2">
+        </div>        {/* Grid de enfoques con diseño moderno */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">          {/* Enfoque Sistémico */}
+          <div className={`relative transition-all duration-1000 delay-300 ${
+            sectionVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}>
+            <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full shadow-lg">
               <div className="space-y-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl flex items-center justify-center">
                   <span className="text-2xl">🔗</span>
@@ -48,12 +76,13 @@ export default function ApproachSection() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Enfoque Humanista */}
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--secondary)] to-[var(--primary)] rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-            <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full nav-transition hover:shadow-xl hover:border-[var(--secondary)]/50 hover:-translate-y-2">
+          </div>          {/* Enfoque Humanista */}
+          <div className={`relative transition-all duration-1000 delay-500 ${
+            sectionVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}>
+            <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full shadow-lg">
               <div className="space-y-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-[var(--secondary)] to-[var(--primary)] rounded-2xl flex items-center justify-center">
                   <span className="text-2xl">💛</span>
@@ -81,12 +110,13 @@ export default function ApproachSection() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Enfoque Integrador */}
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)] to-[var(--secondary)] rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-            <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full nav-transition hover:shadow-xl hover:border-[var(--accent)]/50 hover:-translate-y-2">
+          </div>          {/* Enfoque Integrador */}
+          <div className={`relative transition-all duration-1000 delay-700 ${
+            sectionVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}>
+            <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full shadow-lg">
               <div className="space-y-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-[var(--accent)] to-[var(--secondary)] rounded-2xl flex items-center justify-center">
                   <span className="text-2xl">🔧</span>

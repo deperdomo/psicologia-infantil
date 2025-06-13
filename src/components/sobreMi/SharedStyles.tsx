@@ -18,10 +18,6 @@ export default function SharedStyles() {
           }
         }
         
-        .group:hover .float-icon {
-          animation: float 2s ease-in-out infinite;
-        }
-        
         .animate-fade-in-up {
           animation: fade-in-up 0.6s ease-out;
         }
