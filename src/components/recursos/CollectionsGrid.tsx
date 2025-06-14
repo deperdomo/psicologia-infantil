@@ -15,7 +15,6 @@ export default function CollectionsGrid({ collections }: CollectionsGridProps) {
   const expandedContentRef = useRef<HTMLDivElement>(null);
 
   const { elementRef: collectionsRef, isVisible: collectionsVisible } = useScrollAnimation<HTMLDivElement>();
-
   const handleExploreCollection = (collectionId: string) => {
     if (selectedCollection === collectionId) {
       // Si ya está expandido, iniciamos la animación de cierre suave
@@ -47,18 +46,29 @@ export default function CollectionsGrid({ collections }: CollectionsGridProps) {
         setTimeout(() => {
           setExpandingCollection(collectionId);
           
-          // Scroll suave hacia el contenido expandido si es necesario
-          if (expandedContentRef.current) {
-            const rect = expandedContentRef.current.getBoundingClientRect();
-            const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-            
-            if (!isVisible) {
-              expandedContentRef.current.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'nearest' 
-              });
+          // Scroll automático en móvil hacia el contenido expandido
+          setTimeout(() => {
+            if (expandedContentRef.current) {
+              const isMobile = window.innerWidth < 768;
+              if (isMobile) {
+                expandedContentRef.current.scrollIntoView({ 
+                  behavior: 'smooth', 
+                  block: 'start' 
+                });
+              } else {
+                // En desktop, solo hacer scroll si no es visible
+                const rect = expandedContentRef.current.getBoundingClientRect();
+                const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+                
+                if (!isVisible) {
+                  expandedContentRef.current.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                  });
+                }
+              }
             }
-          }
+          }, 200);
         }, 100);
       }, 350); // La mitad del tiempo de cierre para solapar animaciones
     } else {
@@ -68,6 +78,19 @@ export default function CollectionsGrid({ collections }: CollectionsGridProps) {
       // Pequeño delay para que se renderice el elemento antes de animarlo
       setTimeout(() => {
         setExpandingCollection(collectionId);
+        
+        // Scroll automático en móvil hacia el contenido expandido
+        setTimeout(() => {
+          if (expandedContentRef.current) {
+            const isMobile = window.innerWidth < 768;
+            if (isMobile) {
+              expandedContentRef.current.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+              });
+            }
+          }
+        }, 200);
       }, 50);
     }
   };

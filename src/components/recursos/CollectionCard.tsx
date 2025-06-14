@@ -40,7 +40,7 @@ export default function CollectionCard({
         <div className="text-center">
           <button
             onClick={() => onExplore(collection.id)}
-            className="bg-white/80 hover:bg-white text-gray-800 font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg relative overflow-hidden group"
+            className="bg-white/80 hover:bg-white text-gray-800 font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg relative overflow-hidden group cursor-pointer"
           >
             <span className="relative z-10">
               {selectedCollection === collection.id ? 'Ocultar' : 'Explorar'}
