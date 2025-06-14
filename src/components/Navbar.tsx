@@ -176,10 +176,10 @@ export default function Navbar() {
 
         {/* Menú móvil */}
         <div
-          className={`lg:hidden transition-all rounded-2xl duration-300 ease-out ${isOpen
-              ? 'max-h-screen mt-2 opacity-100 visible'
+          className={`lg:hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md border-t border-[var(--border-light)] transition-all duration-300 ease-out ${isOpen
+              ? 'max-h-screen opacity-100 visible'
               : 'max-h-0 opacity-0 invisible'
-            } overflow-hidden`}
+            } overflow-auto`}
         >
           <div className="mobile-menu p-6 space-y-1">
             {navItems.map(({ to, label }) => (
