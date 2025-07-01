@@ -1,5 +1,7 @@
-
 import { useScrollAnimation, useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoSparkles, IoChatbox, IoCheckmark, IoStar, IoHeart, IoLockClosed } from 'react-icons/io5';
+import { FaHandshake } from 'react-icons/fa';
 
 export default function WhyChooseUs() {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
@@ -10,37 +12,37 @@ export default function WhyChooseUs() {
     {
       title: "Enfoque Personalizado",
       description: "Cada terapia es única. Adaptamos nuestro enfoque a tus necesidades específicas, respetando tu ritmo y tus objetivos personales.",
-      icon: "🎯",
+      icon: <IoHeart className="text-2xl filter drop-shadow-sm" />,
       color: "from-blue-400 to-blue-600"
     },
     {
       title: "Confidencialidad Total",
       description: "Tu privacidad es sagrada. Todo lo que compartas permanece en absoluta confidencialidad bajo el secreto profesional.",
-      icon: "🔒",
+      icon: <IoLockClosed className="text-2xl filter drop-shadow-sm" />, // Replaced 🔒 emoji with IoLockClosed icon
       color: "from-green-400 to-green-600"
     },
     {
       title: "Flexibilidad Horaria",
       description: "Entendemos tus compromisos. Ofrecemos horarios flexibles, incluyendo sesiones online, para que puedas priorizar tu bienestar.",
-      icon: "⏰",
+      icon: <IoStar className="text-2xl filter drop-shadow-sm" />, // Replaced ⏰ emoji with IoStar icon
       color: "from-purple-400 to-purple-600"
     },
     {
       title: "Comunicación Continua",
       description: "Mantenemos una comunicación abierta y constante. Tu feedback es fundamental para adaptar el proceso terapéutico.",
-      icon: "💬",
+      icon: <IoChatbox className="text-2xl filter drop-shadow-sm" />,
       color: "from-pink-400 to-pink-600"
     },
     {
       title: "Sin Compromisos",
       description: "Tienes total libertad para decidir. Puedes pausar o finalizar el proceso cuando lo consideres necesario, sin penalizaciones.",
-      icon: "✅",
+      icon: <IoCheckmark className="text-2xl filter drop-shadow-sm" />,
       color: "from-teal-400 to-teal-600"
     },
     {
       title: "Trabajo Colaborativo",
       description: "Trabajamos juntos como equipo. Tu participación activa y nuestro acompañamiento profesional son la clave del éxito.",
-      icon: "🤝",
+      icon: <FaHandshake className="text-2xl filter drop-shadow-sm" />,
       color: "from-orange-400 to-orange-600"
     }
   ];
@@ -60,7 +62,8 @@ export default function WhyChooseUs() {
           }`}
         >
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-3xl mb-8 shadow-lg">
-            <span className="text-3xl">💫</span>
+            {/* Replaced 💫 emoji with IoSparkles icon */}
+            <IoSparkles className="text-3xl text-white" aria-hidden="true" />
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text)] mb-6">
             ¿Por qué elegirnos?
@@ -88,7 +91,7 @@ export default function WhyChooseUs() {
                   {/* Icon with enhanced styling */}
                   <div className="relative mb-6">
                     <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${benefit.color} rounded-2xl shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                      <span className="text-2xl filter drop-shadow-sm">{benefit.icon}</span>
+                      {benefit.icon}
                     </div>
                     {/* Floating dots */}
                     <div className={`absolute -top-3 -right-3 w-3 h-3 bg-gradient-to-br ${benefit.color} rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300`}></div>
@@ -126,7 +129,8 @@ export default function WhyChooseUs() {
           <div className="glass-card inline-block p-8 rounded-3xl border border-[var(--border-light)] shadow-xl">
             <div className="flex items-center justify-center space-x-4">
               <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] rounded-full animate-pulse">
-                <span className="text-xl">💝</span>
+                {/* Replaced 💝 emoji with IoHeart icon */}
+                <IoHeart className="text-xl text-white" aria-hidden="true" />
               </div>
               <div className="text-left">
                 <h3 className="text-xl font-bold text-[var(--text)] mb-1">

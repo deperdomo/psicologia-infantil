@@ -1,4 +1,7 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoBook, IoCheckmark, IoFlash } from 'react-icons/io5';
+import { FaBullseye } from 'react-icons/fa';
 
 export default function NewsletterCTA() {
   const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLDivElement>();
@@ -18,7 +21,9 @@ export default function NewsletterCTA() {
         >
           <div className="relative z-10">
             <div className="mb-6">
-              <div className="text-4xl mb-4">📚</div>
+              <div className="text-4xl mb-4">
+                <IoBook />
+              </div>
               <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
                 ¿Quieres acceso a más recursos?
               </h3>
@@ -43,15 +48,16 @@ export default function NewsletterCTA() {
             {/* Benefits */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-600">
               <div className="flex items-center justify-center space-x-2">
-                <span>✅</span>
+                <IoCheckmark />
                 <span>Recursos gratuitos</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
-                <span>🎯</span>
+                {/* Replaced 🎯 emoji with FaBullseye icon */}
+                <FaBullseye className="text-[var(--primary)]" aria-hidden="true" />
                 <span>Contenido exclusivo</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
-                <span>⚡</span>
+                <IoFlash />
                 <span>Acceso anticipado</span>
               </div>
             </div>

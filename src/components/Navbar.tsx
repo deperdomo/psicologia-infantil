@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// react-icons imports - replacing emojis and SVG icons
+import { GiSprout } from 'react-icons/gi'; // Replacing 🌱 emoji
+import { IoChevronDown } from 'react-icons/io5'; // Replacing chevron down SVG
+import { IoCalendarOutline } from 'react-icons/io5'; // Replacing calendar SVG
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +70,12 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link to="/" className="group flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <span className="text-lg font-bold text-[var(--text)]">🌱</span>
+                {/* Replaced 🌱 emoji with GiSprout icon for better consistency and accessibility */}
+                <GiSprout 
+                  className="text-lg text-[var(--text)]" 
+                  aria-label="Icono de crecimiento y desarrollo"
+                  title="Psicología Infantil - Crecimiento y Desarrollo"
+                />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-[var(--text)] group-hover:text-[var(--highlight)] transition-colors duration-300">
@@ -106,14 +115,11 @@ export default function Navbar() {
                     }`}
                 >
                   <span className="relative z-10">Servicios</span>
-                  <svg
+                  {/* Replaced SVG chevron with IoChevronDown for consistency */}
+                  <IoChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+                    aria-hidden="true"
+                  />
                   {location.pathname.startsWith('/servicios') && (
                     <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-0.5 bg-[var(--highlight)] rounded-full"></div>
                   )}
@@ -146,9 +152,11 @@ export default function Navbar() {
                   className="btn-primary inline-flex items-center space-x-2 nav-button"
                 >
                   <span>Reservar Cita</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+                  {/* Replaced calendar SVG with IoCalendarOutline for better consistency */}
+                  <IoCalendarOutline 
+                    className="w-4 h-4" 
+                    aria-hidden="true"
+                  />
                 </Link>
               </div>
             </div>
@@ -206,14 +214,11 @@ export default function Navbar() {
                   }`}
               >
                 <span>Servicios</span>
-                <svg
+                {/* Replaced SVG chevron with IoChevronDown for consistency */}
+                <IoChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
+                  aria-hidden="true"
+                />
               </button>
 
               <div className={`ml-4 space-y-1 transition-all duration-300 ${isServicesOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
@@ -248,9 +253,11 @@ export default function Navbar() {
                 onClick={closeMenu}
               >
                 <span>Reservar Cita</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+                {/* Replaced calendar SVG with IoCalendarOutline for better consistency */}
+                <IoCalendarOutline 
+                  className="w-4 h-4" 
+                  aria-hidden="true"
+                />
               </Link>
             </div>
           </div>

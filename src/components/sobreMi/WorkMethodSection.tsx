@@ -1,4 +1,7 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoPersonAdd, IoStar, IoTrendingUp, IoChatbubble, IoHeartOutline } from 'react-icons/io5'; // Various method icons
+import { FaHandshake } from 'react-icons/fa'; // Handshake icon
 
 export default function WorkMethodSection() {
   // Hooks para animaciones de scroll
@@ -29,7 +32,8 @@ export default function WorkMethodSection() {
                     ? 'opacity-100 scale-100 rotate-0' 
                     : 'opacity-0 scale-75 rotate-12'
                 }`}>
-                  <span className="text-2xl">💬</span>
+                  {/* Replaced 💬 emoji with IoChatbubble icon */}
+                  <IoChatbubble className="text-2xl text-white" aria-hidden="true" />
                 </div>
                 <div>
                   <h2 className={`text-4xl md:text-5xl font-bold text-[var(--text)] transition-all duration-1000 delay-400 ${
@@ -67,7 +71,8 @@ export default function WorkMethodSection() {
               }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--primary)]/20 rounded-xl flex items-center justify-center">
-                    <span className="text-xl">🎯</span>
+                    {/* Replaced 🎯 emoji with IoPersonAdd icon for personalized therapy */}
+                    <IoPersonAdd className="text-xl text-[var(--primary)]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-[var(--text)]">Terapia personalizada</h4>
                   <p className="text-[var(--muted-text)] text-sm leading-relaxed">
@@ -83,7 +88,8 @@ export default function WorkMethodSection() {
               }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--secondary)]/20 rounded-xl flex items-center justify-center">
-                    <span className="text-xl">🤝</span>
+                    {/* Replaced 🤝 emoji with FaHandshake icon for non-judgmental approach */}
+                    <FaHandshake className="text-xl text-[var(--secondary)]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-[var(--text)]">Sin juicios</h4>
                   <p className="text-[var(--muted-text)] text-sm leading-relaxed">
@@ -98,7 +104,8 @@ export default function WorkMethodSection() {
               }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--accent)]/20 rounded-xl flex items-center justify-center">
-                    <span className="text-xl">🌟</span>
+                    {/* Replaced 🌟 emoji with IoStar icon for authentic growth */}
+                    <IoStar className="text-xl text-[var(--accent)]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-[var(--text)]">Crecimiento auténtico</h4>
                   <p className="text-[var(--muted-text)] text-sm leading-relaxed">
@@ -113,7 +120,8 @@ export default function WorkMethodSection() {
               }`}>
                 <div className="space-y-4">
                   <div className="w-12 h-12 bg-[var(--highlight)]/20 rounded-xl flex items-center justify-center">
-                    <span className="text-xl">📈</span>
+                    {/* Replaced 📈 emoji with IoTrendingUp icon for practical tools */}
+                    <IoTrendingUp className="text-xl text-[var(--highlight)]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-[var(--text)]">Herramientas prácticas</h4>
                   <p className="text-[var(--muted-text)] text-sm leading-relaxed">
@@ -144,7 +152,8 @@ export default function WorkMethodSection() {
               <div className="bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 shadow-lg">
                 <div className="text-center mb-8">
                   <div className="w-20 h-20 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <span className="text-3xl">🤍</span>
+                    {/* Replaced 🤍 emoji with IoHeartOutline icon */}
+                  <IoHeartOutline className="text-3xl text-white" aria-hidden="true" />
                   </div>
                   <h3 className="text-2xl font-bold text-[var(--text)] mb-4">
                     ¿Por qué elegí esta profesión?

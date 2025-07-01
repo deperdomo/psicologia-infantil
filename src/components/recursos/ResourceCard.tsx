@@ -1,4 +1,6 @@
 import type { Resource } from '../../types/recursos';
+// react-icons imports - replacing emojis with proper icons
+import { IoSparkles, IoDiamond } from 'react-icons/io5';
 
 interface ResourceCardProps {
   resource: Resource;
@@ -38,7 +40,7 @@ export default function ResourceCard({
             ? 'bg-green-100 text-green-800' 
             : 'bg-amber-100 text-amber-800'
         }`}>
-          {resource.type === 'gratuito' ? '✨ Gratuito' : '💎 Premium'}
+          {resource.type === 'gratuito' ? <><IoSparkles className="inline-block mr-1" /> Gratuito</> : <><IoDiamond className="inline-block mr-1" /> Premium</>}
         </span>
       </div>
       <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">

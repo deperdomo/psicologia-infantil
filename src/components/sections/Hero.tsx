@@ -1,4 +1,7 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoMail, IoBook, IoHeart } from 'react-icons/io5';
+import { GiSprout } from 'react-icons/gi';
 
 export default function Hero() {
   const { elementRef: heroRef } = useScrollAnimation<HTMLElement>();
@@ -68,14 +71,18 @@ export default function Hero() {
               href="/reserva-cita"
               className="btn-primary group inline-flex items-center space-x-3 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
-              <span className="text-2xl group-hover:animate-pulse">📩</span>
+              <span className="text-2xl group-hover:animate-pulse">
+                {/* Replaced 📩 emoji with IoMail icon */}
+                <IoMail aria-hidden="true" />
+              </span>
               <span>Pedir cita o escribir ahora</span>
             </a>
             <a
               href="/blog"
               className="nav-transition border-2 border-[var(--highlight)] text-[var(--highlight)] px-8 py-4 rounded-lg hover:bg-[var(--highlight)] hover:text-[var(--button-text)] font-semibold text-lg"
             >
-              📚 Ver cuentos y recursos gratuitos
+              {/* Replaced 📚 emoji with IoBook icon */}
+              <IoBook className="inline mr-2" aria-hidden="true" /> Ver cuentos y recursos gratuitos
             </a>
           </div>
 
@@ -90,15 +97,21 @@ export default function Hero() {
           >
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
               <div className="flex items-center space-x-2 text-[var(--muted-text)]">
-                <span className="text-2xl">🎓</span>
+                <span className="text-2xl">
+                  <GiSprout />
+                </span>
                 <span className="text-sm font-medium">Psicóloga Colegiada</span>
               </div>
               <div className="flex items-center space-x-2 text-[var(--muted-text)]">
-                <span className="text-2xl">💙</span>
+                <span className="text-2xl">
+                  <IoHeart />
+                </span>
                 <span className="text-sm font-medium">Especialista en Infancia</span>
               </div>
               <div className="flex items-center space-x-2 text-[var(--muted-text)]">
-                <span className="text-2xl">🌱</span>
+                <span className="text-2xl">
+                  <GiSprout />
+                </span>
                 <span className="text-sm font-medium">Enfoque Humanista</span>
               </div>
             </div>

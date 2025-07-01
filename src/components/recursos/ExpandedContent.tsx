@@ -44,7 +44,7 @@ const ExpandedContent = forwardRef<HTMLDivElement, ExpandedContentProps>(({
       {/* Header de la colección expandida */}
       <div className="text-center mb-6 md:mb-8 flex-shrink-0">
         <div className="flex items-center justify-center mb-4">
-          <div className={`text-5xl mr-4 transition-all duration-500 ${isClosing
+          <div className={`text-5xl mr-4 transition-all duration-500 flex items-center justify-center ${isClosing
               ? 'opacity-0 scale-75 rotate-12'
               : expandingCollection === selectedCollection
                 ? 'opacity-100 scale-100 rotate-0'
@@ -52,7 +52,11 @@ const ExpandedContent = forwardRef<HTMLDivElement, ExpandedContentProps>(({
             }`}
             style={{ transitionDelay: isClosing ? '0ms' : '100ms' }}
           >
-            {currentCollection.emoji}
+            {/* Changed from emoji string to React icon component */}
+            <currentCollection.icon 
+              className="text-gray-700"
+              aria-label={`Icono de ${currentCollection.title}`}
+            />
           </div>
           <h4 className={`text-2xl md:text-3xl font-bold text-gray-800 transition-all duration-500 ${isClosing
               ? 'opacity-0 translate-x-8'

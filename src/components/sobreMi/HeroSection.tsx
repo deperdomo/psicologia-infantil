@@ -1,4 +1,6 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import { GiSprout } from 'react-icons/gi';
+import { FaUserMd } from 'react-icons/fa';
 
 export default function HeroSection() {
   // Hooks para animaciones de scroll
@@ -38,7 +40,8 @@ export default function HeroSection() {
               }`}
             >
               <div className="inline-flex items-center space-x-3 bg-[var(--card-background)] px-4 py-2 rounded-full shadow-sm border border-[var(--border-light)]">
-                <span className="text-2xl">👩‍⚕️</span>
+                {/* Replaced 👩‍⚕️ emoji with FaUserMd icon */}
+                <FaUserMd className="text-2xl text-[var(--primary)]" aria-hidden="true" />
                 <span className="text-sm font-medium text-[var(--muted-text)]">Psicóloga especializada</span>
               </div>
                 <h1 
@@ -84,7 +87,8 @@ export default function HeroSection() {
               <div className="space-y-6">
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <span className="text-3xl">🌱</span>
+                    {/* Replaced 🌱 emoji with GiSprout icon for consistency */}
+                    <GiSprout className="text-3xl text-white" aria-hidden="true" />
                   </div>
                   <h3 className="text-lg font-semibold text-[var(--text)] mb-2">Experiencia profesional</h3>
                 </div>

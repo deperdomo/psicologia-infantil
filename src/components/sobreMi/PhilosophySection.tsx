@@ -1,4 +1,6 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoSparkles } from 'react-icons/io5';
 
 export default function PhilosophySection() {
   // Hook para animaciones de scroll
@@ -26,7 +28,7 @@ export default function PhilosophySection() {
                 ? 'opacity-100 scale-100 rotate-0' 
                 : 'opacity-0 scale-75 rotate-12'
             }`}>
-              <span className="text-3xl">✨</span>
+              <IoSparkles className="text-3xl" />
             </div>
             
             <div>

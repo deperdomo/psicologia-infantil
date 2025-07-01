@@ -26,8 +26,12 @@ export default function CollectionCard({
       {/* Collection Card */}
       <div className={`bg-gradient-to-br ${collection.color} rounded-2xl p-6 shadow-lg transition-all duration-500 border border-white/20 backdrop-blur-sm`}>
         <div className="text-center mb-6">
-          <div className="text-4xl mb-3">
-            {collection.emoji}
+          <div className="text-4xl mb-3 flex justify-center">
+            {/* Changed from emoji string to React icon component */}
+            <collection.icon 
+              className="text-gray-700"
+              aria-label={`Icono de ${collection.title}`}
+            />
           </div>
           <h3 className="text-2xl font-bold text-gray-800 mb-3">
             {collection.title}

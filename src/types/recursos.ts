@@ -1,3 +1,5 @@
+import type { IconType } from 'react-icons';
+
 export interface Resource {
   id: string;
   title: string;
@@ -9,7 +11,8 @@ export interface Resource {
 export interface Collection {
   id: string;
   title: string;
-  emoji: string;
+  // Changed from emoji string to React icon component for better consistency and accessibility
+  icon: IconType;
   description: string;
   resources: Resource[];
   color: string;

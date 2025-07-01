@@ -3,6 +3,8 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import type { Collection, Resource } from '../../types/recursos';
 import CollectionCard from './CollectionCard';
 import ExpandedContent from './ExpandedContent';
+// react-icons imports - replacing emojis with proper icons
+import { IoLibrary } from 'react-icons/io5';
 
 interface CollectionsGridProps {
   collections: Collection[];
@@ -124,8 +126,10 @@ export default function CollectionsGrid({ collections }: CollectionsGridProps) {
               : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] text-center mb-4">
-            📦 Colecciones Destacadas
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] text-center mb-4 flex items-center justify-center gap-3">
+            {/* Replaced 📦 emoji with IoLibrary icon */}
+            <IoLibrary className="text-[var(--primary)]" />
+            Colecciones Destacadas
           </h2>
           <p className="text-lg text-[var(--text)]/70 text-center max-w-2xl mx-auto">
             Explora nuestras colecciones temáticas diseñadas para diferentes necesidades emocionales y situaciones familiares.

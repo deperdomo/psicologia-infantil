@@ -1,4 +1,7 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { FaUserMd } from 'react-icons/fa';
+import { IoHeart } from 'react-icons/io5';
 
 export default function About() {
   const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>();
@@ -24,8 +27,10 @@ export default function About() {
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">
-              👩‍⚕ Sobre mí
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6 flex items-center gap-3">
+              {/* Replaced 👩‍⚕ emoji with FaUserMd icon */}
+              <FaUserMd className="text-[var(--primary)]" />
+              Sobre mí
             </h2>
           </div>
           
@@ -61,7 +66,10 @@ export default function About() {
           }`}
         >
           <div className="text-center mb-6">
-            <div className="text-6xl mb-4 animate-pulse-soft">🤍</div>
+            {/* Replaced 🤍 emoji with IoHeart icon */}
+            <div className="text-6xl mb-4 animate-pulse-soft">
+              <IoHeart className="mx-auto text-white" />
+            </div>
             <h3 className="text-2xl font-bold text-[var(--text)] mb-4">
               ¿Por qué elegí esta profesión?
             </h3>

@@ -1,5 +1,7 @@
 import AnimatedSection from '../AnimatedSection';
 import { useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoSad, IoAlert, IoHeartDislike, IoHelp } from 'react-icons/io5';
 
 export default function ParentQuestions() {
   const { setRef, visibleItems } = useStaggeredScrollAnimation(4, 150);
@@ -7,19 +9,19 @@ export default function ParentQuestions() {
   const questions = [
     {
       question: "¿Notas que tu hija llora con facilidad, se siente insegura o reacciona con rabietas intensas?",
-      icon: "😢"
+      icon: <IoSad className="text-3xl" /> // Replaced 😢 emoji with IoSad icon
     },
     {
       question: "¿Te cuesta poner límites sin culpa o no sabes cómo ayudarla tras un cambio importante?",
-      icon: "🤔"
+      icon: <IoHelp className="text-3xl" /> // Replaced 🤔 emoji with IoHelp icon
     },
     {
       question: "¿Sientes que no sabes cómo manejar los berrinches o las crisis emocionales?",
-      icon: "😰"
+      icon: <IoAlert className="text-3xl" /> // Replaced 😰 emoji with IoAlert icon
     },
     {
       question: "¿Te preocupa el comportamiento de tu hijo/a después de una separación o mudanza?",
-      icon: "💔"
+      icon: <IoHeartDislike className="text-3xl" /> // Replaced 💔 emoji with IoHeartDislike icon
     }
   ];
 

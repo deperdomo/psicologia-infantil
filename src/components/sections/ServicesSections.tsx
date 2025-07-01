@@ -1,4 +1,7 @@
 import { useScrollAnimation, useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoSparkles, IoPeople, IoChatbox } from 'react-icons/io5';
+import { FaBaby, FaUserFriends } from 'react-icons/fa';
 
 export default function ServicesSections() {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
@@ -7,23 +10,23 @@ export default function ServicesSections() {
 
   const services = [
     {
-      title: "🧠 Terapia infantil",
+      title: "Terapia infantil",
       description: "Para niños y niñas que presentan ansiedad, inseguridad, cambios de conducta, baja autoestima, miedos o dificultades para adaptarse a nuevas situaciones.",
-      icon: "👶",
+      icon: <FaBaby className="text-3xl" />,
       gradient: "from-blue-50 to-indigo-100",
       iconBg: "bg-blue-100"
     },
     {
-      title: "👨‍👩‍👧 Orientación a madres y padres",
+      title: "Orientación a madres y padres",
       description: "Para acompañarte a ti, como figura clave en la vida emocional de tu hijo/a. Te ayudo a comprender, validar y guiar, sin sobreproteger ni juzgarte.",
-      icon: "💑",
+      icon: <IoPeople className="text-3xl" />,
       gradient: "from-pink-50 to-rose-100",
       iconBg: "bg-pink-100"
     },
     {
-      title: "🧩 Acompañamiento en momentos de cambio familiar",
+      title: "Acompañamiento en momentos de cambio familiar",
       description: "Separaciones, mudanzas, llegada de nuevas parejas o hermanos...Te acompaño a ti y/o a tu hijo/a en el proceso de adaptación emocional, ayudando a que lo transiten con mayor seguridad, contención y herramientas para hablar de lo que sienten.",
-      icon: "👨‍👩‍👧‍👦",
+      icon: <FaUserFriends className="text-3xl" />,
       gradient: "from-green-50 to-emerald-100",
       iconBg: "bg-green-100"
     },
@@ -44,7 +47,8 @@ export default function ServicesSections() {
           }`}
         >
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl mb-6">
-            <span className="text-2xl">✨</span>
+            {/* Replaced ✨ emoji with IoSparkles icon */}
+            <IoSparkles className="text-2xl text-white" aria-hidden="true" />
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text)] mb-6">
             ¿Qué puedo ofrecerte?
@@ -70,7 +74,7 @@ export default function ServicesSections() {
               <div className="relative z-10">
                 {/* Icon with enhanced styling */}
                 <div className={`inline-flex items-center justify-center w-16 h-16 ${iconBg} rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                  <span className="text-3xl">{icon}</span>
+                  {icon}
                 </div>
 
                 <h3 className="text-xl md:text-2xl font-bold text-[var(--text)] mb-4 group-hover:text-[var(--highlight)] transition-colors duration-300">
@@ -119,7 +123,8 @@ export default function ServicesSections() {
               className="btn-primary inline-flex items-center space-x-2"
             >
               <span>Contactar ahora</span>
-              <span className="text-xl">💬</span>
+              {/* Replaced 💬 emoji with IoChatbox icon */}
+              <IoChatbox className="text-xl" aria-hidden="true" />
             </a>
           </div>
         </div>

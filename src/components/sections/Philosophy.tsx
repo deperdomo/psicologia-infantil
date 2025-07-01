@@ -1,22 +1,25 @@
-import AnimatedSection from '../AnimatedSection';
 import { useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
+import AnimatedSection from '../AnimatedSection';
+// react-icons imports - replacing emojis with proper icons
+import { GiSprout } from 'react-icons/gi';
+import { IoHeart, IoHappy } from 'react-icons/io5';
 
 export default function Philosophy() {
   const { setRef, visibleItems } = useStaggeredScrollAnimation(3, 200);
 
   const principles = [
     {
-      icon: "🤗",
+      icon: <IoHappy className="text-4xl mb-4 animate-pulse-soft" />,
       title: "Acompañamiento",
       description: "Estamos contigo en cada paso del proceso emocional"
     },
     {
-      icon: "🌱",
+      icon: <GiSprout className="text-4xl mb-4 animate-pulse-soft" />,
       title: "Crecimiento", 
       description: "Cada emoción es una oportunidad para crecer y aprender"
     },
     {
-      icon: "💕",
+      icon: <IoHeart className="text-4xl mb-4 animate-pulse-soft" />,
       title: "Ternura",
       description: "Con respeto y calidez en cada encuentro terapéutico"
     }
@@ -50,7 +53,7 @@ export default function Philosophy() {
                   : 'opacity-0 translate-y-8 scale-95'
               }`}
             >
-              <div className="text-4xl mb-4 animate-pulse-soft">{principle.icon}</div>
+              {principle.icon}
               <h3 className="text-xl font-bold text-[var(--highlight)] mb-3">{principle.title}</h3>
               <p className="text-[var(--muted-text)]">
                 {principle.description}

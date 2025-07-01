@@ -1,10 +1,14 @@
 import type { Collection } from '../types/recursos';
+// react-icons imports - replacing emojis with proper icons
+import { IoHome } from 'react-icons/io5'; // Replacing 🏠 emoji
+import { GiSprout } from 'react-icons/gi'; // Replacing 🌱 emoji
+import { IoHeartDislike } from 'react-icons/io5'; // Replacing ❤️‍🔥 emoji (angry heart)
 
 export const collectionsData: Collection[] = [
   {
     id: 'dos-casas',
     title: 'Dos casas, un corazón',
-    emoji: '🏠',
+    icon: IoHome, // Replaced 🏠 emoji with IoHome icon
     description: 'Recursos para ayudar a los niños a navegar la separación y el divorcio de sus padres.',
     color: 'from-pink-100 to-rose-200',
     resources: [
@@ -39,7 +43,7 @@ export const collectionsData: Collection[] = [
   {
     id: 'semillas-autoestima',
     title: 'Semillas de autoestima',
-    emoji: '🌱',
+    icon: GiSprout, // Replaced 🌱 emoji with GiSprout icon
     description: 'Herramientas para cultivar la confianza y el amor propio en los niños.',
     color: 'from-green-100 to-emerald-200',
     resources: [
@@ -80,7 +84,7 @@ export const collectionsData: Collection[] = [
   {
     id: 'corazon-enojado',
     title: 'Cuando se enoja mi corazón',
-    emoji: '❤️‍🔥',
+    icon: IoHeartDislike, // Replaced ❤️‍🔥 emoji with IoHeartDislike icon for angry heart
     description: 'Recursos para manejar la ira y las emociones intensas en los niños.',
     color: 'from-orange-100 to-red-200',
     resources: [

@@ -1,4 +1,7 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { GiSprout } from 'react-icons/gi';
+import { IoLink, IoHeart, IoConstruct } from 'react-icons/io5';
 
 export default function ApproachSection() {
   // Hooks para animaciones de scroll
@@ -25,7 +28,7 @@ export default function ApproachSection() {
               ? 'opacity-100 scale-100 rotate-0' 
               : 'opacity-0 scale-75 -rotate-12'
           }`}>
-            <span className="text-2xl">🌱</span>
+            <GiSprout className="text-2xl" />
           </div>
           <h2 className={`text-4xl md:text-5xl font-bold text-[var(--text)] mb-6 transition-all duration-1000 delay-400 ${
             headerVisible 
@@ -51,7 +54,8 @@ export default function ApproachSection() {
             <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full shadow-lg">
               <div className="space-y-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">🔗</span>
+                  {/* Replaced 🔗 emoji with IoLink icon */}
+                  <IoLink className="text-2xl text-white" />
                 </div>
                 
                 <div>
@@ -85,7 +89,8 @@ export default function ApproachSection() {
             <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full shadow-lg">
               <div className="space-y-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-[var(--secondary)] to-[var(--primary)] rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">💛</span>
+                  {/* Replaced 💛 emoji with IoHeart icon */}
+                  <IoHeart className="text-2xl text-white" />
                 </div>
                 
                 <div>
@@ -119,7 +124,8 @@ export default function ApproachSection() {
             <div className="relative bg-[var(--card-background)] border border-[var(--border-light)] rounded-3xl p-8 h-full shadow-lg">
               <div className="space-y-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-[var(--accent)] to-[var(--secondary)] rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">🔧</span>
+                  {/* Replaced 🔧 emoji with IoConstruct icon */}
+                  <IoConstruct className="text-2xl text-white" />
                 </div>
                 
                 <div>

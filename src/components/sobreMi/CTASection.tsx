@@ -1,4 +1,6 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+// react-icons imports - replacing emojis with proper icons
+import { IoLocation, IoStorefront, IoLaptop } from 'react-icons/io5';
 
 export default function CTASection() {
   // Hooks para animaciones de scroll
@@ -42,7 +44,8 @@ export default function CTASection() {
                   ? 'opacity-100 scale-100 rotate-0' 
                   : 'opacity-0 scale-75 rotate-12'
               }`}>
-                <span className="text-3xl">📍</span>
+                {/* Replaced 📍 emoji with IoLocation icon */}
+                <IoLocation className="text-3xl text-white" />
               </div>
               <h3 className={`text-3xl md:text-4xl font-bold text-[var(--text)] mb-6 transition-all duration-1000 delay-600 ${
                 cardVisible 
@@ -66,7 +69,8 @@ export default function CTASection() {
                   : 'opacity-0 translate-y-12'
               }`}>
                 <div className="w-16 h-16 bg-[var(--primary)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🏢</span>
+                  {/* Replaced 🏢 emoji with IoStorefront icon */}
+                  <IoStorefront className="text-2xl text-[var(--primary)]" />
                 </div>
                 <h4 className="text-xl font-semibold text-[var(--text)] mb-2">Presencial</h4>
                 <p className="text-[var(--muted-text)]">Madrid, España</p>
@@ -78,7 +82,8 @@ export default function CTASection() {
                   : 'opacity-0 translate-y-12'
               }`}>
                 <div className="w-16 h-16 bg-[var(--accent)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">💻</span>
+                  {/* Replaced 💻 emoji with IoLaptop icon */}
+                  <IoLaptop className="text-2xl text-[var(--accent)]" />
                 </div>
                 <h4 className="text-xl font-semibold text-[var(--text)] mb-2">Online</h4>
                 <p className="text-[var(--muted-text)]">Todo el país</p>
