@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 export default function ReservaCita() {
+  usePageTitle({
+    title: 'Reserva tu Cita',
+    description: 'Reserva tu cita de psicología infantil de forma fácil y rápida. Sesiones presenciales y online disponibles. Primera consulta informativa gratuita.'
+  });
   const [nombre, setNombre] = useState('');
   const [fecha, setFecha] = useState('');
 

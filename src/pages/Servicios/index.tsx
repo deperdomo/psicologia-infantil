@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 export default function Servicios() {
+  usePageTitle({
+    title: 'Servicios de Psicología | Terapia Individual, de Pareja e Infantil',
+    description: 'Conoce nuestros servicios especializados: terapia individual, de pareja e infantil. Atención personalizada para cada etapa de la vida con enfoque profesional y empático.'
+  });
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Navbar */}

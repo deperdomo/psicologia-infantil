@@ -1,6 +1,11 @@
 import Navbar from "../../components/Navbar";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function Blog() {
+  usePageTitle({
+    title: 'Blog',
+    description: 'Artículos especializados sobre psicología infantil, salud mental y bienestar emocional. Consejos y recursos para padres y familias.'
+  });
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Navbar */}

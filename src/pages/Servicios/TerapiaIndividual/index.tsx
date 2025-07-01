@@ -1,6 +1,11 @@
 import Navbar from "../../../components/Navbar";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function TerapiaIndividual() {
+  usePageTitle({
+    title: 'Terapia Individual',
+    description: 'Terapia individual personalizada para adultos y adolescentes. Abordamos ansiedad, depresión, autoestima y crecimiento personal con enfoque humanista.'
+  });
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Navbar */}

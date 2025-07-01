@@ -11,6 +11,8 @@ export default function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const servicesButtonRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -26,14 +28,31 @@ export default function Navbar() {
       }
     };
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        setIsServicesOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    // Manage focus for mobile menu
+    if (!isOpen) {
+      setTimeout(() => {
+        const firstMenuItem = mobileMenuRef.current?.querySelector('a');
+        firstMenuItem?.focus();
+      }, 100);
+    }
   };
   const closeMenu = () => {
     setIsOpen(false);
@@ -93,7 +112,7 @@ export default function Navbar() {
                 <Link
                   key={to}
                   to={to}
-                  className={`nav-link nav-transition relative group ${isActive(to)
+                  className={`nav-link nav-transition relative group focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:rounded-lg ${isActive(to)
                     ? 'text-[var(--highlight)] bg-[var(--hover-bg)]'
                     : 'text-[var(--text)] hover:text-[var(--highlight)] hover:bg-[var(--hover-bg)]'
                     }`}
@@ -108,11 +127,21 @@ export default function Navbar() {
               {/* Desplegable de Servicios */}
               <div className="relative" ref={dropdownRef}>
                 <button
+                  ref={servicesButtonRef}
                   onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setIsServicesOpen(!isServicesOpen);
+                    }
+                  }}
                   className={`nav-link nav-transition relative group flex items-center space-x-1 ${location.pathname.startsWith('/servicios')
                       ? 'text-[var(--highlight)] bg-[var(--hover-bg)]'
                       : 'text-[var(--text)] hover:text-[var(--highlight)] hover:bg-[var(--hover-bg)]'
                     }`}
+                  aria-expanded={isServicesOpen}
+                  aria-haspopup="true"
+                  aria-label="Menú de servicios"
                 >
                   <span className="relative z-10">Servicios</span>
                   {/* Replaced SVG chevron with IoChevronDown for consistency */}
@@ -126,14 +155,19 @@ export default function Navbar() {
                 </button>
 
                 {/* Menú desplegable */}
-                <div className={`absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-[var(--border-light)] transition-all duration-200 ${isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                  } z-50`}>
+                <div 
+                  className={`absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-[var(--border-light)] transition-all duration-200 ${isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                  } z-50`}
+                  role="menu"
+                  aria-label="Menú de servicios"
+                >
                   <div className="p-2">
                     {serviciosItems.map(({ to, label }) => (
                       <Link
                         key={to}
                         to={to}
-                        className={`block px-4 py-3 rounded-lg transition-colors duration-200 ${isActive(to)
+                        role="menuitem"
+                        className={`block px-4 py-3 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${isActive(to)
                             ? 'text-[var(--highlight)] bg-[var(--hover-bg)]'
                             : 'text-[var(--text)] hover:text-[var(--highlight)] hover:bg-[var(--hover-bg)]'
                           }`}
@@ -184,17 +218,21 @@ export default function Navbar() {
 
         {/* Menú móvil */}
         <div
-          className={`lg:hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md border-t border-[var(--border-light)] transition-all duration-300 ease-out ${isOpen
+          ref={mobileMenuRef}
+          className={`lg:hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md border-t border-[var(--border-light)] transition-all duration-300 ease-out z-[9999] ${isOpen
               ? 'max-h-screen opacity-100 visible'
               : 'max-h-0 opacity-0 invisible'
             } overflow-auto`}
+          role="menu"
+          aria-label="Menú de navegación móvil"
         >
           <div className="mobile-menu p-6 space-y-1">
             {navItems.map(({ to, label }) => (
               <Link
                 key={to}
                 to={to}
-                className={`block nav-link nav-transition px-4 py-3 rounded-xl text-base font-medium ${isActive(to)
+                role="menuitem"
+                className={`block nav-link nav-transition px-4 py-3 rounded-xl text-base font-medium focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${isActive(to)
                   ? 'text-[var(--highlight)] bg-[var(--hover-bg)]'
                   : 'text-[var(--text)] hover:text-[var(--highlight)] hover:bg-[var(--hover-bg)]'
                   }`}
@@ -208,10 +246,13 @@ export default function Navbar() {
             <div className="space-y-1">
               <button
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className={`w-full text-left nav-link nav-transition px-4 py-3 rounded-xl text-base font-medium flex items-center justify-between ${location.pathname.startsWith('/servicios')
+                className={`w-full text-left nav-link nav-transition px-4 py-3 rounded-xl text-base font-medium flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${location.pathname.startsWith('/servicios')
                     ? 'text-[var(--highlight)] bg-[var(--hover-bg)]'
                     : 'text-[var(--text)] hover:text-[var(--highlight)] hover:bg-[var(--hover-bg)]'
                   }`}
+                aria-expanded={isServicesOpen}
+                aria-haspopup="true"
+                aria-label="Menú de servicios"
               >
                 <span>Servicios</span>
                 {/* Replaced SVG chevron with IoChevronDown for consistency */}

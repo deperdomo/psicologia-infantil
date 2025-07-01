@@ -1,6 +1,11 @@
 import Navbar from "../../../components/Navbar";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function TerapiaInfantil() {
+  usePageTitle({
+    title: 'Terapia Infantil',
+    description: 'Especialistas en terapia infantil y adolescentes. Abordamos problemas emocionales, conductuales y del desarrollo en un entorno seguro y comprensivo.'
+  });
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Navbar */}

@@ -1,6 +1,11 @@
 import Navbar from "../../components/Navbar";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function Testimonios() {
+  usePageTitle({
+    title: 'Testimonios',
+    description: 'Lee los testimonios de familias que han encontrado apoyo y mejora a través de nuestros servicios de psicología infantil y terapia familiar.'
+  });
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Navbar */}

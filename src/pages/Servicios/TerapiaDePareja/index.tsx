@@ -1,6 +1,11 @@
 import Navbar from "../../../components/Navbar";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function TerapiaDePareja() {
+  usePageTitle({
+    title: 'Terapia de Pareja',
+    description: 'Terapia de pareja especializada en mejorar la comunicación, resolver conflictos y fortalecer vínculos. Sesiones presenciales y online disponibles.'
+  });
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Navbar */}

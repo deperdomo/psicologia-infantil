@@ -1,7 +1,7 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import OptimizedImage from '../OptimizedImage';
 // react-icons imports - replacing emojis with proper icons
 import { FaUserMd } from 'react-icons/fa';
-import { IoHeart } from 'react-icons/io5';
 
 export default function About() {
   const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>();
@@ -66,9 +66,15 @@ export default function About() {
           }`}
         >
           <div className="text-center mb-6">
-            {/* Replaced 🤍 emoji with IoHeart icon */}
-            <div className="text-6xl mb-4 animate-pulse-soft">
-              <IoHeart className="mx-auto text-white" />
+            {/* Imagen de la doctora con lazy loading */}
+            <div className="mb-6">
+              <OptimizedImage
+                src="/img/doctora.jpg"
+                alt="Llenia Monteagudo Rodríguez - Psicóloga especializada en infancia"
+                className="w-32 h-32 mx-auto rounded-full object-cover shadow-lg"
+                width={128}
+                height={128}
+              />
             </div>
             <h3 className="text-2xl font-bold text-[var(--text)] mb-4">
               ¿Por qué elegí esta profesión?

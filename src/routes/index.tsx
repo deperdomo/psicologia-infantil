@@ -19,9 +19,9 @@ const AppRoutes: React.FC = () => (
     <Route path="/" element={<Home />} />
     <Route path="/sobre-mi" element={<SobreMi />} />
     <Route path="/servicios" element={<Servicios />} />
-    <Route path="/servicios/terapia-infantil" element={<TerapiaIndividual />} />
+    <Route path="/servicios/terapia-infantil" element={<TerapiaInfantil />} />
     <Route path="/servicios/orientacion-a-madres-y-padres" element={<TerapiaDePareja />} />
-    <Route path="/servicios/acompañamiento-en-cambio-familiar" element={<TerapiaInfantil />} />
+    <Route path="/servicios/acompañamiento-en-cambio-familiar" element={<TerapiaIndividual />} />
     <Route path="/recursos" element={<Recursos />} />
     <Route path="/blog" element={<Blog />} />
     <Route path="/contacto" element={<Contacto />} />

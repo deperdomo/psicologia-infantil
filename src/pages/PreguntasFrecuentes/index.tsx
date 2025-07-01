@@ -1,6 +1,11 @@
 import Navbar from "../../components/Navbar";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function PreguntasFrecuentes() {
+  usePageTitle({
+    title: 'Preguntas Frecuentes',
+    description: 'Encuentra respuestas a las preguntas más comunes sobre terapia infantil, sesiones, métodos de trabajo y proceso terapéutico.'
+  });
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Navbar */}

@@ -6,8 +6,14 @@ import WorkMethodSection from "../../components/sobreMi/WorkMethodSection";
 import CTASection from "../../components/sobreMi/CTASection";
 import SharedStyles from "../../components/sobreMi/SharedStyles";
 import Footer from "../../components/Footer";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function SobreMi() {
+  usePageTitle({
+    title: 'Sobre mí',
+    description: 'Conoce a Llenia Monteagudo Rodríguez, psicóloga especializada en infancia y familias con más de 15 años de experiencia. Enfoque sistémico, humanista e integrador.'
+  });
+
   return (
     <div className="min-h-screen bg-[var(--background)]">
       <Navbar />
