@@ -1,6 +1,6 @@
-export { default as RecursosHero } from './RecursosHero';
-export { default as CollectionsGrid } from './CollectionsGrid';
-export { default as CollectionCard } from './CollectionCard';
-export { default as ResourceCard } from './ResourceCard';
-export { default as ExpandedContent } from './ExpandedContent';
-export { default as NewsletterCTA } from './NewsletterCTA';
+// Componentes para la Biblioteca Emocional
+export { default as BibliotecaHero } from './BibliotecaHero';
+export { default as BibliotecaGrid } from './BibliotecaGrid';
+export { default as BibliotecaCategoryCard } from './BibliotecaCategoryCard';
+export { default as FilterPanel } from './FilterPanel';
+export { default as ResourceModal } from './ResourceModal';

@@ -32,3 +32,36 @@
 .card-hover:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
+
+/* ===================================
+   🎨 GRADIENTES PARA TÍTULOS
+   =================================== */
+
+/* Gradiente principal para títulos */
+.gradient-title {
+  background: var(--gradient-title);
+}
+
+/* Gradiente alternativo para títulos */
+.gradient-title-alt {
+  background: var(--gradient-title-alt);
+}
+
+/* Clase específica para el título "Emocional" */
+.titulo-emocional {
+  background: linear-gradient(135deg, #E06B74 0%, #D45260 70%, #B85C5C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Versión para modo oscuro */
+.dark .titulo-emocional,
+:root[class~='dark'] .titulo-emocional {
+  background: linear-gradient(135deg, #FF8A95 0%, #E06B74 70%, #D45260 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
