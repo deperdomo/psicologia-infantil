@@ -20,6 +20,8 @@ export interface Resource {
   downloadUrl?: string; // Legacy - mantener para compatibilidad
   wordFileUrl?: string;
   pdfFileUrl?: string;
+  wordStoragePath?: string; // Ruta real en Supabase Storage para Word
+  pdfStoragePath?: string;  // Ruta real en Supabase Storage para PDF
   preview?: string;
 }
 

@@ -108,6 +108,8 @@ export const mapSupabaseToCategories = (recursos: Recurso[]): BibliotecaCategory
         downloadUrl: recurso.word_public_url || recurso.pdf_public_url || '', // Legacy
         wordFileUrl: recurso.word_public_url || undefined,
         pdfFileUrl: recurso.pdf_public_url || undefined,
+        wordStoragePath: recurso.word_storage_path || undefined,
+        pdfStoragePath: recurso.pdf_storage_path || undefined,
         preview: recurso.description
       };
 

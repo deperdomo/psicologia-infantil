@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Resource } from '../../types/recursos';
 import { IoClose, IoDownload, IoTime, IoPersonOutline, IoPricetagsOutline, IoStar, IoDocumentText } from 'react-icons/io5';
-import { downloadFileFromSupabase, extractFileNameFromUrl } from '../../utils/downloadUtils';
+import { downloadFileFromSupabase } from '../../utils/downloadUtils';
 
 interface ResourceModalProps {
   resource: Resource;
@@ -28,10 +28,11 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
     setIsDownloading(true);
     
     try {
-      // Extraer nombre del archivo desde la URL
-      const fileName = extractFileNameFromUrl(downloadUrl);
-      if (!fileName) {
-        throw new Error('No se pudo extraer el nombre del archivo');
+      // Usar storage_path directamente en lugar de extraer de la URL
+      const storagePath = format === 'word' ? resource.wordStoragePath : resource.pdfStoragePath;
+      
+      if (!storagePath) {
+        throw new Error('No se encontró la ruta del archivo en el storage');
       }
 
       // Generar nombre de descarga limpio
@@ -46,29 +47,18 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
       const bucket = format === 'word' ? 'recursos-word' : 'recursos-pdf';
       
       console.log(`🚀 Iniciando descarga de ${displayName}...`);
-      console.log(`📁 Archivo origen: ${fileName}`);
+      console.log(`📁 Storage Path: ${storagePath}`);
       
-      // Descargar usando Supabase
-      await downloadFileFromSupabase(bucket, fileName, displayName);
+      // Descargar usando Supabase con storage_path correcto
+      await downloadFileFromSupabase(bucket, storagePath, displayName);
       
       console.log(`✅ Descarga exitosa: ${displayName}`);
-      
-      // Mostrar mensaje de éxito con instrucciones
-      alert(`✅ ¡Descarga completada!
-
-Archivo: ${displayName}
-
-📍 Ubicación: 
-- Revisa tu carpeta de Descargas
-- O busca el archivo en el administrador de descargas de tu navegador (Ctrl+J)
-
-💡 Si no aparece, verifica que las descargas automáticas estén habilitadas.`);
       
     } catch (error) {
       console.error('❌ Error al descargar:', error);
       const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
       
-      // Mensaje de error más informativo
+      // Solo mostrar alert en caso de error
       alert(`❌ Error al descargar el archivo:
 
 ${errorMessage}
