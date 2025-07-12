@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Database scripts and testing files (contains sensitive API keys)
+db-scripts/

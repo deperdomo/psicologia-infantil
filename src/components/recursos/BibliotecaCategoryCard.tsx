@@ -6,6 +6,17 @@ interface BibliotecaCategoryCardProps {
 }
 
 export default function BibliotecaCategoryCard({ category, onSelect }: BibliotecaCategoryCardProps) {
+  // Contar recursos totales (categoría principal + subcategorías)
+  const totalResources = category.resources.length + 
+    (category.subcategories?.reduce((sum, sub) => sum + sub.resources.length, 0) || 0);
+
+  // Obtener tipos de recursos únicos (de categoría principal y subcategorías)
+  const allResources = [
+    ...category.resources,
+    ...(category.subcategories?.flatMap(sub => sub.resources) || [])
+  ];
+  const uniqueResourceTypes = [...new Set(allResources.map(r => r.resourceType))];
+
   return (
     <div
       onClick={() => onSelect(category.id)}
@@ -30,12 +41,12 @@ export default function BibliotecaCategoryCard({ category, onSelect }: Bibliotec
           {/* Estadísticas */}
           <div className="flex justify-between items-center pt-4 border-t border-white/20">
             <span className="text-sm text-[var(--text-on-gradient)]/75 font-medium">
-              {category.resources.length} recursos
+              {totalResources} recursos
             </span>
             
             {/* Tipos de recursos */}
             <div className="flex gap-1">
-              {[...new Set(category.resources.map(r => r.resourceType))].slice(0, 3).map((type) => (
+              {uniqueResourceTypes.slice(0, 3).map((type) => (
                 <span
                   key={type}
                   className="w-2 h-2 rounded-full bg-[var(--primary)]/40"
@@ -52,7 +63,7 @@ export default function BibliotecaCategoryCard({ category, onSelect }: Bibliotec
             </span>
             
             {/* Indicador de recursos gratuitos */}
-            {category.resources.some(r => r.type === 'gratuito') && (
+            {allResources.some(r => r.type === 'gratuito') && (
               <span className="px-2 py-1 bg-green-50 text-green-800 text-xs rounded-full font-bold border border-green-200">
                 Recursos gratuitos
               </span>

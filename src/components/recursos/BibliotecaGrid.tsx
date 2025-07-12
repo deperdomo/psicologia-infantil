@@ -29,13 +29,27 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
 
   // Obtener todos los recursos para búsqueda global
   const allResources = useMemo(() => {
-    return categories.flatMap(category => 
-      category.resources.map(resource => ({
+    return categories.flatMap(category => {
+      // Recursos de la categoría principal
+      const mainResources = category.resources.map(resource => ({
         ...resource,
         categoryTitle: category.title,
         categoryId: category.id
-      }))
-    );
+      }));
+      
+      // Recursos de las subcategorías
+      const subResources = category.subcategories?.flatMap(subcategory => 
+        subcategory.resources.map(resource => ({
+          ...resource,
+          categoryTitle: category.title,
+          categoryId: category.id,
+          subcategoryTitle: subcategory.title,
+          subcategoryId: subcategory.id
+        }))
+      ) || [];
+      
+      return [...mainResources, ...subResources];
+    });
   }, [categories]);
 
   // Filtrar recursos
@@ -71,8 +85,16 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
   const allTags = useMemo(() => {
     const tags = new Set<string>();
     categories.forEach(category => {
+      // Tags de recursos principales
       category.resources.forEach(resource => {
         resource.tags.forEach(tag => tags.add(tag));
+      });
+      
+      // Tags de recursos de subcategorías
+      category.subcategories?.forEach(subcategory => {
+        subcategory.resources.forEach(resource => {
+          resource.tags.forEach(tag => tags.add(tag));
+        });
       });
     });
     return Array.from(tags).sort();
@@ -143,6 +165,10 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
     const category = categories.find(c => c.id === selectedCategory);
     if (!category) return null;
 
+    // Calcular total de recursos (principal + subcategorías)
+    const totalResources = category.resources.length + 
+      (category.subcategories?.reduce((sum, sub) => sum + sub.resources.length, 0) || 0);
+
     return (
       <div className="space-y-8">
         {/* Header de categoría */}
@@ -163,53 +189,118 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
             </div>
           </div>
           <div className="text-sm text-[var(--muted-text)] font-medium">
-            {category.resources.length} recursos disponibles
+            {totalResources} recursos disponibles
           </div>
         </div>
 
         {/* Lista de recursos de la categoría */}
-        <div className="grid gap-6">
-          {category.resources.map((resource) => (
-            <div
-              key={resource.id}
-              onClick={() => handleResourceSelect(resource)}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-[var(--border-light)] hover:shadow-lg transition-all duration-300 cursor-pointer group"
-            >
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-xl font-semibold text-[var(--text)] group-hover:text-[var(--card-text-hover)] transition-colors">
-                  {resource.title}
-                </h3>
-                <div className="flex gap-2">
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
-                    resource.type === 'gratuito' 
-                      ? 'bg-green-50 text-green-800 border-green-200' 
-                      : 'bg-blue-50 text-blue-800 border-blue-200'
-                  }`}>
-                    {resource.type === 'gratuito' ? 'Gratuito' : 'Premium'}
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-gray-50 text-gray-800 border border-gray-200">
-                    {resource.estimatedTime}
-                  </span>
+        <div className="space-y-8">
+          {/* Recursos principales */}
+          {category.resources.length > 0 && (
+            <div className="grid gap-6">
+              {category.resources.map((resource) => (
+                <div
+                  key={resource.id}
+                  onClick={() => handleResourceSelect(resource)}
+                  className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-[var(--border-light)] hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-xl font-semibold text-[var(--text)] group-hover:text-[var(--card-text-hover)] transition-colors">
+                      {resource.title}
+                    </h3>
+                    <div className="flex gap-2">
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
+                        resource.type === 'gratuito' 
+                          ? 'bg-green-50 text-green-800 border-green-200' 
+                          : 'bg-blue-50 text-blue-800 border-blue-200'
+                      }`}>
+                        {resource.type === 'gratuito' ? 'Gratuito' : 'Premium'}
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-gray-50 text-gray-800 border border-gray-200">
+                        {resource.estimatedTime}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-[var(--muted-text)] mb-4 font-medium leading-relaxed">{resource.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {resource.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 bg-[var(--card-text-hover)]/15 text-[var(--card-text-hover)] rounded-lg text-xs font-medium border border-[var(--card-text-hover)]/20"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {resource.tags.length > 3 && (
+                      <span className="text-xs text-[var(--muted-text)]">
+                        +{resource.tags.length - 3} más
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-sm text-[var(--muted-text)] font-medium">
+                    Edades: {resource.ageRange.join(', ')} | Dificultad: {resource.difficulty}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Subcategorías */}
+          {category.subcategories?.map((subcategory) => (
+            <div key={subcategory.id} className="space-y-4">
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-[var(--border-light)]">
+                <h3 className="text-2xl font-bold text-[var(--text)] mb-2">{subcategory.title}</h3>
+                <p className="text-[var(--muted-text)] font-medium mb-4">{subcategory.description}</p>
+                <div className="text-sm text-[var(--muted-text)] font-medium">
+                  {subcategory.resources.length} recursos en esta subcategoría
                 </div>
               </div>
-              <p className="text-[var(--muted-text)] mb-4 font-medium leading-relaxed">{resource.description}</p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                {resource.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 bg-[var(--card-text-hover)]/15 text-[var(--card-text-hover)] rounded-lg text-xs font-medium border border-[var(--card-text-hover)]/20"
+              
+              <div className="grid gap-6">
+                {subcategory.resources.map((resource) => (
+                  <div
+                    key={resource.id}
+                    onClick={() => handleResourceSelect(resource)}
+                    className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-[var(--border-light)] hover:shadow-lg transition-all duration-300 cursor-pointer group ml-4"
                   >
-                    {tag}
-                  </span>
+                    <div className="flex justify-between items-start mb-3">
+                      <h4 className="text-xl font-semibold text-[var(--text)] group-hover:text-[var(--card-text-hover)] transition-colors">
+                        {resource.title}
+                      </h4>
+                      <div className="flex gap-2">
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
+                          resource.type === 'gratuito' 
+                            ? 'bg-green-50 text-green-800 border-green-200' 
+                            : 'bg-blue-50 text-blue-800 border-blue-200'
+                        }`}>
+                          {resource.type === 'gratuito' ? 'Gratuito' : 'Premium'}
+                        </span>
+                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-gray-50 text-gray-800 border border-gray-200">
+                          {resource.estimatedTime}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-[var(--muted-text)] mb-4 font-medium leading-relaxed">{resource.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {resource.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 bg-[var(--card-text-hover)]/15 text-[var(--card-text-hover)] rounded-lg text-xs font-medium border border-[var(--card-text-hover)]/20"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {resource.tags.length > 3 && (
+                        <span className="text-xs text-[var(--muted-text)]">
+                          +{resource.tags.length - 3} más
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-sm text-[var(--muted-text)] font-medium">
+                      Edades: {resource.ageRange.join(', ')} | Dificultad: {resource.difficulty}
+                    </div>
+                  </div>
                 ))}
-                {resource.tags.length > 3 && (
-                  <span className="text-xs text-[var(--muted-text)]">
-                    +{resource.tags.length - 3} más
-                  </span>
-                )}
-              </div>
-              <div className="text-sm text-[var(--muted-text)] font-medium">
-                Edades: {resource.ageRange.join(', ')} | Dificultad: {resource.difficulty}
               </div>
             </div>
           ))}

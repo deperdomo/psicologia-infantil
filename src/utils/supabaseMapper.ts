@@ -1,5 +1,5 @@
 import { type Recurso } from '../lib/supabase';
-import type { BibliotecaCategory, AgeRange } from '../types/recursos';
+import type { BibliotecaCategory, BibliotecaSubcategory, AgeRange } from '../types/recursos';
 import { IoHeart, IoBookOutline, IoBook, IoSchool, IoPersonAdd, IoBookmark } from 'react-icons/io5';
 
 // Función para mapear age ranges de Supabase a nuestro tipo AgeRange
@@ -58,7 +58,7 @@ export const mapSupabaseToCategories = (recursos: Recurso[]): BibliotecaCategory
       folderPath: 'FICHAS PSICOEDUCATIVAS TEMÁTICAS',
       color: 'bg-green-50 border-green-200'
     },
-    guias_breves: {
+    guias_padres: {
       id: 'guias-breves',
       title: 'Guías Breves para Padres', 
       description: 'Consejos prácticos y estrategias para la crianza consciente',
@@ -115,6 +115,58 @@ export const mapSupabaseToCategories = (recursos: Recurso[]): BibliotecaCategory
     }
   });
 
-  // Retornar solo categorías que tienen recursos
-  return Object.values(groupedCategories).filter(category => category.resources.length > 0);
+  // Configurar subcategorías para Recomendaciones de Libros
+  const recomendacionesCategory = groupedCategories['recomendaciones_libros'];
+  if (recomendacionesCategory && recomendacionesCategory.resources.length > 0) {
+    // Crear subcategorías basadas en las rutas de almacenamiento
+    const subcategorias: { [key: string]: BibliotecaSubcategory } = {
+      'comprender-acompanar': {
+        id: 'comprender-acompanar',
+        title: 'Libros para comprender y acompañar a los niños',
+        description: 'Libros especializados para entender el mundo emocional infantil',
+        resources: []
+      },
+      'profesionales-profundidad': {
+        id: 'profesionales-profundidad', 
+        title: 'Libros para profesionales o padres que buscan mayor profundidad',
+        description: 'Material avanzado para profesionales y padres con interés en profundizar',
+        resources: []
+      },
+      'emociones-desarrollo': {
+        id: 'emociones-desarrollo',
+        title: 'Libros para trabajar emociones y desarrollo infantil',
+        description: 'Herramientas prácticas para el trabajo emocional y desarrollo integral',
+        resources: []
+      }
+    };
+
+    // Clasificar recursos en subcategorías basándose en la ruta de almacenamiento
+    recomendacionesCategory.resources.forEach(resource => {
+      // Buscar en los recursos originales para obtener el storage_path
+      const recursoOriginal = recursos.find(r => r.resource_id === resource.id);
+      const storagePath = recursoOriginal?.word_storage_path || recursoOriginal?.pdf_storage_path || '';
+      
+      if (storagePath.includes('Libros para comprender y acompañar a los niños')) {
+        subcategorias['comprender-acompanar'].resources.push(resource);
+      } else if (storagePath.includes('Libros para profesionales o padres que buscan mayor profundidad')) {
+        subcategorias['profesionales-profundidad'].resources.push(resource);
+      } else if (storagePath.includes('Libros para trabajar emociones y desarrollo infantil')) {
+        subcategorias['emociones-desarrollo'].resources.push(resource);
+      }
+    });
+
+    // Asignar subcategorías solo si hay recursos clasificados
+    const subcategoriasConRecursos = Object.values(subcategorias).filter(sub => sub.resources.length > 0);
+    if (subcategoriasConRecursos.length > 0) {
+      recomendacionesCategory.subcategories = subcategoriasConRecursos;
+      // Limpiar los recursos de la categoría principal ya que están en subcategorías
+      recomendacionesCategory.resources = [];
+    }
+  }
+
+  // Retornar solo categorías que tienen recursos o subcategorías con recursos
+  return Object.values(groupedCategories).filter(category => 
+    category.resources.length > 0 || 
+    (category.subcategories && category.subcategories.length > 0)
+  );
 };
