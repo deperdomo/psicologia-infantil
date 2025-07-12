@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import type { Resource } from '../../types/recursos';
-import { IoClose, IoDownload, IoTime, IoPersonOutline, IoPricetagsOutline, IoStar } from 'react-icons/io5';
+import { IoClose, IoDownload, IoTime, IoPersonOutline, IoPricetagsOutline, IoStar, IoDocumentText } from 'react-icons/io5';
 import { getRelatedResources } from '../../data/bibliotecaEmocional';
+import { downloadFileFromSupabase, extractFileNameFromUrl } from '../../utils/downloadUtils';
 
 interface ResourceModalProps {
   resource: Resource;
@@ -12,21 +13,78 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
   const [isDownloading, setIsDownloading] = useState(false);
   const relatedResources = getRelatedResources(resource.id);
 
-  const handleDownload = async () => {
+  const handleDownload = async (format: 'word' | 'pdf') => {
     if (resource.type === 'premium') {
       // Aquí iría la lógica para verificar suscripción
       alert('Este recurso requiere suscripción premium');
       return;
     }
 
+    const downloadUrl = format === 'word' ? resource.wordFileUrl : resource.pdfFileUrl;
+    
+    if (!downloadUrl) {
+      alert(`Formato ${format.toUpperCase()} no disponible para este recurso`);
+      return;
+    }
+
     setIsDownloading(true);
     
-    // Simular descarga
-    setTimeout(() => {
-      // En una implementación real, aquí se descargaría el archivo
-      console.log(`Descargando: ${resource.downloadUrl}`);
+    try {
+      // Extraer nombre del archivo desde la URL
+      const fileName = extractFileNameFromUrl(downloadUrl);
+      if (!fileName) {
+        throw new Error('No se pudo extraer el nombre del archivo');
+      }
+
+      // Generar nombre de descarga limpio
+      const extension = format === 'word' ? 'docx' : 'pdf';
+      const cleanTitle = resource.title
+        .replace(/[^\w\s-]/g, '') // Remover caracteres especiales
+        .replace(/\s+/g, ' ')     // Normalizar espacios
+        .trim();
+      const displayName = `${cleanTitle}.${extension}`;
+      
+      // Usar bucket apropiado
+      const bucket = format === 'word' ? 'recursos-word' : 'recursos-pdf';
+      
+      console.log(`🚀 Iniciando descarga de ${displayName}...`);
+      console.log(`📁 Archivo origen: ${fileName}`);
+      
+      // Descargar usando Supabase
+      await downloadFileFromSupabase(bucket, fileName, displayName);
+      
+      console.log(`✅ Descarga exitosa: ${displayName}`);
+      
+      // Mostrar mensaje de éxito con instrucciones
+      alert(`✅ ¡Descarga completada!
+
+Archivo: ${displayName}
+
+📍 Ubicación: 
+- Revisa tu carpeta de Descargas
+- O busca el archivo en el administrador de descargas de tu navegador (Ctrl+J)
+
+💡 Si no aparece, verifica que las descargas automáticas estén habilitadas.`);
+      
+    } catch (error) {
+      console.error('❌ Error al descargar:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      
+      // Mensaje de error más informativo
+      alert(`❌ Error al descargar el archivo:
+
+${errorMessage}
+
+🔧 Soluciones:
+1. Verifica tu conexión a internet
+2. Permite las descargas en la configuración del navegador
+3. Desactiva temporalmente el bloqueador de pop-ups
+4. Intenta nuevamente en unos segundos
+
+Si el problema persiste, contacta con soporte técnico.`);
+    } finally {
       setIsDownloading(false);
-    }, 2000);
+    }
   };
 
   const getDifficultyColor = (difficulty: string) => {
@@ -170,21 +228,66 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
             </div>
           )}
 
-          {/* Botón de descarga */}
-          <div className="flex justify-center pt-6 border-t border-[var(--border-light)]">
-            <button
-              onClick={handleDownload}
-              disabled={isDownloading}
-              className={`flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-                resource.type === 'gratuito'
-                  ? 'bg-[var(--primary)] text-white hover:bg-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2'
-                  : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-              } disabled:opacity-50 disabled:cursor-not-allowed`}
-            >
-              <IoDownload className="w-5 h-5" />
-              {isDownloading ? 'Descargando...' : 
-               resource.type === 'gratuito' ? 'Descargar Gratis' : 'Acceso Premium'}
-            </button>
+          {/* Botones de descarga */}
+          <div className="flex flex-col gap-4 pt-6 border-t border-[var(--border-light)]">
+            <h3 className="text-center font-semibold text-[var(--text)]">Descargar recurso</h3>
+            
+            {/* Instrucciones de descarga */}
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+              <div className="flex items-start gap-2">
+                <span className="text-blue-600">💡</span>
+                <div>
+                  <p className="font-medium mb-2">¿Cómo encontrar tu descarga?</p>
+                  <ul className="list-disc list-inside space-y-1 text-xs">
+                    <li><strong>Carpeta de Descargas:</strong> Busca el archivo en tu carpeta de Descargas predeterminada</li>
+                    <li><strong>Historial del navegador:</strong> Presiona <kbd className="bg-blue-100 px-1 rounded">Ctrl+J</kbd> para ver descargas recientes</li>
+                    <li><strong>Si no aparece:</strong> Permite las descargas automáticas en la configuración del navegador</li>
+                    <li><strong>Nombre del archivo:</strong> Se descargará con el título del recurso + .pdf</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              {/* Botón Word */}
+              {resource.wordFileUrl && (
+                <button
+                  onClick={() => handleDownload('word')}
+                  disabled={isDownloading}
+                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    resource.type === 'gratuito'
+                      ? 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                      : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                >
+                  <IoDocumentText className="w-5 h-5" />
+                  {isDownloading ? 'Descargando...' : 'Word (.docx)'}
+                </button>
+              )}
+
+              {/* Botón PDF */}
+              {resource.pdfFileUrl && (
+                <button
+                  onClick={() => handleDownload('pdf')}
+                  disabled={isDownloading}
+                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    resource.type === 'gratuito'
+                      ? 'bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
+                      : 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                >
+                  <IoDownload className="w-5 h-5" />
+                  {isDownloading ? 'Descargando...' : 'PDF (.pdf)'}
+                </button>
+              )}
+            </div>
+
+            {/* Fallback si no hay archivos disponibles */}
+            {!resource.wordFileUrl && !resource.pdfFileUrl && (
+              <div className="text-center text-[var(--muted-text)]">
+                <p>Archivos no disponibles temporalmente</p>
+              </div>
+            )}
           </div>
 
           {/* Información adicional para recursos premium */}

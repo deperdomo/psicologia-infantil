@@ -2,12 +2,19 @@ import { useState, useMemo } from 'react';
 import type { BibliotecaCategory, Resource, AgeRange, ResourceType } from '../../types/recursos';
 import { IoSearch, IoFilter, IoGrid, IoList } from 'react-icons/io5';
 import { BibliotecaCategoryCard, FilterPanel, ResourceModal } from './index';
+import { useSupabaseRecursos } from '../../hooks/useSupabaseRecursos';
 
 interface BibliotecaGridProps {
-  categories: BibliotecaCategory[];
+  categories?: BibliotecaCategory[]; // Hacer opcional para compatibilidad
 }
 
-export default function BibliotecaGrid({ categories }: BibliotecaGridProps) {
+export default function BibliotecaGrid({ categories: propCategories }: BibliotecaGridProps) {
+  // Hook de Supabase para obtener categorías
+  const { categories: supabaseCategories, loading: supabaseLoading, error: supabaseError } = useSupabaseRecursos();
+  
+  // Usar categorías de Supabase si están disponibles, sino usar las pasadas como props
+  const categories = supabaseCategories.length > 0 ? supabaseCategories : (propCategories || []);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
@@ -71,6 +78,7 @@ export default function BibliotecaGrid({ categories }: BibliotecaGridProps) {
     return Array.from(tags).sort();
   }, [categories]);
 
+  // Funciones de evento
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
   };
@@ -88,6 +96,47 @@ export default function BibliotecaGrid({ categories }: BibliotecaGridProps) {
   };
 
   const activeFiltersCount = selectedAges.length + selectedTypes.length + selectedTags.length + (onlyFree ? 1 : 0);
+
+  // Si está cargando, mostrar loading
+  if (supabaseLoading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Cargando recursos desde Supabase...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Si hay error y no hay categorías, mostrar error
+  if (supabaseError && categories.length === 0) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">❌ {supabaseError}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="btn-primary"
+          >
+            Reintentar
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Si no hay categorías, mostrar mensaje
+  if (!categories || categories.length === 0) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="text-center">
+          <p className="text-gray-600 mb-4">No hay recursos disponibles en este momento</p>
+          <p className="text-sm text-gray-500">Por favor, inténtelo más tarde</p>
+        </div>
+      </div>
+    );
+  }
 
   // Vista de categoría específica
   if (selectedCategory) {
@@ -165,6 +214,14 @@ export default function BibliotecaGrid({ categories }: BibliotecaGridProps) {
             </div>
           ))}
         </div>
+
+        {/* Modal de recurso para vista de categoría */}
+        {selectedResource && (
+          <ResourceModal
+            resource={selectedResource}
+            onClose={() => setSelectedResource(null)}
+          />
+        )}
       </div>
     );
   }
@@ -337,3 +394,6 @@ export default function BibliotecaGrid({ categories }: BibliotecaGridProps) {
     </div>
   );
 }
+
+// Export both default and named for compatibility
+export { BibliotecaGrid };

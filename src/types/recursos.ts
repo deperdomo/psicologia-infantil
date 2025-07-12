@@ -17,7 +17,9 @@ export interface Resource {
   estimatedTime?: string;
   tags: string[];
   relatedResources?: string[];
-  downloadUrl?: string;
+  downloadUrl?: string; // Legacy - mantener para compatibilidad
+  wordFileUrl?: string;
+  pdfFileUrl?: string;
   preview?: string;
 }
 
