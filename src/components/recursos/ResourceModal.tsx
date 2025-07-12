@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { Resource } from '../../types/recursos';
 import { IoClose, IoDownload, IoTime, IoPersonOutline, IoPricetagsOutline, IoStar, IoDocumentText } from 'react-icons/io5';
-import { getRelatedResources } from '../../data/bibliotecaEmocional';
 import { downloadFileFromSupabase, extractFileNameFromUrl } from '../../utils/downloadUtils';
 
 interface ResourceModalProps {
@@ -11,7 +10,6 @@ interface ResourceModalProps {
 
 export default function ResourceModal({ resource, onClose }: ResourceModalProps) {
   const [isDownloading, setIsDownloading] = useState(false);
-  const relatedResources = getRelatedResources(resource.id);
 
   const handleDownload = async (format: 'word' | 'pdf') => {
     if (resource.type === 'premium') {
@@ -196,57 +194,8 @@ Si el problema persiste, contacta con soporte técnico.`);
             </div>
           </div>
 
-          {/* Recursos relacionados */}
-          {relatedResources.length > 0 && (
-            <div>
-              <h3 className="font-semibold text-[var(--text)] mb-3">Recursos relacionados</h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                {relatedResources.map((related) => (
-                  <div
-                    key={related.id}
-                    className="p-4 border border-[var(--border-light)] rounded-xl hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="text-lg">{getResourceTypeIcon(related.resourceType)}</span>
-                      <div>
-                        <h4 className="font-medium text-[var(--text)] mb-1">{related.title}</h4>
-                        <p className="text-sm text-[var(--muted-text)] line-clamp-2">{related.description}</p>
-                        <div className="flex gap-2 mt-2">
-                          <span className={`px-2 py-1 rounded-full text-xs ${
-                            related.type === 'gratuito' 
-                              ? 'bg-green-100 text-green-700' 
-                              : 'bg-blue-100 text-blue-700'
-                          }`}>
-                            {related.type === 'gratuito' ? 'Gratuito' : 'Premium'}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Botones de descarga */}
           <div className="flex flex-col gap-4 pt-6 border-t border-[var(--border-light)]">
-            <h3 className="text-center font-semibold text-[var(--text)]">Descargar recurso</h3>
-            
-            {/* Instrucciones de descarga */}
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
-              <div className="flex items-start gap-2">
-                <span className="text-blue-600">💡</span>
-                <div>
-                  <p className="font-medium mb-2">¿Cómo encontrar tu descarga?</p>
-                  <ul className="list-disc list-inside space-y-1 text-xs">
-                    <li><strong>Carpeta de Descargas:</strong> Busca el archivo en tu carpeta de Descargas predeterminada</li>
-                    <li><strong>Historial del navegador:</strong> Presiona <kbd className="bg-blue-100 px-1 rounded">Ctrl+J</kbd> para ver descargas recientes</li>
-                    <li><strong>Si no aparece:</strong> Permite las descargas automáticas en la configuración del navegador</li>
-                    <li><strong>Nombre del archivo:</strong> Se descargará con el título del recurso + .pdf</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
             
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               {/* Botón Word */}

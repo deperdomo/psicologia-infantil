@@ -1,5 +1,4 @@
 // Componentes para la Biblioteca Emocional
-export { default as BibliotecaHero } from './BibliotecaHero';
 export { default as BibliotecaGrid } from './BibliotecaGrid';
 export { default as BibliotecaCategoryCard } from './BibliotecaCategoryCard';
 export { default as FilterPanel } from './FilterPanel';

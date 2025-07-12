@@ -25,3 +25,6 @@ dist-ssr
 
 # Database scripts and testing files (contains sensitive API keys)
 db-scripts/
+
+# Public biblioteca emocional files (replaced by Supabase Storage)
+public/biblioteca_emocional/
