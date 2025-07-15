@@ -1,100 +1,155 @@
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import OptimizedImage from '../OptimizedImage';
-// react-icons imports - replacing emojis with proper icons
-import { FaUserMd } from 'react-icons/fa';
-
 export default function About() {
-  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>();
-  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation<HTMLDivElement>();
-  const { elementRef: cardRef, isVisible: cardVisible } = useScrollAnimation<HTMLDivElement>();
-
   return (
-    <section className="max-w-6xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div 
-          ref={contentRef}
-          className={`transition-all duration-1000 ${
-            contentVisible 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 -translate-x-8'
-          }`}
-        >
-          <div 
-            ref={titleRef}
-            className={`transition-all duration-1000 delay-200 ${
-              titleVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6 flex items-center gap-3">
-              {/* Replaced 👩‍⚕ emoji with FaUserMd icon */}
-              <FaUserMd className="text-[var(--primary)]" />
-              Sobre mí
-            </h2>
-          </div>
+    <section className="py-24 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-100 relative overflow-hidden">
+      {/* Elementos decorativos de fondo */}
+      <div className="absolute inset-0">
+        <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-br from-purple-200/40 to-pink-200/40 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-br from-blue-200/40 to-indigo-200/40 rounded-full blur-3xl animate-pulse" style={{animationDelay: '3s'}}></div>
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-br from-orange-200/30 to-yellow-200/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '6s'}}></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <div className="space-y-6">
-            <p className="text-[var(--muted-text)] leading-relaxed text-lg">
-              Hola, soy <strong>Llenia Monteagudo Rodríguez</strong>, psicóloga especializada en infancia, familias y vínculos.
-            </p>
-            <p className="text-[var(--muted-text)] leading-relaxed">
-              Trabajo acompañando a niñas, niños y a sus familias cuando las emociones se hacen grandes, cuando los cambios desordenan un poco la casa, y cuando lo que más se necesita no es una solución rápida, sino alguien que escuche, sostenga y oriente con respeto.
-            </p>
-            <p className="text-[var(--muted-text)] leading-relaxed mb-8">
-              Llevo más de 15 años trabajando con infancia y parentalidad, en procesos de duelo, divorcio, inseguridad emocional, miedos, problemas de conducta y desbordes afectivos.
-            </p>
-          </div>
-          
-          <a
-            href="/sobre-mi"
-            className="nav-button bg-[var(--accent)] text-[var(--button-text)] px-6 py-3 rounded-lg hover:bg-[var(--button-hover)] shadow-sm font-semibold inline-flex items-center transition-all duration-300 hover:translate-y-[-2px]"
-          >
-            Conoce más sobre mi trabajo
-            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        
-        <div 
-          ref={cardRef}
-          className={`bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl p-8 transition-all duration-1000 delay-500 ${
-            cardVisible 
-              ? 'opacity-100 translate-x-0 scale-100' 
-              : 'opacity-0 translate-x-8 scale-95'
-          }`}
-        >
-          <div className="text-center mb-6">
-            {/* Imagen de la doctora con lazy loading */}
-            <div className="mb-6">
-              <OptimizedImage
-                src="/img/doctora.jpg"
-                alt="Llenia Monteagudo Rodríguez - Psicóloga especializada en infancia"
-                className="w-32 h-32 mx-auto rounded-full object-cover shadow-lg"
-                width={128}
-                height={128}
-              />
+          {/* Contenido Principal */}
+          <div className="space-y-8">
+            {/* Header con icono */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mb-6">
+                <span className="text-3xl">👩‍⚕️</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                Hola, soy
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                  Llenia Monteagudo
+                </span>
+              </h2>
+              <p className="text-xl text-purple-600 font-semibold mt-2">
+                Psicóloga especializada en infancia, familias y vínculos
+              </p>
             </div>
-            <h3 className="text-2xl font-bold text-[var(--text)] mb-4">
-              ¿Por qué elegí esta profesión?
-            </h3>
+            
+            {/* Descripción personal */}
+            <div className="space-y-6">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-purple-100 shadow-lg">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Trabajo acompañando a niñas, niños y a sus familias cuando las emociones se hacen grandes, cuando los cambios desordenan un poco la casa, y cuando lo que más se necesita no es una solución rápida, sino alguien que escuche, sostenga y oriente con respeto.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-200">
+                <p className="text-gray-700 leading-relaxed">
+                  <span className="font-semibold text-purple-700">Llevo más de 15 años</span> trabajando con infancia y parentalidad, en procesos de duelo, divorcio, inseguridad emocional, miedos, problemas de conducta y desbordes afectivos.
+                </p>
+              </div>
+            </div>
+            
+            {/* Botón de acción */}
+            <div className="pt-4">
+              <a
+                href="/sobre-mi"
+                className="group inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 text-lg font-semibold"
+              >
+                <span>Conoce más sobre mi trabajo</span>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
           </div>
           
-          <div className="space-y-4 text-[var(--muted-text)]">
-            <p>
-              Porque crecí sabiendo que cuando un niño tiene alguien que lo ve, lo nombra con ternura y lo acompaña sin miedo a sus emociones, ese niño florece.
-            </p>
-            <p>
-              Y porque las madres y padres también necesitan un lugar sin juicio, donde sentirse acompañados mientras crían, educan y sanan.
-            </p>
-            <p className="font-medium text-[var(--text)]">
-              Este proyecto nació del deseo de dar herramientas reales, de aliviar las culpas innecesarias y de ayudar a construir puentes emocionales más fuertes en las familias.
-            </p>
+          {/* Tarjeta Personal con Imagen */}
+          <div className="relative">
+            {/* Tarjeta principal */}
+            <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-2xl border border-gray-100 relative overflow-hidden">
+              {/* Decoración de fondo en la tarjeta */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200/50 to-pink-200/50 rounded-full blur-2xl"></div>
+              
+              {/* Imagen personal */}
+              <div className="text-center mb-8 relative z-10">
+                <div className="relative inline-block">
+                  <div className="w-40 h-40 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full p-1 shadow-lg">
+                    <img
+                      src="/img/doctora.jpg"
+                      alt="Llenia Monteagudo Rodríguez - Psicóloga especializada en infancia"
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  </div>
+                  {/* Indicador online */}
+                  <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-400 rounded-full border-4 border-white shadow-lg">
+                    <div className="w-full h-full bg-green-400 rounded-full animate-ping opacity-75"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Pregunta destacada */}
+              <div className="text-center mb-6">
+                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                  ¿Por qué elegí esta 
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600"> profesión?</span>
+                </h3>
+              </div>
+              
+              {/* Respuesta personal */}
+              <div className="space-y-4 text-gray-700">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-3 flex-shrink-0"></div>
+                  <p className="leading-relaxed">
+                    Porque crecí sabiendo que cuando un niño tiene alguien que lo ve, lo nombra con ternura y lo acompaña sin miedo a sus emociones, <strong className="text-purple-700">ese niño florece</strong>.
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-pink-400 rounded-full mt-3 flex-shrink-0"></div>
+                  <p className="leading-relaxed">
+                    Y porque las madres y padres también necesitan un lugar sin juicio, donde <strong className="text-pink-700">sentirse acompañados</strong> mientras crían, educan y sanan.
+                  </p>
+                </div>
+                
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 mt-6 border-l-4 border-gradient-to-b from-purple-500 to-pink-500">
+                  <p className="font-medium text-gray-800 leading-relaxed">
+                    💝 Este proyecto nació del deseo de dar herramientas reales, de aliviar las culpas innecesarias y de ayudar a construir puentes emocionales más fuertes en las familias.
+                  </p>
+                </div>
+              </div>
+
+              {/* Estadísticas rápidas */}
+              <div className="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-gray-100">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-600">15+</div>
+                  <div className="text-sm text-gray-600">Años de experiencia</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-pink-600">∞</div>
+                  <div className="text-sm text-gray-600">Familias acompañadas</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Elemento flotante decorativo */}
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-70 blur-sm"></div>
+          </div>
+        </div>
+
+        {/* Sección de valores/enfoque */}
+        <div className="mt-20 text-center">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8">Mi enfoque terapéutico</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { emoji: "🤗", title: "Acompañamiento", desc: "Sin juicio, con presencia genuina" },
+              { emoji: "🌱", title: "Crecimiento", desc: "Cada emoción es una oportunidad" },
+              { emoji: "💕", title: "Ternura", desc: "Respeto y calidez en cada encuentro" }
+            ].map((value) => (
+              <div key={value.title} className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="text-4xl mb-3">{value.emoji}</div>
+                <h4 className="font-bold text-gray-900 mb-2">{value.title}</h4>
+                <p className="text-gray-600 text-sm">{value.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
 

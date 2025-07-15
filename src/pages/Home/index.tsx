@@ -2,22 +2,39 @@ import WhyChooseUs from '../../components/sections/WhyChooseUs';
 import Footer from '../../components/Footer';
 import About from '../../components/sections/About';
 import TestimonialsSection from '../../components/sections/TestimonialsSections';
-import ServicesSections from '../../components/sections/ServicesSections';
-import Hero from '../../components/sections/Hero';
 import Philosophy from '../../components/sections/Philosophy';
-import WorkTools from '../../components/sections/WorkTools';
 import CallToAction from '../../components/sections/CallToAction';
 import ParentQuestions from '../../components/sections/ParentQuestions';
 import Navbar from '../../components/Navbar';
 import SEOMeta from '../../components/SEOMeta';
 import StructuredData from '../../components/StructuredData';
 import { usePageTitle } from '../../hooks/usePageTitle';
+import { EnhancedHero } from '../../components/hero/EnhancedHero';
+import IdentificationSituations from '../../components/demo/IdentificationSituations';
+import ServicesOffering from '../../components/demo/ServicesOffering';
+import WorkTools from '../../components/demo/WorkTools';
 
 export default function Home() {
   usePageTitle({
     title: 'Inicio',
     description: 'Psicología infantil especializada en Madrid. Acompañamiento terapéutico para niños y familias con más de 15 años de experiencia. Consulta presencial y online.'
   });
+
+  const handleGetStarted = () => {
+    // Scroll to contact or services section
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleLearnMore = () => {
+    // Scroll to services section
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
  
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--text)] hardware-acceleration"> 
@@ -46,9 +63,13 @@ export default function Home() {
       />
       <Navbar />
       <main id="main-content">
-        <Hero />
+        <EnhancedHero 
+          onGetStarted={handleGetStarted}
+          onLearnMore={handleLearnMore}
+        />
+        <IdentificationSituations />
         <ParentQuestions />
-        <ServicesSections />
+        <ServicesOffering />
         <Philosophy />
         <WorkTools />
         <WhyChooseUs />
