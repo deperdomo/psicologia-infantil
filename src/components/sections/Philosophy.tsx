@@ -1,22 +1,22 @@
 export default function Philosophy() {
   const principles = [
     {
-      icon: "🤝",
       title: "Acompañamiento",
       description: "Estamos contigo en cada paso del proceso emocional, brindando apoyo constante y comprensión.",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      illustration: "showing-support"
     },
     {
-      icon: "🌱",
       title: "Crecimiento", 
       description: "Cada emoción es una oportunidad para crecer y aprender sobre nosotros mismos.",
-      color: "from-green-500 to-emerald-500"
+      color: "from-green-500 to-emerald-500",
+      illustration: "going-upwards"
     },
     {
-      icon: "💝",
       title: "Ternura",
       description: "Con respeto, calidez y empatía en cada encuentro terapéutico que compartimos.",
-      color: "from-pink-500 to-rose-500"
+      color: "from-pink-500 to-rose-500",
+      illustration: "medical-care"
     }
   ];
 
@@ -32,9 +32,7 @@ export default function Philosophy() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl mb-6">
-            <span className="text-2xl">🧠</span>
-          </div>
+        
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Un espacio donde el dolor
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
@@ -58,9 +56,20 @@ export default function Philosophy() {
               key={principle.title}
               className="group relative bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100"
             >
-              {/* Icon with gradient background */}
-              <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${principle.color} rounded-2xl mb-6 text-3xl group-hover:scale-110 transition-transform duration-300`}>
-                {principle.icon}
+              {/* Ilustración SVG */}
+              <div className="mb-6">
+                <div className="w-full h-48 flex items-center justify-center bg-gray-50 rounded-2xl overflow-hidden">
+                  <img
+                    src={`/illustrations/${principle.illustration}.svg`}
+                    alt={`Ilustración representando ${principle.title}`}
+                    className="w-40 h-40 object-contain group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      filter: principle.title === 'Acompañamiento' ? 'hue-rotate(200deg)' : 
+                              principle.title === 'Crecimiento' ? 'hue-rotate(120deg)' : 
+                              'hue-rotate(300deg)'
+                    }}
+                  />
+                </div>
               </div>
               
               {/* Title */}
@@ -72,9 +81,6 @@ export default function Philosophy() {
               <p className="text-gray-600 leading-relaxed text-lg">
                 {principle.description}
               </p>
-
-              {/* Decorative element */}
-              <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${principle.color} w-0 group-hover:w-full transition-all duration-500 rounded-b-3xl`}></div>
             </div>
           ))}
         </div>

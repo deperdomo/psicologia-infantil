@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Illustrations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-image {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            display: inline-block;
+        }
+        .error {
+            border-color: red !important;
+            background: #ffe6e6;
+        }
+        .success {
+            border-color: green !important;
+            background: #e6ffe6;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test de Ilustraciones</h1>
+        <p>Verificando si las ilustraciones se cargan correctamente:</p>
+        
+        <div>
+            <h3>Family Time:</h3>
+            <img src="./illustrations/family-time.svg" alt="Family Time" class="test-image" 
+                 onload="this.classList.add('success')" 
+                 onerror="this.classList.add('error'); console.error('Failed to load:', this.src)">
+        </div>
+        
+        <div>
+            <h3>Children:</h3>
+            <img src="./illustrations/children.svg" alt="Children" class="test-image"
+                 onload="this.classList.add('success')" 
+                 onerror="this.classList.add('error'); console.error('Failed to load:', this.src)">
+        </div>
+        
+        <div>
+            <h3>Therapy:</h3>
+            <img src="./illustrations/therapy.svg" alt="Therapy" class="test-image"
+                 onload="this.classList.add('success')" 
+                 onerror="this.classList.add('error'); console.error('Failed to load:', this.src)">
+        </div>
+        
+        <div>
+            <h3>Mindfulness:</h3>
+            <img src="./illustrations/mindfulness.svg" alt="Mindfulness" class="test-image"
+                 onload="this.classList.add('success')" 
+                 onerror="this.classList.add('error'); console.error('Failed to load:', this.src)">
+        </div>
+    </div>
+
+    <script>
+        console.log('Testing illustration loading...');
+        
+        // Test with fetch API
+        async function testFetch() {
+            try {
+                const response = await fetch('./illustrations/family-time.svg');
+                console.log('Fetch test result:', response.status, response.statusText);
+                if (response.ok) {
+                    const text = await response.text();
+                    console.log('SVG content length:', text.length);
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        }
+        
+        testFetch();
+    </script>
+</body>
+</html>

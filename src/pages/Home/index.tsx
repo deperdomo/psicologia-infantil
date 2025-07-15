@@ -10,7 +10,6 @@ import SEOMeta from '../../components/SEOMeta';
 import StructuredData from '../../components/StructuredData';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { EnhancedHero } from '../../components/hero/EnhancedHero';
-import IdentificationSituations from '../../components/demo/IdentificationSituations';
 import ServicesOffering from '../../components/demo/ServicesOffering';
 import WorkTools from '../../components/demo/WorkTools';
 
@@ -67,7 +66,6 @@ export default function Home() {
           onGetStarted={handleGetStarted}
           onLearnMore={handleLearnMore}
         />
-        <IdentificationSituations />
         <ParentQuestions />
         <ServicesOffering />
         <Philosophy />

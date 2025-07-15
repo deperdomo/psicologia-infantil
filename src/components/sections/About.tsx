@@ -131,23 +131,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Sección de valores/enfoque */}
-        <div className="mt-20 text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Mi enfoque terapéutico</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { emoji: "🤗", title: "Acompañamiento", desc: "Sin juicio, con presencia genuina" },
-              { emoji: "🌱", title: "Crecimiento", desc: "Cada emoción es una oportunidad" },
-              { emoji: "💕", title: "Ternura", desc: "Respeto y calidez en cada encuentro" }
-            ].map((value) => (
-              <div key={value.title} className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="text-4xl mb-3">{value.emoji}</div>
-                <h4 className="font-bold text-gray-900 mb-2">{value.title}</h4>
-                <p className="text-gray-600 text-sm">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

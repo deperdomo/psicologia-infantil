@@ -5,8 +5,8 @@ export default function IdentificationSituations() {
       category: "Desarrollo Emocional",
       title: "Tu hijo/a presenta ansiedad, inseguridad o cambios de conducta",
       description: "Has notado que tu hijo/a se muestra más ansioso de lo habitual, tiene dificultades para adaptarse a nuevas situaciones, o su comportamiento ha cambiado significativamente.",
-      image: "https://images.pexels.com/photos/6222771/pexels-photo-6222771.jpeg?auto=compress&cs=tinysrgb&w=800",
-      alt: "Niño necesitando apoyo emocional",
+      illustration: "children",
+      alt: "Niños jugando - representando desarrollo emocional infantil",
       color: "blue",
       symptoms: ["Ansiedad y miedos intensos", "Inseguridad emocional", "Cambios de comportamiento"]
     },
@@ -15,8 +15,8 @@ export default function IdentificationSituations() {
       category: "Cambios Familiares",
       title: "La familia está pasando por un momento de cambio importante",
       description: "Separaciones, mudanzas, llegada de nuevas parejas o hermanos... Los cambios familiares pueden generar incertidumbre y necesidad de adaptación.",
-      image: "https://images.pexels.com/photos/8841302/pexels-photo-8841302.jpeg?auto=compress&cs=tinysrgb&w=800",
-      alt: "Padre e hijo conversando en un momento difícil",
+      illustration: "family-time",
+      alt: "Familia pasando tiempo juntos - representando cambios familiares",
       color: "green",
       symptoms: ["Separación o divorcio", "Mudanzas y cambios de entorno", "Llegada de nuevos miembros"]
     },
@@ -25,8 +25,8 @@ export default function IdentificationSituations() {
       category: "Orientación Parental",
       title: "Necesitas orientación para acompañar mejor a tu hijo/a",
       description: "Te sientes perdida, no sabes cómo manejar ciertas situaciones, o buscas herramientas para acompañar el desarrollo emocional de tu hijo/a de manera más efectiva.",
-      image: "https://images.pexels.com/photos/7299840/pexels-photo-7299840.jpeg?auto=compress&cs=tinysrgb&w=800",
-      alt: "Madre buscando orientación para acompañar a su hijo",
+      illustration: "therapy",
+      alt: "Sesión de terapia - representando orientación parental",
       color: "purple",
       symptoms: ["Herramientas de crianza", "Manejo de emociones", "Comunicación efectiva"]
     }
@@ -75,15 +75,20 @@ export default function IdentificationSituations() {
                   key={situation.id}
                   className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}
                 >
-                  {/* Ilustración */}
+                  {/* Ilustración SVG */}
                   <div className="lg:w-1/2">
-                    <div className="relative">
-                      <img
-                        src={situation.image}
-                        alt={situation.alt}
-                        className="w-full h-80 object-cover rounded-3xl shadow-2xl"
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-t ${colors.gradient} to-transparent rounded-3xl`}></div>
+                    <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
+                      <div className="w-full h-80 flex items-center justify-center">
+                        <img
+                          src={`/illustrations/${situation.illustration}.svg`}
+                          alt={situation.alt}
+                          className="w-full h-full object-contain"
+                          style={{
+                            filter: `hue-rotate(${situation.color === 'blue' ? '0deg' : situation.color === 'green' ? '120deg' : '270deg'})`
+                          }}
+                        />
+                      </div>
+                      <div className={`absolute inset-0 bg-gradient-to-t ${colors.gradient} to-transparent rounded-3xl opacity-10`}></div>
                     </div>
                   </div>
                   
