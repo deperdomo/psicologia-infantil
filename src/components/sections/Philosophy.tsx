@@ -3,20 +3,20 @@ export default function Philosophy() {
     {
       title: "Acompañamiento",
       description: "Estamos contigo en cada paso del proceso emocional, brindando apoyo constante y comprensión.",
-      color: "from-blue-500 to-cyan-500",
-      illustration: "showing-support"
+     
+      illustration: "acompañamiento.png"
     },
     {
       title: "Crecimiento", 
       description: "Cada emoción es una oportunidad para crecer y aprender sobre nosotros mismos.",
-      color: "from-green-500 to-emerald-500",
-      illustration: "going-upwards"
+      
+      illustration: "crecimiento.png"
     },
     {
       title: "Ternura",
       description: "Con respeto, calidez y empatía en cada encuentro terapéutico que compartimos.",
-      color: "from-pink-500 to-rose-500",
-      illustration: "medical-care"
+      
+      illustration: "ternura.png"
     }
   ];
 
@@ -60,14 +60,9 @@ export default function Philosophy() {
               <div className="mb-6">
                 <div className="w-full h-48 flex items-center justify-center bg-gray-50 rounded-2xl overflow-hidden">
                   <img
-                    src={`/illustrations/${principle.illustration}.svg`}
+                    src={`/illustrations/imagenes/${principle.illustration}`}
                     alt={`Ilustración representando ${principle.title}`}
                     className="w-40 h-40 object-contain group-hover:scale-110 transition-transform duration-300"
-                    style={{
-                      filter: principle.title === 'Acompañamiento' ? 'hue-rotate(200deg)' : 
-                              principle.title === 'Crecimiento' ? 'hue-rotate(120deg)' : 
-                              'hue-rotate(300deg)'
-                    }}
                   />
                 </div>
               </div>

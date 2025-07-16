@@ -12,7 +12,7 @@ export default function WhyChooseUs() {
       description: "No hay dos niños iguales, ni dos familias iguales. Cada proceso terapéutico se diseña específicamente para tu hijo/a, respetando su ritmo, sus intereses y sus necesidades únicas.",
       detailedDescription: "Utilizamos técnicas adaptadas a la edad y personalidad de cada niño, desde juego terapéutico hasta técnicas narrativas, siempre desde un enfoque cálido y respetuoso.",
       icon: <HiOutlineHeart className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8923659/pexels-photo-8923659.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "illustrations/imagenes/beneficios/enfoque-personalizado.png",
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-50 to-rose-50",
       stats: "100% personalizado"
@@ -23,7 +23,7 @@ export default function WhyChooseUs() {
       description: "Tu hijo/a y tu familia necesitan sentirse completamente seguros para abrirse y crecer. Garantizamos un espacio de absoluta confidencialidad y respeto.",
       detailedDescription: "Todo lo que se comparte en consulta está protegido por el secreto profesional. Creamos un ambiente donde expresarse libremente es no solo posible, sino alentado.",
       icon: <HiOutlineShieldCheck className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8923664/pexels-photo-8923664.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "illustrations/imagenes/beneficios/confidencialidad.png",
       color: "from-emerald-500 to-teal-500",
       bgColor: "from-emerald-50 to-teal-50",
       stats: "Máxima privacidad"
@@ -34,7 +34,7 @@ export default function WhyChooseUs() {
       description: "Entendemos que cada familia tiene sus propios horarios y necesidades. Por eso ofrecemos sesiones presenciales y online, con horarios flexibles.",
       detailedDescription: "Sesiones en diferentes modalidades: presencial en consulta, online desde casa, o sesiones familiares. Nos adaptamos a lo que mejor funcione para ustedes.",
       icon: <HiOutlineClock className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8923036/pexels-photo-8923036.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "illustrations/imagenes/beneficios/flexibilidad.png",
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-50 to-cyan-50",
       stats: "Horarios flexibles"
@@ -45,7 +45,7 @@ export default function WhyChooseUs() {
       description: "Mantenemos una comunicación abierta contigo en cada paso del proceso. Tu feedback es fundamental para adaptar el acompañamiento terapéutico.",
       detailedDescription: "Sesiones regulares de seguimiento familiar, informes de progreso y disponibilidad para resolver dudas entre sesiones cuando sea necesario.",
       icon: <HiOutlineChatBubbleLeftRight className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8841444/pexels-photo-8841444.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "illustrations/imagenes/beneficios/comunicacion-transparente.png",
       color: "from-purple-500 to-violet-500",
       bgColor: "from-purple-50 to-violet-50",
       stats: "Comunicación abierta"
@@ -56,7 +56,7 @@ export default function WhyChooseUs() {
       description: "Tienes total libertad para decidir el ritmo y la duración del proceso. Puedes pausar, continuar o finalizar cuando lo consideres apropiado.",
       detailedDescription: "Trabajamos sesión a sesión, respetando tus decisiones y las necesidades cambiantes de tu familia. No hay contratos largos ni penalizaciones.",
       icon: <HiOutlineCheckBadge className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8923665/pexels-photo-8923665.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "illustrations/imagenes/beneficios/sin-presiones-ni-compromisos.png",
       color: "from-amber-500 to-orange-500",
       bgColor: "from-amber-50 to-orange-50",
       stats: "Total libertad"
@@ -67,7 +67,7 @@ export default function WhyChooseUs() {
       description: "No trabajo 'sobre' tu familia, sino 'con' tu familia. Tu participación activa y nuestro acompañamiento profesional crean la magia del cambio.",
       detailedDescription: "Sesiones familiares, estrategias para implementar en casa y herramientas prácticas que puedes usar en el día a día con tu hijo/a.",
       icon: <HiOutlineUserGroup className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8841302/pexels-photo-8841302.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "illustrations/imagenes/beneficios/trabajo-equipo.png",
       color: "from-indigo-500 to-purple-500",
       bgColor: "from-indigo-50 to-purple-50",
       stats: "Colaboración total"
@@ -113,11 +113,13 @@ export default function WhyChooseUs() {
                   <div className="relative group">
                     <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} rounded-3xl transform rotate-6 group-hover:rotate-3 transition-transform duration-500`}></div>
                     <div className={`absolute inset-0 bg-gradient-to-br ${benefit.bgColor} rounded-3xl transform -rotate-3 group-hover:rotate-0 transition-transform duration-500`}></div>
-                    <img
-                      src={benefit.image}
-                      alt={benefit.title}
-                      className="relative w-full h-80 object-cover rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-105"
-                    />
+                    <div className="relative w-full h-80 bg-white rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-105 flex items-center justify-center p-8">
+                      <img
+                        src={benefit.image}
+                        alt={benefit.title}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
                     
                     {/* Estadística flotante */}
                     <div className={`absolute -bottom-6 -right-6 bg-gradient-to-r ${benefit.color} text-white px-6 py-3 rounded-2xl shadow-lg transform group-hover:scale-110 transition-transform duration-300`}>

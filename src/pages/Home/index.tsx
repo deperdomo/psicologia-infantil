@@ -4,14 +4,14 @@ import About from '../../components/sections/About';
 import TestimonialsSection from '../../components/sections/TestimonialsSections';
 import Philosophy from '../../components/sections/Philosophy';
 import CallToAction from '../../components/sections/CallToAction';
-import ParentQuestions from '../../components/sections/ParentQuestions';
+import IdentificationSituations from '../../components/sections/IdentificationSituations';
 import Navbar from '../../components/Navbar';
 import SEOMeta from '../../components/SEOMeta';
 import StructuredData from '../../components/StructuredData';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { EnhancedHero } from '../../components/hero/EnhancedHero';
-import ServicesOffering from '../../components/demo/ServicesOffering';
-import WorkTools from '../../components/demo/WorkTools';
+import ServicesOffering from '../../components/sections/ServicesOffering';
+import WorkTools from '../../components/sections/WorkTools';
 
 export default function Home() {
   usePageTitle({
@@ -66,7 +66,7 @@ export default function Home() {
           onGetStarted={handleGetStarted}
           onLearnMore={handleLearnMore}
         />
-        <ParentQuestions />
+        <IdentificationSituations />
         <ServicesOffering />
         <Philosophy />
         <WorkTools />
