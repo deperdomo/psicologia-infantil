@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Resource } from '../../types/recursos';
-import { IoClose, IoDownload, IoTime, IoPersonOutline, IoPricetagsOutline, IoStar, IoDocumentText } from 'react-icons/io5';
+import { IoClose, IoDownload, IoTime, IoPersonOutline, IoStar, IoDocumentText } from 'react-icons/io5';
 import { downloadFileFromSupabase } from '../../utils/downloadUtils';
 
 interface ResourceModalProps {
@@ -12,12 +12,6 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownload = async (format: 'word' | 'pdf') => {
-    if (resource.type === 'premium') {
-      // Aquí iría la lógica para verificar suscripción
-      alert('Este recurso requiere suscripción premium');
-      return;
-    }
-
     const downloadUrl = format === 'word' ? resource.wordFileUrl : resource.pdfFileUrl;
     
     if (!downloadUrl) {
@@ -98,85 +92,107 @@ Si el problema persiste, contacta con soporte técnico.`);
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        {/* Header */}
-        <div className="flex justify-between items-start p-6 border-b border-[var(--border-light)]">
-          <div className="flex-1 pr-4">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-2xl">{getResourceTypeIcon(resource.resourceType)}</span>
-              <h2 className="text-2xl font-bold text-[var(--text)]">{resource.title}</h2>
+      <div className="bg-white/95 backdrop-blur-md rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl">
+        {/* Header con gradiente */}
+        <div className="bg-gradient-to-br from-blue-500 to-purple-500 p-8 relative overflow-hidden rounded-t-3xl">
+          {/* Elementos decorativos de fondo */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+          
+          <div className="relative flex justify-between items-start">
+            <div className="flex-1 pr-4">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-3xl">{getResourceTypeIcon(resource.resourceType)}</span>
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white mb-2">{resource.title}</h2>
+                  <p className="text-white/90 text-lg leading-relaxed">{resource.description}</p>
+                </div>
+              </div>
             </div>
-            <p className="text-[var(--muted-text)]">{resource.description}</p>
+            <button
+              onClick={onClose}
+              className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm hover:bg-white/30 flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-105"
+            >
+              <IoClose className="w-6 h-6 text-white" />
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
-          >
-            <IoClose className="w-5 h-5" />
-          </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
-          {/* Metadatos */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-              <IoTime className="w-5 h-5 text-[var(--primary)]" />
-              <div>
-                <p className="text-sm text-[var(--muted-text)]">Tiempo estimado</p>
-                <p className="font-semibold text-[var(--text)]">{resource.estimatedTime}</p>
+        <div className="p-8 space-y-8">
+          {/* Metadatos con cards glassmorphism */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                  <IoTime className="w-5 h-5 text-white" />
+                </div>
+                <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
               </div>
+              <p className="text-sm text-gray-600 font-medium mb-1">Tiempo estimado</p>
+              <p className="font-bold text-gray-900 text-lg">{resource.estimatedTime}</p>
             </div>
 
-            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-              <IoPersonOutline className="w-5 h-5 text-[var(--secondary)]" />
-              <div>
-                <p className="text-sm text-[var(--muted-text)]">Edades</p>
-                <p className="font-semibold text-[var(--text)]">{resource.ageRange.join(', ')}</p>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                  <IoPersonOutline className="w-5 h-5 text-white" />
+                </div>
+                <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
               </div>
+              <p className="text-sm text-gray-600 font-medium mb-1">Edades</p>
+              <p className="font-bold text-gray-900 text-lg">{resource.ageRange.join(', ')}</p>
             </div>
 
-            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-              <IoStar className="w-5 h-5 text-[var(--accent)]" />
-              <div>
-                <p className="text-sm text-[var(--muted-text)]">Dificultad</p>
-                <span className={`inline-block px-2 py-1 rounded-full text-sm font-medium ${getDifficultyColor(resource.difficulty)}`}>
-                  {resource.difficulty}
-                </span>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full flex items-center justify-center">
+                  <IoStar className="w-5 h-5 text-white" />
+                </div>
+                <div className="w-3 h-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full"></div>
               </div>
+              <p className="text-sm text-gray-600 font-medium mb-1">Dificultad</p>
+              <span className={`inline-block px-3 py-1 rounded-full text-sm font-bold border ${getDifficultyColor(resource.difficulty)}`}>
+                {resource.difficulty}
+              </span>
             </div>
 
-            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-              <IoPricetagsOutline className="w-5 h-5 text-[var(--highlight)]" />
-              <div>
-                <p className="text-sm text-[var(--muted-text)]">Acceso</p>
-                <span className={`inline-block px-2 py-1 rounded-full text-sm font-medium ${
-                  resource.type === 'gratuito' 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-blue-100 text-blue-700'
-                }`}>
-                  {resource.type === 'gratuito' ? 'Gratuito' : 'Premium'}
-                </span>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center">
+                  <IoDocumentText className="w-5 h-5 text-white" />
+                </div>
+                <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></div>
               </div>
+              <p className="text-sm text-gray-600 font-medium mb-1">Tipo</p>
+              <p className="font-bold text-gray-900 text-lg capitalize">{resource.resourceType}</p>
             </div>
           </div>
 
           {/* Preview */}
           {resource.preview && (
-            <div className="bg-[var(--primary)]/5 rounded-xl p-6 border border-[var(--primary)]/10">
-              <h3 className="font-semibold text-[var(--text)] mb-3">Vista previa</h3>
-              <p className="text-[var(--muted-text)] leading-relaxed">{resource.preview}</p>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+                <h3 className="font-bold text-gray-900 text-xl">Vista previa</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-lg font-medium">{resource.preview}</p>
             </div>
           )}
 
           {/* Tags */}
-          <div>
-            <h3 className="font-semibold text-[var(--text)] mb-3">Temas relacionados</h3>
-            <div className="flex flex-wrap gap-2">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-3 h-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full"></div>
+              <h3 className="font-bold text-gray-900 text-xl">Temas relacionados</h3>
+            </div>
+            <div className="flex flex-wrap gap-3">
               {resource.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-sm"
+                  className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium border border-blue-200 hover:bg-blue-200 transition-colors duration-300"
                 >
                   {tag}
                 </span>
@@ -185,21 +201,23 @@ Si el problema persiste, contacta con soporte técnico.`);
           </div>
 
           {/* Botones de descarga */}
-          <div className="flex flex-col gap-4 pt-6 border-t border-[var(--border-light)]">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+              <h3 className="font-bold text-gray-900 text-xl">Descargar recurso</h3>
+            </div>
             
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {/* Botón Word */}
               {resource.wordFileUrl && (
                 <button
                   onClick={() => handleDownload('word')}
                   disabled={isDownloading}
-                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                    resource.type === 'gratuito'
-                      ? 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-                      : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-bold text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <IoDocumentText className="w-5 h-5" />
+                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <IoDocumentText className="w-5 h-5" />
+                  </div>
                   {isDownloading ? 'Descargando...' : 'Word (.docx)'}
                 </button>
               )}
@@ -209,13 +227,11 @@ Si el problema persiste, contacta con soporte técnico.`);
                 <button
                   onClick={() => handleDownload('pdf')}
                   disabled={isDownloading}
-                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                    resource.type === 'gratuito'
-                      ? 'bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
-                      : 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-2xl font-bold text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <IoDownload className="w-5 h-5" />
+                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <IoDownload className="w-5 h-5" />
+                  </div>
                   {isDownloading ? 'Descargando...' : 'PDF (.pdf)'}
                 </button>
               )}
@@ -223,24 +239,15 @@ Si el problema persiste, contacta con soporte técnico.`);
 
             {/* Fallback si no hay archivos disponibles */}
             {!resource.wordFileUrl && !resource.pdfFileUrl && (
-              <div className="text-center text-[var(--muted-text)]">
-                <p>Archivos no disponibles temporalmente</p>
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <IoDocumentText className="w-8 h-8 text-gray-400" />
+                </div>
+                <p className="text-gray-600 font-medium">Archivos no disponibles temporalmente</p>
+                <p className="text-gray-500 text-sm mt-2">Por favor, inténtalo más tarde</p>
               </div>
             )}
           </div>
-
-          {/* Información adicional para recursos premium */}
-          {resource.type === 'premium' && (
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
-              <p className="text-blue-800 text-sm">
-                <strong>Recurso Premium:</strong> Este contenido está disponible para suscriptores. 
-                <br />
-                <a href="/suscripcion" className="underline hover:no-underline">
-                  Conoce nuestros planes aquí
-                </a>
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </div>

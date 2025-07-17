@@ -10,7 +10,7 @@ export interface Resource {
   description: string;
   fileName: string;
   fileSize?: string;
-  type: 'gratuito' | 'premium';
+  type: 'gratuito'; // Todos los recursos son ahora gratuitos
   resourceType: ResourceType;
   ageRange: AgeRange[];
   difficulty: Difficulty;

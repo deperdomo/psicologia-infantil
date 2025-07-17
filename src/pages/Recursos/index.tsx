@@ -1,10 +1,11 @@
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { usePageTitle } from "../../hooks/usePageTitle";
 import SEOMeta from "../../components/SEOMeta";
 import StructuredData from "../../components/StructuredData";
 import { BibliotecaGrid } from "../../components/recursos";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
-import { IoLibrary, IoBook, IoDownload, IoSearch } from 'react-icons/io5';
+import { IoLibrary, IoBook, IoDownload } from 'react-icons/io5';
 import { FaGraduationCap, FaHeart } from 'react-icons/fa';
 
 export default function Recursos() {
@@ -148,26 +149,7 @@ export default function Recursos() {
                 </div>
               </div>
 
-              {/* CTA destacado */}
-              <div className={`transition-all duration-1000 delay-1000 ${
-                statsVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-8'
-              }`}>
-                <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-6 text-white shadow-2xl">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                      <IoSearch className="text-2xl" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">¿Buscas algo específico?</h3>
-                      <p className="text-blue-100 text-sm">
-                        Utiliza nuestro sistema de búsqueda avanzada para encontrar exactamente lo que necesitas.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
             
             {/* Lado derecho - Ilustración */}
@@ -205,12 +187,15 @@ export default function Recursos() {
         </div>
       </section>
 
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8 mb-26">
         <div className="max-w-7xl mx-auto">
           {/* Componente BibliotecaGrid con datos de Supabase */}
           <BibliotecaGrid />
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
