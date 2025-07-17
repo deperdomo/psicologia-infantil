@@ -3,19 +3,16 @@ export default function Philosophy() {
     {
       title: "Acompañamiento",
       description: "Estamos contigo en cada paso del proceso emocional, brindando apoyo constante y comprensión.",
-     
       illustration: "acompañamiento.png"
     },
     {
       title: "Crecimiento", 
       description: "Cada emoción es una oportunidad para crecer y aprender sobre nosotros mismos.",
-      
       illustration: "crecimiento.png"
     },
     {
       title: "Ternura",
       description: "Con respeto, calidez y empatía en cada encuentro terapéutico que compartimos.",
-      
       illustration: "ternura.png"
     }
   ];
@@ -60,7 +57,7 @@ export default function Philosophy() {
               <div className="mb-6">
                 <div className="w-full h-48 flex items-center justify-center bg-gray-50 rounded-2xl overflow-hidden">
                   <img
-                    src={`/illustrations/imagenes/${principle.illustration}`}
+                    src={`/illustrations/imagenes/philosophy/${principle.illustration}`}
                     alt={`Ilustración representando ${principle.title}`}
                     className="w-40 h-40 object-contain group-hover:scale-110 transition-transform duration-300"
                   />

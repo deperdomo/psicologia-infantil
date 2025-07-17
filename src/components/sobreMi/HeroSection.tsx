@@ -87,7 +87,7 @@ export default function HeroSection() {
                   <div className="text-sm text-gray-600">Años de experiencia</div>
                 </div>
                 <div className="text-center lg:text-left">
-                  <div className="text-3xl font-bold text-purple-600 mb-1">∞</div>
+                  <div className="text-3xl font-bold text-purple-600 mb-1">200+</div>
                   <div className="text-sm text-gray-600">Familias acompañadas</div>
                 </div>
               </div>

@@ -10,7 +10,7 @@ export default function CallToAction() {
       subtitle: "El primer paso hacia el bienestar",
       description: "Una sesión inicial donde conoceremos la situación de tu hijo/a y definiremos el mejor camino a seguir juntos.",
       icon: <HiOutlineCalendarDays className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8923659/pexels-photo-8923659.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg?auto=compress&cs=tinysrgb&w=800",
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-50 to-cyan-50",
       action: "Agendar consulta",
@@ -23,11 +23,11 @@ export default function CallToAction() {
       subtitle: "Herramientas que puedes usar hoy",
       description: "Cuentos terapéuticos, guías para padres y recursos prácticos que te ayudarán desde el primer día.",
       icon: <HiOutlineBookOpen className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8923036/pexels-photo-8923036.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://images.pexels.com/photos/768125/pexels-photo-768125.jpeg?auto=compress&cs=tinysrgb&w=800",
       color: "from-purple-500 to-pink-500",
       bgColor: "from-purple-50 to-pink-50",
       action: "Ver recursos",
-      link: "/blog",
+      link: "/recursos",
       features: ["Cuentos terapéuticos", "Guías prácticas", "Videos explicativos", "Completamente gratis"]
     },
     {
@@ -36,11 +36,11 @@ export default function CallToAction() {
       subtitle: "Resuelve tus dudas ahora",
       description: "¿Tienes preguntas específicas? Escríbeme directamente y te ayudo a aclarar cualquier inquietud sobre tu situación.",
       icon: <HiOutlineChatBubbleLeftRight className="text-4xl text-white" />,
-      image: "https://images.pexels.com/photos/8841302/pexels-photo-8841302.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://images.pexels.com/photos/4132538/pexels-photo-4132538.jpeg?auto=compress&cs=tinysrgb&w=800",
       color: "from-green-500 to-emerald-500",
       bgColor: "from-green-50 to-emerald-50",
       action: "Escribir ahora",
-      link: "https://wa.me/1234567890",
+      link: "https://wa.me/641123622",
       features: ["Respuesta rápida", "Sin compromiso", "Orientación inicial", "Totalmente confidencial"]
     }
   ];
@@ -71,7 +71,7 @@ export default function CallToAction() {
 
           <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
             <HiOutlineHeart className="text-pink-300 text-xl" />
-            <span className="text-white font-medium">Más de 500 familias ya dieron este paso</span>
+            <span className="text-white font-medium">Más de 200 familias ya dieron este paso</span>
           </div>
         </div>
 
@@ -90,7 +90,8 @@ export default function CallToAction() {
                     alt={card.title}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${card.color}/60 to-transparent`}></div>
+                  {/* Sombra inferior discreta con altura delimitada */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t ${card.color}/60 to-transparent`}></div>
                   
                   {/* Icono flotante */}
                   <div className={`absolute top-6 right-6 w-16 h-16 bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}>
@@ -192,7 +193,7 @@ export default function CallToAction() {
                     <div className="text-blue-200 text-sm">Años</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-white">500+</div>
+                    <div className="text-2xl font-bold text-white">200+</div>
                     <div className="text-blue-200 text-sm">Familias</div>
                   </div>
                 </div>
@@ -209,7 +210,7 @@ export default function CallToAction() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/641123622"
               className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center"
             >
               <HiOutlineChatBubbleLeftRight className="mr-2 text-xl" />

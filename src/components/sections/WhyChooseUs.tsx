@@ -194,7 +194,7 @@ export default function WhyChooseUs() {
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white">500+</div>
+                  <div className="text-3xl font-bold text-white">200+</div>
                   <div className="text-blue-100">Familias acompañadas</div>
                 </div>
                 <div className="hidden sm:block w-px h-12 bg-white/30"></div>

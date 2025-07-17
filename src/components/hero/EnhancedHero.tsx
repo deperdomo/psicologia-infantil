@@ -61,7 +61,7 @@ export const EnhancedHero: React.FC<EnhancedHeroProps> = ({
     },
     {
       icon: Heart,
-      text: "+500 Familias",
+      text: "+200 Familias",
       description: "Han confiado en nosotros"
     }
   ];

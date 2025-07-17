@@ -5,7 +5,7 @@ export default function ServicesOffering() {
       category: "Para niños y niñas",
       title: "Terapia Infantil",
       description: "Para niños y niñas que presentan ansiedad, inseguridad, cambios de conducta, baja autoestima, miedos o dificultades para adaptarse a nuevas situaciones.",
-      image: "https://images.pexels.com/photos/8654109/pexels-photo-8654109.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "img/servicesOffering/terapia-ingantil.jpg",
       alt: "Terapia infantil - Psicóloga trabajando con niña",
       color: "blue",
       features: [
@@ -21,7 +21,7 @@ export default function ServicesOffering() {
       category: "Para madres y padres",
       title: "Orientación a Madres y Padres",
       description: "Para acompañarte a ti, como figura clave en la vida emocional de tu hijo/a. Te ayudo a comprender, validar y guiar, sin sobreproteger ni juzgarte.",
-      image: "https://images.pexels.com/photos/7653084/pexels-photo-7653084.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://images.pexels.com/photos/7653084/pexels-photo-7653084.jpeg",
       alt: "Orientación a padres - Consulta familiar profesional",
       color: "pink",
       features: [
@@ -37,7 +37,7 @@ export default function ServicesOffering() {
       category: "Momentos de cambio",
       title: "Acompañamiento en Cambios Familiares",
       description: "Separaciones, mudanzas, llegada de nuevas parejas o hermanos... Te acompaño a ti y/o a tu hijo/a en el proceso de adaptación emocional, con mayor seguridad y herramientas.",
-      image: "https://images.pexels.com/photos/23495757/pexels-photo-23495757.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://images.pexels.com/photos/23495757/pexels-photo-23495757.jpeg",
       alt: "Acompañamiento familiar - Terapia de cambios familiares",
       color: "green",
       features: [

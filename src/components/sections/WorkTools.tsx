@@ -51,14 +51,14 @@ export default function WorkTools() {
                 key={tool.id}
                 className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
               >
-                <div className="flex flex-col lg:flex-row">
+                <div className="flex flex-col lg:flex-row h-auto lg:h-95">
                   {/* Imagen */}
-                  <div className="lg:w-1/2">
-                    <div className="h-64 lg:h-full overflow-hidden">
+                  <div className="lg:w-1/2 h-64 lg:h-full">
+                    <div className="h-full w-full overflow-hidden">
                       <img
                         src={tool.image}
                         alt={tool.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                   </div>

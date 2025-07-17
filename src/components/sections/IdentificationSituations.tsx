@@ -32,7 +32,7 @@ export default function IdentificationSituations() {
       question: "¿No sabes cómo manejar los berrinches o las crisis emocionales de tu hijo/a?",
       description: "Los momentos de crisis emocional se vuelven abrumadores y sientes que nada de lo que haces funciona para ayudar a tu hijo/a a regularse.",
       icon: <HiOutlineExclamationTriangle className="text-4xl text-orange-600" />,
-      image: "img/crisis-emocional.jpg",
+      image: "img/identificationSituations/crisis-emocional.jpg",
       color: "from-orange-500 to-red-500",
       symptoms: ["Berrinches frecuentes", "Crisis emocionales", "Sensación de impotencia", "Desgaste familiar"]
     },
@@ -42,7 +42,7 @@ export default function IdentificationSituations() {
       question: "¿Te preocupa el comportamiento de tu hijo/a después de una separación, mudanza u otro cambio importante?",
       description: "Has notado cambios significativos en el comportamiento de tu hijo/a tras eventos importantes en la familia, y no estás seguro/a de cómo ayudarle a adaptarse.",
       icon: <HiOutlineHeart className="text-4xl text-green-600" />,
-      image: "img/separacion-padres.jpg",
+      image: "img/identificationSituations/separacion-padres.jpg",
       color: "from-green-500 to-teal-500",
       symptoms: ["Cambios de comportamiento", "Dificultad de adaptación", "Regresiones", "Estrés familiar"]
     }
@@ -82,8 +82,8 @@ export default function IdentificationSituations() {
                       alt={situation.title}
                       className="w-full h-80 object-cover rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500"
                     />
-                    {/* Sombra inferior discreta */}
-                    <div className={`absolute bottom-0 left-0 right-0 h-30 bg-gradient-to-t ${situation.color} to-transparent rounded-b-3xl`}></div>
+                    {/* Sombra inferior discreta más suave */}
+                    <div className={`absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t ${situation.color}/10 to-transparent rounded-b-3xl`}></div>
                     {/* Icono flotante */}
                     <div className="absolute -top-6 -right-6 bg-white rounded-full p-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                       {situation.icon}
