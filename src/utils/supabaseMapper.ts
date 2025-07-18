@@ -99,7 +99,7 @@ export const mapSupabaseToCategories = (recursos: Recurso[]): BibliotecaCategory
         title: recurso.title,
         description: recurso.description || '',
         fileName: recurso.word_file_name || recurso.pdf_file_name || 'document',
-        type: recurso.is_premium ? 'premium' as const : 'gratuito' as const,
+        type: 'gratuito' as const, // Todos los recursos son ahora gratuitos
         resourceType: recurso.resource_type,
         ageRange: mapAgeRanges(recurso.age_ranges || []),
         difficulty: recurso.difficulty,

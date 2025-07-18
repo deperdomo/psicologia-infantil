@@ -3,7 +3,7 @@ import Footer from "../../components/Footer";
 import { usePageTitle } from "../../hooks/usePageTitle";
 import SEOMeta from "../../components/SEOMeta";
 import StructuredData from "../../components/StructuredData";
-import { BibliotecaGrid } from "../../components/recursos";
+import { BibliotecaGrid } from "./BibliotecaGrid";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import { IoLibrary, IoBook, IoDownload } from 'react-icons/io5';
 import { FaGraduationCap, FaHeart } from 'react-icons/fa';

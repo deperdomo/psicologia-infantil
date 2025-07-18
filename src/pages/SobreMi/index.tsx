@@ -1,9 +1,9 @@
 import Navbar from "../../components/Navbar";
-import HeroSection from "../../components/sobreMi/HeroSection";
-import ApproachSection from "../../components/sobreMi/ApproachSection";
-import PhilosophySection from "../../components/sobreMi/PhilosophySection";
-import WorkMethodSection from "../../components/sobreMi/WorkMethodSection";
-import CTASection from "../../components/sobreMi/CTASection";
+import HeroSection from "./HeroSection";
+import ApproachSection from "./ApproachSection";
+import PhilosophySection from "./PhilosophySection";
+import WorkMethodSection from "./WorkMethodSection";
+import CTASection from "./CTASection";
 import Footer from "../../components/Footer";
 import { usePageTitle } from "../../hooks/usePageTitle";
 

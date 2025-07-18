@@ -1,5 +1,5 @@
 import type { BibliotecaSubcategory, Resource } from '../../types/recursos';
-import ResourceListItem from '../../pages/Recursos/ResourceListItem';
+import ResourceListItem from './ResourceListItem';
 
 interface SubcategorySectionProps {
   subcategory: BibliotecaSubcategory;
