@@ -51,13 +51,13 @@ export const EnhancedHero: React.FC<EnhancedHeroProps> = ({
   const trustIndicators = [
     {
       icon: Shield,
-      text: "Psicóloga Colegiada",
-      description: "Colegio Oficial de Psicólogos"
+      text: "Psicóloga",
+      description: "Especialista en intervención emocional y familiar"
     },
     {
       icon: Award,
       text: "Especialista Certificada",
-      description: "Psicología Infantil y Adolescente"
+      description: "Máster en Psicología Infantil y Juvenil"
     },
     {
       icon: Heart,

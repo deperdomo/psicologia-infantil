@@ -30,7 +30,7 @@ const containerVariants: Variants = {
 ```
 
 ### 2. **Sistema de Confianza Visual**
-- **Indicadores de credibilidad**: Psicóloga colegiada, especialista certificada
+- **Indicadores de credibilidad**: Máster en Psicología Infantil y Juvenil
 - **Proof social**: +500 familias, calificaciones 4.9/5
 - **Iconografía profesional**: Shield, Award, Heart de Lucide React
 

@@ -100,7 +100,7 @@ export default function Hero() {
                 <span className="text-2xl">
                   <GiSprout />
                 </span>
-                <span className="text-sm font-medium">Psicóloga Colegiada</span>
+                <span className="text-sm font-medium">Máster en Psicología Infantil y Juvenil</span>
               </div>
               <div className="flex items-center space-x-2 text-[var(--muted-text)]">
                 <span className="text-2xl">

@@ -44,7 +44,7 @@ export default function HeroSection() {
             >
               <div className="inline-flex items-center space-x-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-gray-200">
                 <FaUserMd className="text-2xl text-blue-600" aria-hidden="true" />
-                <span className="text-sm font-medium text-gray-700">Psicóloga Colegiada</span>
+                <span className="text-sm font-medium text-gray-700">Máster en Psicología Infantil y Juvenil</span>
               </div>
               
               <h1 

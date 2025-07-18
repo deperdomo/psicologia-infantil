@@ -162,7 +162,7 @@ export default function EnhancedHero() {
               className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8"
             >
               {[
-                { icon: Shield, text: "Psicóloga Colegiada", subtext: "Colegio Oficial" },
+                { icon: Shield, text: "Máster en Psicología Infantil y Juvenil", subtext: "Colegio Oficial" },
                 { icon: Heart, text: "Especialista en Infancia", subtext: "+15 años experiencia" },
                 { icon: Award, text: "Enfoque Humanista", subtext: "Terapia respetuosa" }
               ].map((item, index) => (
