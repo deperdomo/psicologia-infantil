@@ -10,7 +10,7 @@ export default function PhilosophySection() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50"
+      className="relative py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50"
     >
       {/* Estilos CSS inline para las animaciones */}
       <style dangerouslySetInnerHTML={{
@@ -43,37 +43,44 @@ export default function PhilosophySection() {
           }
         `
       }} />
-      {/* Elementos decorativos minimalistas */}
-      <div className="absolute top-20 right-20 w-64 h-64 bg-blue-100/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-100/20 rounded-full blur-3xl"></div>
+      
+      {/* Elementos decorativos responsive */}
+      <div className="absolute top-10 right-10 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-blue-100/30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-10 left-10 w-40 h-40 sm:w-60 sm:h-60 lg:w-80 lg:h-80 bg-purple-100/20 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Layout responsive: móvil (columna), tablet (columna con mejor espaciado), desktop (grid 2 columnas) */}
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           
-          {/* Ilustración minimalista extraída a PhilosophyGraphic */}
-          <div className="lg:col-span-5">
+          {/* Ilustración - Responsive sizing */}
+          <div className="w-full lg:col-span-5 order-2 lg:order-1">
             <div className={`relative transition-all duration-1000 delay-200 ${
               cardVisible 
                 ? 'opacity-100 translate-x-0 scale-100' 
                 : 'opacity-0 -translate-x-8 scale-95'
             }`}>
-              <PhilosophyGraphic cardVisible={cardVisible} />
+              {/* Contenedor responsive para PhilosophyGraphic */}
+              <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
+                <div className="relative w-full aspect-square">
+                  <PhilosophyGraphic cardVisible={cardVisible} />
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Contenido textual */}
-          <div className="lg:col-span-7">
+          {/* Contenido textual - Responsive */}
+          <div className="w-full lg:col-span-7 order-1 lg:order-2">
             <div 
               ref={cardRef}
-              className={`space-y-8 transition-all duration-1000 delay-400 ${
+              className={`space-y-6 sm:space-y-8 transition-all duration-1000 delay-400 ${
                 cardVisible 
                   ? 'opacity-100 translate-x-0' 
                   : 'opacity-0 translate-x-8'
               }`}
             >
-              {/* Header */}
-              <div className="space-y-6">
-                <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight transition-all duration-1000 delay-600 ${
+              {/* Header responsive */}
+              <div className="space-y-4 sm:space-y-6 text-center lg:text-left">
+                <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight transition-all duration-1000 delay-600 ${
                   cardVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-8'
@@ -83,9 +90,9 @@ export default function PhilosophySection() {
                 </h2>
               </div>
 
-              {/* Contenido principal */}
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
-                <blockquote className={`text-xl md:text-2xl text-gray-700 leading-relaxed italic mb-6 transition-all duration-1000 delay-800 ${
+              {/* Contenido principal - Responsive padding y texto */}
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-200/50 shadow-lg">
+                <blockquote className={`text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed italic mb-4 sm:mb-6 transition-all duration-1000 delay-800 ${
                   cardVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-8'
@@ -93,7 +100,7 @@ export default function PhilosophySection() {
                   "Trabajo con una mirada amplia, sensible y práctica, que une la comprensión profunda con herramientas concretas."
                 </blockquote>
                 
-                <p className={`text-lg text-gray-600 leading-relaxed transition-all duration-1000 delay-1000 ${
+                <p className={`text-base sm:text-lg text-gray-600 leading-relaxed transition-all duration-1000 delay-1000 ${
                   cardVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-8'
@@ -102,28 +109,28 @@ export default function PhilosophySection() {
                 </p>
               </div>
 
-              {/* Valores clave minimalistas */}
-              <div className={`grid grid-cols-3 gap-4 transition-all duration-1000 delay-1200 ${
+              {/* Valores clave - Grid responsive */}
+              <div className={`grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 transition-all duration-1000 delay-1200 ${
                 cardVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
               }`}>
-                <div className="text-center p-4 bg-blue-50/80 rounded-xl border border-blue-100">
+                <div className="text-center p-4 sm:p-4 bg-blue-50/80 rounded-xl border border-blue-100">
                   <div className="w-3 h-3 bg-blue-500 rounded-full mx-auto mb-2"></div>
                   <p className="text-sm font-medium text-gray-700">Comprensión</p>
                 </div>
-                <div className="text-center p-4 bg-purple-50/80 rounded-xl border border-purple-100">
+                <div className="text-center p-4 sm:p-4 bg-purple-50/80 rounded-xl border border-purple-100">
                   <div className="w-3 h-3 bg-purple-500 rounded-full mx-auto mb-2"></div>
                   <p className="text-sm font-medium text-gray-700">Crecimiento</p>
                 </div>
-                <div className="text-center p-4 bg-pink-50/80 rounded-xl border border-pink-100">
+                <div className="text-center p-4 sm:p-4 bg-pink-50/80 rounded-xl border border-pink-100">
                   <div className="w-3 h-3 bg-pink-500 rounded-full mx-auto mb-2"></div>
                   <p className="text-sm font-medium text-gray-700">Autenticidad</p>
                 </div>
               </div>
 
-              {/* Línea decorativa final */}
-              <div className={`flex justify-start transition-all duration-1000 delay-1400 ${
+              {/* Línea decorativa final - Responsive */}
+              <div className={`flex justify-center lg:justify-start transition-all duration-1000 delay-1400 ${
                 cardVisible 
                   ? 'opacity-100 scale-100' 
                   : 'opacity-0 scale-75'
