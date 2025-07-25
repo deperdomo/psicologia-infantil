@@ -42,8 +42,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             addressLocality: "Madrid",
             addressCountry: "ES"
           },
-          email: data.email || "llenia@psicologiainfantil.com",
-          telephone: data.telephone || "+34123456789",
+          email: data.email || "lleniavinculoycrecimiento@gmail.com",
+          telephone: data.telephone || "+34641123622",
           worksFor: {
             "@type": "Organization",
             name: "Psicología Infantil - Llenia Monteagudo"
@@ -68,8 +68,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             addressLocality: "Madrid",
             addressCountry: "ES"
           },
-          email: data.email || "llenia@psicologiainfantil.com",
-          telephone: data.telephone || "+34123456789",
+          email: data.email || "lleniavinculoycrecimiento@gmail.com",
+          telephone: data.telephone || "+34641123622",
           founder: {
             "@type": "Person",
             name: "Llenia Monteagudo Rodríguez"

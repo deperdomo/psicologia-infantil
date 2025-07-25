@@ -56,8 +56,8 @@ export default function Home() {
         data={{
           name: "Llenia Monteagudo Rodríguez",
           jobTitle: "Psicóloga Infantil",
-          email: "llenia@psicologiainfantil.com",
-          telephone: "+34123456789"
+          email: "lleniavinculoycrecimiento@gmail.com",
+          telephone: "+34641123622"
         }}
       />
       <Navbar />
