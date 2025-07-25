@@ -63,9 +63,11 @@ export default function Navbar() {
   ];
 
   const serviciosItems = [
-    { to: '/servicios/terapia-infantil', label: 'Terapia Infantil' },
-    { to: '/servicios/orientacion-a-madres-y-padres', label: 'Orientación a Padres' },
-    { to: '/servicios/acompañamiento-en-cambio-familiar', label: 'Cambio Familiar' },
+    { to: '/servicios/acompañamiento-infantil', label: 'Acompañamiento Infantil' },
+    { to: '/servicios/acompañamiento-parental', label: 'Acompañamiento Parental' },
+    { to: '/servicios/cambio-familiar', label: 'Cambio Familiar' },
+    { to: '/servicios/acompañamiento-psicológico-para-adultos', label: 'Acompañamiento Psicológico para Adultos' },
+    { to: '/servicios/fortalecimiento-vinculos-de-pareja', label: 'Fortalecimiento de vínculos de pareja' },
   ];
 
   return (

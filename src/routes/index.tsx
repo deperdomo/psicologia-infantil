@@ -3,10 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import SobreMi from '../pages/SobreMi';
-import Servicios from '../pages/Servicios';
-import TerapiaIndividual from '../pages/Servicios/TerapiaIndividual';
-import TerapiaDePareja from '../pages/Servicios/TerapiaDePareja';
-import TerapiaInfantil from '../pages/Servicios/TerapiaInfantil';
+import AcompañamientoInfantil from '../pages/Servicios/AcompañamientoInfantil';
+import AcompañamientoParental from '../pages/Servicios/AcompañamientoParental';
+import CambioFamiliar from '../pages/Servicios/CambioFamiliar';
+import AcompañamientoPsicológicoParaAdultos from '../pages/Servicios/AcompañamientoPsicológicoParaAdultos';
+import FortalecimientoVinculosDePareja from '../pages/Servicios/FortalecimientoVinculosDePareja';
 import Blog from '../pages/Blog';
 import Contacto from '../pages/Contacto';
 import PreguntasFrecuentes from '../pages/PreguntasFrecuentes';
@@ -18,10 +19,11 @@ const AppRoutes: React.FC = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/sobre-mi" element={<SobreMi />} />
-    <Route path="/servicios" element={<Servicios />} />
-    <Route path="/servicios/terapia-infantil" element={<TerapiaInfantil />} />
-    <Route path="/servicios/orientacion-a-madres-y-padres" element={<TerapiaDePareja />} />
-    <Route path="/servicios/acompañamiento-en-cambio-familiar" element={<TerapiaIndividual />} />
+    <Route path="/servicios/acompañamiento-infantil" element={<AcompañamientoInfantil />} />
+    <Route path="/servicios/acompañamiento-parental" element={<AcompañamientoParental />} />
+    <Route path="/servicios/cambio-familiar" element={<CambioFamiliar />} />
+    <Route path="/servicios/acompañamiento-psicológico-para-adultos" element={<AcompañamientoPsicológicoParaAdultos />} />
+    <Route path="/servicios/fortalecimiento-vinculos-de-pareja" element={<FortalecimientoVinculosDePareja />} />
     <Route path="/recursos" element={<Recursos />} />
     <Route path="/blog" element={<Blog />} />
     <Route path="/contacto" element={<Contacto />} />
