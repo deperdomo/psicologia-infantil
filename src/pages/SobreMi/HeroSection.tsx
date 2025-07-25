@@ -110,33 +110,27 @@ export default function HeroSection() {
                 <div className="absolute -inset-4 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
                 
                 {/* Contenedor de la foto */}
-                <div className="relative bg-white rounded-3xl p-6 shadow-2xl border border-gray-200">
+                <div className="relative bg-white rounded-3xl p-6 shadow-2xl border border-gray-200 flex items-center justify-center">
                   {/* Placeholder para la foto de Llenia */}
                   <div className="w-80 h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center shadow-inner">
-                    <div className="text-center space-y-4">
-                      <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto">
-                        <FaUserMd className="text-3xl text-white" />
-                      </div>
-                      <div className="space-y-2">
-                        <p className="text-gray-600 font-medium">Foto de Llenia</p>
-                        <p className="text-sm text-gray-500">Próximamente</p>
-                      </div>
-                    </div>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <img src="img/llenia/llenia.jpg" alt="Foto de Llenia" className="w-full h-full object-cover rounded-2xl" />
+                  </div>
                   </div>
                   
                   {/* Badge flotante de credencial */}
                   <div className="absolute -top-3 -right-3 bg-white rounded-full p-3 shadow-lg border border-gray-200">
-                    <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full flex items-center justify-center">
-                      <GiSprout className="text-white text-lg" />
-                    </div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full flex items-center justify-center">
+                    <GiSprout className="text-white text-lg" />
+                  </div>
                   </div>
                   
                   {/* Indicador de disponibilidad */}
                   <div className="absolute -bottom-2 left-6 bg-white rounded-full px-4 py-2 shadow-lg border border-gray-200">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-sm font-medium text-gray-700">Disponible para consultas</span>
-                    </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-gray-700">Disponible para consultas</span>
+                  </div>
                   </div>
                 </div>
               </div>
