@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { usePageTitle } from "../../hooks/usePageTitle";
@@ -9,9 +10,20 @@ import { IoLibrary, IoBook, IoDownload } from 'react-icons/io5';
 import { FaGraduationCap, FaHeart } from 'react-icons/fa';
 
 export default function Recursos() {
+  const { slug } = useParams<{ slug?: string }>();
+  
+  // Determinar título dinámico basado en la categoría
+  const dynamicTitle = slug 
+    ? `${slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} - Biblioteca Emocional`
+    : 'Biblioteca Emocional';
+  
+  const dynamicDescription = slug
+    ? `Recursos terapéuticos específicos para ${slug.split('-').join(' ')}. Materiales profesionales gratuitos.`
+    : 'Explora nuestra biblioteca de recursos emocionales organizados por categorías.';
+  
   usePageTitle({
-    title: 'Biblioteca Emocional',
-    description: 'Explora nuestra biblioteca de recursos emocionales organizados por categorías.'
+    title: dynamicTitle,
+    description: dynamicDescription
   });
 
   // Hooks para animaciones de scroll
@@ -23,17 +35,25 @@ export default function Recursos() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <SEOMeta 
-        title="Biblioteca Emocional"
-        description="Accede a nuestra biblioteca completa de recursos emocionales organizados por categorías específicas."
-        keywords="recursos psicología infantil, biblioteca emocional, cartas terapéuticas"
-        url="https://piscologiainfantil.com/recursos"
+        title={dynamicTitle}
+        description={dynamicDescription}
+        keywords={slug 
+          ? `recursos ${slug.split('-').join(' ')}, psicología infantil, ${slug.split('-').join(' ')} niños`
+          : "recursos psicología infantil, biblioteca emocional, cartas terapéuticas"
+        }
+        url={slug 
+          ? `https://piscologiainfantil.com/recursos/categoria/${slug}`
+          : "https://piscologiainfantil.com/recursos"
+        }
       />
       <StructuredData 
         type="website" 
         data={{
-          name: "Biblioteca Emocional",
-          description: "Recursos terapéuticos organizados por categorías",
-          url: "https://piscologiainfantil.com/recursos"
+          name: dynamicTitle,
+          description: dynamicDescription,
+          url: slug 
+            ? `https://piscologiainfantil.com/recursos/categoria/${slug}`
+            : "https://piscologiainfantil.com/recursos"
         }}
       />
       

@@ -12,20 +12,14 @@ import ResourceListItem from './ResourceListItem';
 import SubcategorySection from './SubcategorySection';
 import LoadingState from './LoadingState';
 import { useSupabaseRecursos } from '../../hooks/useSupabaseRecursos';
+import { useCategoryRouting } from '../../hooks/useCategoryRouting';
 
 interface BibliotecaGridProps {
   categories?: BibliotecaCategory[]; // Hacer opcional para compatibilidad
 }
 
 export default function BibliotecaGrid({ categories: propCategories }: BibliotecaGridProps) {
-  // Hook de Supabase para obtener categorías
-  const { categories: supabaseCategories, loading: supabaseLoading, error: supabaseError } = useSupabaseRecursos();
-  
-  // Usar categorías de Supabase si están disponibles, sino usar las pasadas como props
-  const categories = supabaseCategories.length > 0 ? supabaseCategories : (propCategories || []);
-
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
@@ -34,6 +28,19 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
   const [selectedAges, setSelectedAges] = useState<AgeRange[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<ResourceType[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  // Hook de Supabase para obtener categorías
+  const { categories: supabaseCategories, loading: supabaseLoading, error: supabaseError } = useSupabaseRecursos();
+  
+  // Usar categorías de Supabase si están disponibles, sino usar las pasadas como props
+  const categories = supabaseCategories.length > 0 ? supabaseCategories : (propCategories || []);
+
+  // Hook personalizado para manejo de rutas de categorías
+  const { 
+    selectedCategory, 
+    navigateToCategory, 
+    navigateToCategories 
+  } = useCategoryRouting(categories);
 
   // Obtener todos los recursos para búsqueda global
   const allResources = useMemo(() => {
@@ -107,7 +114,15 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
 
   // Funciones de evento
   const handleCategorySelect = (categoryId: string) => {
-    setSelectedCategory(categoryId);
+    // Encontrar la categoría y navegar usando el hook
+    const category = categories.find(c => c.id === categoryId);
+    if (category) {
+      navigateToCategory(category);
+    }
+  };
+
+  const handleBackToCategories = () => {
+    navigateToCategories();
   };
 
   const handleResourceSelect = (resource: Resource) => {
@@ -119,6 +134,11 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
     setSelectedTypes([]);
     setSelectedTags([]);
     setSearchTerm('');
+    // También hacer scroll al top cuando se limpian filtros
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const activeFiltersCount = selectedAges.length + selectedTypes.length + selectedTags.length;
@@ -145,9 +165,8 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
 
   // Vista de categoría específica
   if (selectedCategory) {
-    const category = categories.find(c => c.id === selectedCategory);
-    if (!category) return null;
-
+    const category = selectedCategory; // selectedCategory ya es el objeto completo
+    
     // Calcular total de recursos (principal + subcategorías)
     const totalResources = category.resources.length + 
       (category.subcategories?.reduce((sum, sub) => sum + sub.resources.length, 0) || 0);
@@ -158,7 +177,7 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
         <CategoryHeader 
           category={category}
           totalResources={totalResources}
-          onBack={() => setSelectedCategory(null)}
+          onBack={handleBackToCategories}
         />
 
         {/* Lista de recursos de la categoría */}

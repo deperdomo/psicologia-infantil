@@ -7,10 +7,15 @@ interface CategoryHeaderProps {
 }
 
 export default function CategoryHeader({ category, totalResources, onBack }: CategoryHeaderProps) {
+  const handleBack = () => {
+    onBack();
+    // El scroll se maneja automáticamente por el ScrollToTop component de React Router
+  };
+
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 shadow-lg">
       <button
-        onClick={onBack}
+        onClick={handleBack}
         className="text-blue-600  hover:text-purple-600 mb-4 flex items-center gap-2 font-medium transition-colors"
       >
         ← Volver a categorías

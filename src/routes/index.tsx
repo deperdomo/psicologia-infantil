@@ -25,6 +25,7 @@ const AppRoutes: React.FC = () => (
     <Route path="/servicios/acompañamiento-psicológico-para-adultos" element={<AcompañamientoPsicológicoParaAdultos />} />
     <Route path="/servicios/fortalecimiento-vinculos-de-pareja" element={<FortalecimientoVinculosDePareja />} />
     <Route path="/recursos" element={<Recursos />} />
+    <Route path="/recursos/categoria/:slug" element={<Recursos />} />
     <Route path="/blog" element={<Blog />} />
     <Route path="/contacto" element={<Contacto />} />
     <Route path="/preguntas-frecuentes" element={<PreguntasFrecuentes />} />
