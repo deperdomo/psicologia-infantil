@@ -9,7 +9,7 @@ interface ResourceModalProps {
 }
 
 export default function ResourceModal({ resource, onClose }: ResourceModalProps) {
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadingFormat, setDownloadingFormat] = useState<'word' | 'pdf' | null>(null);
 
   const handleDownload = async (format: 'word' | 'pdf') => {
     const downloadUrl = format === 'word' ? resource.wordFileUrl : resource.pdfFileUrl;
@@ -19,7 +19,12 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
       return;
     }
 
-    setIsDownloading(true);
+    // Evitar múltiples descargas simultáneas
+    if (downloadingFormat) {
+      return;
+    }
+
+    setDownloadingFormat(format);
     
     try {
       // Usar storage_path directamente en lugar de extraer de la URL
@@ -29,11 +34,11 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
         throw new Error('No se encontró la ruta del archivo en el storage');
       }
 
-      // Generar nombre de descarga limpio
+      // Generar nombre de descarga preservando caracteres especiales
       const extension = format === 'word' ? 'docx' : 'pdf';
       const cleanTitle = resource.title
-        .replace(/[^\w\s-]/g, '') // Remover caracteres especiales
-        .replace(/\s+/g, ' ')     // Normalizar espacios
+        .replace(/[<>:"/\\|?*]/g, '') // Solo remover caracteres inválidos para nombres de archivo
+        .replace(/\s+/g, ' ')          // Normalizar espacios múltiples
         .trim();
       const displayName = `${cleanTitle}.${extension}`;
       
@@ -52,7 +57,13 @@ export default function ResourceModal({ resource, onClose }: ResourceModalProps)
       console.error('❌ Error al descargar:', error);
       const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
       
-      // Solo mostrar alert en caso de error
+      // Verificar si fue cancelado por el usuario
+      if (errorMessage.includes('AbortError') || errorMessage.includes('canceled') || errorMessage.includes('cancelled')) {
+        console.log('📋 Descarga cancelada por el usuario');
+        return; // No mostrar error si fue cancelación
+      }
+      
+      // Solo mostrar alert en caso de error real (no cancelación)
       alert(`❌ Error al descargar el archivo:
 
 ${errorMessage}
@@ -65,7 +76,7 @@ ${errorMessage}
 
 Si el problema persiste, contacta con soporte técnico.`);
     } finally {
-      setIsDownloading(false);
+      setDownloadingFormat(null);
     }
   };
 
@@ -91,162 +102,158 @@ Si el problema persiste, contacta con soporte técnico.`);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white/95 backdrop-blur-md rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl">
-        {/* Header con gradiente */}
-        <div className="bg-gradient-to-br from-blue-500 to-purple-500 p-8 relative overflow-hidden rounded-t-3xl">
-          {/* Elementos decorativos de fondo */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
-          
-          <div className="relative flex justify-between items-start">
-            <div className="flex-1 pr-4">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-3xl">{getResourceTypeIcon(resource.resourceType)}</span>
-                </div>
-                <div>
-                  <h2 className="text-3xl font-bold text-white mb-2">{resource.title}</h2>
-                  <p className="text-white/90 text-lg leading-relaxed">{resource.description}</p>
-                </div>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+      <div className="bg-white/95 backdrop-blur-md rounded-2xl w-full max-w-6xl max-h-[95vh] sm:max-h-[85vh] border border-gray-100 shadow-2xl overflow-hidden flex flex-col">
+        {/* Header ultra compacto */}
+        <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-5 relative flex-shrink-0">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <span className="text-xl">{getResourceTypeIcon(resource.resourceType)}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h2 className="text-2xl ml-1 font-bold text-white">{resource.title}</h2>  
               </div>
             </div>
             <button
               onClick={onClose}
-              className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm hover:bg-white/30 flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-105"
+              className="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all flex-shrink-0"
             >
-              <IoClose className="w-6 h-6 text-white" />
+              <IoClose className="w-4 h-4 text-white" />
             </button>
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-8 space-y-8">
-          {/* Metadatos con cards glassmorphism */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                  <IoTime className="w-5 h-5 text-white" />
-                </div>
-                <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-              </div>
-              <p className="text-sm text-gray-600 font-medium mb-1">Tiempo estimado</p>
-              <p className="font-bold text-gray-900 text-lg">{resource.estimatedTime}</p>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                  <IoPersonOutline className="w-5 h-5 text-white" />
-                </div>
-                <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-              </div>
-              <p className="text-sm text-gray-600 font-medium mb-1">Edades</p>
-              <p className="font-bold text-gray-900 text-lg">{resource.ageRange.join(', ')}</p>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full flex items-center justify-center">
-                  <IoStar className="w-5 h-5 text-white" />
-                </div>
-                <div className="w-3 h-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full"></div>
-              </div>
-              <p className="text-sm text-gray-600 font-medium mb-1">Dificultad</p>
-              <span className={`inline-block px-3 py-1 rounded-full text-sm font-bold border ${getDifficultyColor(resource.difficulty)}`}>
-                {resource.difficulty}
-              </span>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center">
-                  <IoDocumentText className="w-5 h-5 text-white" />
-                </div>
-                <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></div>
-              </div>
-              <p className="text-sm text-gray-600 font-medium mb-1">Tipo</p>
-              <p className="font-bold text-gray-900 text-lg capitalize">{resource.resourceType}</p>
-            </div>
-          </div>
-
-          {/* Preview */}
-          {resource.preview && (
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-                <h3 className="font-bold text-gray-900 text-xl">Vista previa</h3>
-              </div>
-              <p className="text-gray-700 leading-relaxed text-lg font-medium">{resource.preview}</p>
-            </div>
-          )}
-
-          {/* Tags */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-3 h-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full"></div>
-              <h3 className="font-bold text-gray-900 text-xl">Temas relacionados</h3>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {resource.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium border border-blue-200 hover:bg-blue-200 transition-colors duration-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Botones de descarga */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-              <h3 className="font-bold text-gray-900 text-xl">Descargar recurso</h3>
-            </div>
+        {/* Contenido responsive */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-3 sm:p-4 grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 min-h-full">
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {/* Botón Word */}
-              {resource.wordFileUrl && (
-                <button
-                  onClick={() => handleDownload('word')}
-                  disabled={isDownloading}
-                  className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-bold text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <IoDocumentText className="w-5 h-5" />
+            {/* COLUMNA IZQUIERDA */}
+            <div className="space-y-3 flex flex-col order-2 lg:order-1">
+              {/* Metadatos compactos */}
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-gray-200/50">
+                <h3 className="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  Información
+                </h3>
+                
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="bg-blue-50 rounded-lg p-2">
+                    <div className="flex items-center gap-1 mb-1">
+                      <IoTime className="w-3 h-3 text-blue-600" />
+                      <span className="text-gray-600 font-medium">Tiempo</span>
+                    </div>
+                    <span className="font-bold text-gray-900">{resource.estimatedTime}</span>
                   </div>
-                  {isDownloading ? 'Descargando...' : 'Word (.docx)'}
-                </button>
+                  
+                  <div className="bg-purple-50 rounded-lg p-2">
+                    <div className="flex items-center gap-1 mb-1">
+                      <IoPersonOutline className="w-3 h-3 text-purple-600" />
+                      <span className="text-gray-600 font-medium">Edades</span>
+                    </div>
+                    <span className="font-bold text-gray-900">{resource.ageRange.join(', ')}</span>
+                  </div>
+                  
+                  <div className="bg-orange-50 rounded-lg p-2">
+                    <div className="flex items-center gap-1 mb-1">
+                      <IoStar className="w-3 h-3 text-orange-600" />
+                      <span className="text-gray-600 font-medium">Dificultad</span>
+                    </div>
+                    <span className={`text-xs font-bold px-2 py-1 rounded ${getDifficultyColor(resource.difficulty)}`}>
+                      {resource.difficulty}
+                    </span>
+                  </div>
+                  
+                  <div className="bg-green-50 rounded-lg p-2">
+                    <div className="flex items-center gap-1 mb-1">
+                      <IoDocumentText className="w-3 h-3 text-green-600" />
+                      <span className="text-gray-600 font-medium">Tipo</span>
+                    </div>
+                    <span className="font-bold text-gray-900 capitalize">{resource.resourceType}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Vista previa */}
+              {resource.preview && (
+                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-gray-200/50 flex-1 lg:min-h-0">
+                  <h3 className="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    Vista previa
+                  </h3>
+                  <div className="bg-gray-50 rounded-lg p-3 max-h-32 lg:h-full overflow-y-auto">
+                    <p className="text-gray-700 text-sm leading-relaxed">{resource.preview}</p>
+                  </div>
+                </div>
               )}
 
-              {/* Botón PDF */}
-              {resource.pdfFileUrl && (
-                <button
-                  onClick={() => handleDownload('pdf')}
-                  disabled={isDownloading}
-                  className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-2xl font-bold text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <IoDownload className="w-5 h-5" />
-                  </div>
-                  {isDownloading ? 'Descargando...' : 'PDF (.pdf)'}
-                </button>
-              )}
+              {/* Tags compactos */}
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-gray-200/50">
+                <h3 className="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+                  Temas ({resource.tags.length})
+                </h3>
+                <div className="flex flex-wrap gap-1">
+                  {resource.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium border border-blue-200"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Fallback si no hay archivos disponibles */}
-            {!resource.wordFileUrl && !resource.pdfFileUrl && (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <IoDocumentText className="w-8 h-8 text-gray-400" />
+            {/* COLUMNA DERECHA */}
+            <div className="flex flex-col order-1 lg:order-2">
+              {/* Sección de descarga principal */}
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-4 sm:p-6 border border-blue-200 flex-1 flex flex-col justify-center">
+                <div className="text-center">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <IoDownload className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                  </div>
+                  
+                  <h3 className="font-bold text-gray-900 text-lg sm:text-xl mb-2">Descargar Recurso</h3>
+                  <p className="text-gray-600 text-sm mb-4 sm:mb-6">Selecciona el formato que prefieras</p>
+                  
+                  <div className="space-y-3 sm:space-y-4">
+                    {/* Botones de descarga */}
+                    {resource.wordFileUrl && (
+                      <button
+                        onClick={() => handleDownload('word')}
+                        disabled={downloadingFormat === 'word'}
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold text-base sm:text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <IoDocumentText className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <span className="truncate">{downloadingFormat === 'word' ? 'Descargando...' : 'Descargar Word (.docx)'}</span>
+                      </button>
+                    )}
+
+                    {resource.pdfFileUrl && (
+                      <button
+                        onClick={() => handleDownload('pdf')}
+                        disabled={downloadingFormat === 'pdf'}
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-xl font-bold text-base sm:text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <IoDownload className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <span className="truncate">{downloadingFormat === 'pdf' ? 'Descargando...' : 'Descargar PDF (.pdf)'}</span>
+                      </button>
+                    )}
+
+                    {/* Estado sin archivos */}
+                    {!resource.wordFileUrl && !resource.pdfFileUrl && (
+                      <div className="text-center py-6 sm:py-8">
+                        <IoDocumentText className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-3 sm:mb-4" />
+                        <p className="text-gray-600 font-medium text-base sm:text-lg">Archivos no disponibles</p>
+                        <p className="text-gray-500 text-sm">Inténtalo más tarde</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <p className="text-gray-600 font-medium">Archivos no disponibles temporalmente</p>
-                <p className="text-gray-500 text-sm mt-2">Por favor, inténtalo más tarde</p>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

@@ -72,46 +72,19 @@ export async function downloadFileFromSupabase(
  */
 async function attemptDownload(blob: Blob, displayName: string): Promise<boolean> {
   try {
-    // Limpiar el nombre del archivo para evitar problemas
-    const cleanFileName = displayName.replace(/[^a-zA-Z0-9.-\s]/g, '').trim();
-    console.log(`💾 Preparando descarga: ${cleanFileName}`);
+    console.log(`💾 Preparando descarga: ${displayName}`);
     
-    // Verificar soporte para showSaveFilePicker (File System Access API)
-    if (window.showSaveFilePicker) {
-      try {
-        const fileHandle = await window.showSaveFilePicker({
-          suggestedName: cleanFileName,
-          types: [{
-            description: 'PDF files',
-            accept: {
-              'application/pdf': ['.pdf']
-            }
-          }]
-        });
-        
-        const writable = await fileHandle.createWritable();
-        await writable.write(blob);
-        await writable.close();
-        
-        console.log(`✅ Descarga completada con File System API: ${cleanFileName}`);
-        return true;
-      } catch (error) {
-        console.log('File System API cancelado o no disponible, usando método tradicional');
-        // Continuar con método tradicional
-      }
-    }
-    
-    // Método tradicional con mejoras
+    // Método tradicional con enlace de descarga (más confiable)
     const url = window.URL.createObjectURL(blob);
     
     // Crear elemento de enlace optimizado
     const link = document.createElement('a');
     link.href = url;
-    link.download = cleanFileName;
+    link.download = displayName;
     link.style.display = 'none';
     
     // Configuraciones adicionales para forzar descarga
-    link.setAttribute('download', cleanFileName);
+    link.setAttribute('download', displayName);
     link.rel = 'noopener';
     
     // Agregar al DOM
@@ -137,7 +110,7 @@ async function attemptDownload(blob: Blob, displayName: string): Promise<boolean
                 document.body.removeChild(link);
               }
               window.URL.revokeObjectURL(url);
-              console.log(`✅ Descarga iniciada: ${cleanFileName}`);
+              console.log(`✅ Descarga iniciada: ${displayName}`);
               resolve(true);
             }, 200);
           } catch (error) {
