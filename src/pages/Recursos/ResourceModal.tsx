@@ -117,9 +117,9 @@ Si el problema persiste, contacta con soporte técnico.`);
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all flex-shrink-0"
+              className="w-10 h-10 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all flex-shrink-0"
             >
-              <IoClose className="w-4 h-4 text-white" />
+              <IoClose className="w-7 h-7 text-white" />
             </button>
           </div>
         </div>
@@ -176,12 +176,12 @@ Si el problema persiste, contacta con soporte técnico.`);
 
               {/* Vista previa */}
               {resource.preview && (
-                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-gray-200/50 flex-1 lg:min-h-0">
+                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-gray-200/50 flex-1 lg:flex-none">
                   <h3 className="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                     Vista previa
                   </h3>
-                  <div className="bg-gray-50 rounded-lg p-3 max-h-32 lg:h-full overflow-y-auto">
+                  <div className="bg-gray-50 rounded-lg p-3 h-32 overflow-y-auto">
                     <p className="text-gray-700 text-sm leading-relaxed">{resource.preview}</p>
                   </div>
                 </div>

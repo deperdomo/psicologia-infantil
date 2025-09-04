@@ -14,7 +14,7 @@ export default function CallToAction() {
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-50 to-cyan-50",
       action: "Agendar consulta",
-      link: "/reserva-cita",
+      link: "/contacto",
       features: ["Sesión de 60 minutos", "Evaluación inicial gratuita", "Plan personalizado", "Sin compromiso"]
     },
     {
@@ -199,31 +199,6 @@ export default function CallToAction() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Footer de urgencia */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-blue-200 mb-6">
-            ¿Tienes dudas? No importa cuán pequeña parezca tu pregunta
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://wa.me/641123622"
-              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center"
-            >
-              <HiOutlineChatBubbleLeftRight className="mr-2 text-xl" />
-              Escribir por WhatsApp
-            </a>
-            
-            <a
-              href="/reserva-cita"
-              className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 flex items-center justify-center"
-            >
-              <HiOutlineCalendarDays className="mr-2 text-xl" />
-              Agendar llamada
-            </a>
           </div>
         </div>
       </div>

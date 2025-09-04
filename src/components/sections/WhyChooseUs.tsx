@@ -150,22 +150,6 @@ export default function WhyChooseUs() {
                   <p className="text-lg text-gray-600 leading-relaxed">
                     {benefit.detailedDescription}
                   </p>
-
-                  {/* Indicador de progreso animado */}
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-semibold text-gray-700">Nivel de personalización</span>
-                      <span className="text-sm font-bold text-gray-900">100%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                      <div 
-                        className={`h-full bg-gradient-to-r ${benefit.color} rounded-full transform origin-left transition-all duration-2000 delay-500`}
-                        style={{
-                          width: visibleItems.has(index) ? '100%' : '0%'
-                        }}
-                      ></div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

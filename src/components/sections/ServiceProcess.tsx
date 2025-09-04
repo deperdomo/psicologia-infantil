@@ -83,7 +83,7 @@ export default function ServiceProcess({ title, subtitle, steps }: ServiceProces
               Agenda tu primera consulta y da el primer paso hacia el bienestar.
             </p>
             <a
-              href="/reserva-cita"
+              href="/contacto"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-all duration-300 shadow-lg inline-block"
             >
               Reservar Consulta
