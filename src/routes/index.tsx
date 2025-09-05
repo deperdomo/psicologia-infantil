@@ -9,6 +9,7 @@ import CambioFamiliar from '../pages/Servicios/CambioFamiliar';
 import AcompañamientoPsicológicoParaAdultos from '../pages/Servicios/AcompañamientoPsicológicoParaAdultos';
 import FortalecimientoVinculosDePareja from '../pages/Servicios/FortalecimientoVinculosDePareja';
 import Blog from '../pages/Blog';
+import BlogArticle from '../pages/Blog/BlogArticle';
 import Contacto from '../pages/Contacto';
 import PreguntasFrecuentes from '../pages/PreguntasFrecuentes';
 import Testimonios from '../pages/Testimonios';
@@ -27,6 +28,7 @@ const AppRoutes: React.FC = () => (
     <Route path="/recursos" element={<Recursos />} />
     <Route path="/recursos/categoria/:slug" element={<Recursos />} />
     <Route path="/blog" element={<Blog />} />
+    <Route path="/blog/:slug" element={<BlogArticle />} />
     <Route path="/contacto" element={<Contacto />} />
     <Route path="/preguntas-frecuentes" element={<PreguntasFrecuentes />} />
     <Route path="/testimonios" element={<Testimonios />} />

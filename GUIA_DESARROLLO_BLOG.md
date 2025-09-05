@@ -1,69 +1,180 @@
-# 📝 Guía de Desarrollo - Blog de Psicología Infantil
+# 📝 Guía de Desarrollo - Blog de Psicología Infantil v3.0
 
 ## 📋 Resumen Ejecutivo
 
-Esta guía proporciona las instrucciones completas para implementar la sección de blog (`/blog`) en la aplicación de psicología infantil. El blog seguirá el mismo patrón arquitectural que la sección de recursos, usando Supabase como backend, incluyendo storage para imágenes y un sistema de gestión de contenido.
+Esta guía proporciona las instrucciones completas para implementar la sección de blog (`/blog`) en la aplicación de psicología infantil, inspirada en la arquitectura y estructura de contenido de **PsicologíayMente.com**. El blog seguirá el mismo patrón arquitectural que la sección de recursos, usando Supabase como backend, con un enfoque específico en contenido académico y profesional.
+
+### 🎯 **MODELO DE REFERENCIA: PsicologíayMente.com**
+Hemos analizado exhaustivamente el artículo: "¿Qué habilidades necesitan mis hijos en la época de la inteligencia artificial?" para extraer las mejores prácticas en:
+- ✅ Estructura de contenido académico
+- ✅ Schema markup avanzado 
+- ✅ Sistema de referencias bibliográficas
+- ✅ Autoría con credenciales profesionales
+- ✅ Categorización jerárquica
+- ✅ SEO optimizado para contenido psicológico
 
 ---
 
 ## 🎯 Objetivos del Proyecto
 
-### **Funcionalidades Principales**
-- ✅ **Listado de artículos**: Vista principal con cards de artículos
-- ✅ **Vista individual**: Página detallada de cada artículo
-- ✅ **Gestión de imágenes**: Hasta 3 imágenes por artículo vía Supabase Storage
-- ✅ **SEO optimizado**: Meta tags, slugs amigables, structured data
-- ✅ **Productos afiliados**: Sistema integrado de recomendaciones
-- ✅ **Sistema de comentarios**: Moderación y respuestas anidadas
+### **Funcionalidades Principales Actualizadas**
+- ✅ **Listado de artículos profesionales**: Vista principal con cards especializados
+- ✅ **Vista individual académica**: Página detallada con referencias bibliográficas
+- ✅ **Gestión multimedia avanzada**: Hasta 3 imágenes + imagen social vía Supabase Storage
+- ✅ **SEO académico optimizado**: Schema markup para contenido educativo
+- ✅ **Sistema de autoría profesional**: Credenciales, biografías y fotos de autores
+- ✅ **Referencias bibliográficas**: Sistema estructurado de citas académicas
+- ✅ **Comentarios profesionales**: Moderación con feedback especializado
+- ✅ **Contenido trending y destacado**: Sistema de promoción de artículos
+- ✅ **Búsqueda semántica**: Motor de búsqueda en español optimizado
 
-### **Patrón Arquitectural**
-- Seguir el mismo patrón que `/recursos`
-- Hook personalizado (`useSupabaseBlog`)
-- Mapper para transformar datos (`supabaseBlogMapper`)
-- Componentes reutilizables y modulares
-- Integración con el sistema de diseño existente
+### **Nuevas Características Inspiradas en PsicologíayMente**
+- 🆕 **Subtítulos descriptivos**: Como "Un repaso a las aptitudes fundamentales..."
+- 🆕 **Clasificación por evidencia**: Nivel de evidencia científica
+- 🆕 **Enfoque psicológico**: Especificación del approach utilizado
+- 🆕 **Newsletter integration**: Contenido relacionado del newsletter
+- 🆕 **Breadcrumb profesional**: Navegación jerárquica especializada
+- 🆕 **FAQ estructuradas**: Preguntas frecuentes en schema markup
+- 🆕 **Feedback profesional**: Sistema de comentarios especializados
+
+### **Patrón Arquitectural Actualizado**
+- Seguir el patrón de `/recursos` con extensiones profesionales
+- Hook personalizado (`useSupabaseBlog`) con búsqueda semántica
+- Mapper optimizado (`supabaseBlogMapper`) para contenido académico
+- Componentes especializados para contenido psicológico
+- Integración con sistema de referencias y credenciales
 
 ---
 
-## 🗄️ Estructura de Base de Datos
+## 🗄️ Estructura de Base de Datos V3.0
 
-### **Tabla Principal: `blog_articles`**
+### **ARCHIVO PRINCIPAL: `SCRIPT_TABLA_BLOG_ARTICLES_V3_PSICOLOGIAYMENTE.sql`**
 
-#### **MEJORAS RECOMENDADAS AL SCRIPT SQL:**
+#### **🔄 MIGRACIÓN DESDE VERSIÓN ANTERIOR:**
 
-Antes de ejecutar el script, aplicar estas mejoras:
+Para actualizar la estructura existente a la nueva versión:
 
 ```sql
--- 1. Hacer author_id opcional y agregar alternativa
-ALTER TABLE blog_articles ALTER COLUMN author_id DROP NOT NULL;
-ADD COLUMN author_email VARCHAR(255); -- Para autores externos
+-- 1. Agregar nuevos campos para contenido académico
+ALTER TABLE blog_articles 
+    ADD COLUMN subtitle TEXT,
+    ADD COLUMN key_sections JSONB,
+    ADD COLUMN FAQ_data JSONB,
+    ADD COLUMN summary_points JSONB;
 
--- 2. Agregar campos para SEO avanzado
-ADD COLUMN featured_image_url TEXT, -- URL de imagen destacada
-ADD COLUMN social_share_image TEXT,  -- Imagen para redes sociales
-ADD COLUMN canonical_url TEXT,       -- URL canónica
-ADD COLUMN schema_markup JSONB;      -- Structured data
+-- 2. Agregar campos para referencias bibliográficas
+ALTER TABLE blog_articles 
+    ADD COLUMN bibliography JSONB,
+    ADD COLUMN related_articles JSONB,
+    ADD COLUMN external_links JSONB;
 
--- 3. Agregar campos para gestión
-ADD COLUMN is_featured BOOLEAN DEFAULT false,
-ADD COLUMN sort_order INTEGER DEFAULT 0,
-ADD COLUMN external_author_bio TEXT; -- Biografía de autor externo
+-- 3. Mejorar autoría profesional
+ALTER TABLE blog_articles 
+    ADD COLUMN author_bio TEXT,
+    ADD COLUMN author_credentials TEXT,
+    ADD COLUMN author_photo_url TEXT,
+    ADD COLUMN author_social_links JSONB;
 
--- 4. Corregir la función get_blog_image_url
-CREATE OR REPLACE FUNCTION get_blog_image_url(image_path TEXT)
-RETURNS TEXT AS $$
-BEGIN
-    IF image_path IS NULL THEN
-        RETURN NULL;
-    END IF;
-    -- Usar variable de entorno o configuración
-    RETURN CONCAT(
-        current_setting('app.supabase_url', true),
-        '/storage/v1/object/public/blog-images/',
-        image_path
-    );
-END;
-$$ LANGUAGE plpgsql;
+-- 4. Agregar clasificación profesional
+ALTER TABLE blog_articles 
+    ADD COLUMN subcategory VARCHAR(100),
+    ADD COLUMN psychological_approach VARCHAR(100),
+    ADD COLUMN evidence_level VARCHAR(50),
+    ADD COLUMN is_trending BOOLEAN DEFAULT false,
+    ADD COLUMN is_professional_content BOOLEAN DEFAULT true;
+
+-- 5. Mejorar SEO académico
+ALTER TABLE blog_articles 
+    ADD COLUMN breadcrumb_data JSONB,
+    ADD COLUMN shares_count INTEGER DEFAULT 0;
+```
+
+#### **📚 ESTRUCTURA DE REFERENCIAS BIBLIOGRÁFICAS:**
+
+Formato JSON optimizado para citas académicas:
+
+```json
+{
+  "bibliography": [
+    {
+      "id": "liu2020",
+      "authors": ["Liu, F.", "Kromer, P."],
+      "year": 2020,
+      "title": "Early age education on artificial intelligence: Methods and tools",
+      "journal": "Proceedings of IITI'19",
+      "pages": "696–706",
+      "publisher": "Springer",
+      "doi": "10.1007/xxx",
+      "url": "https://example.com",
+      "cited_in_text": true
+    },
+    {
+      "id": "neugnot2024",
+      "authors": ["Neugnot-Cerioli, M.", "Muss Laurenty, O."],
+      "year": 2024,
+      "title": "The Future of Child Development in the AI Era",
+      "type": "preprint",
+      "journal": "arXiv",
+      "date": "2024-05-29"
+    }
+  ]
+}
+```
+
+#### **🔗 ESTRUCTURA DE ARTÍCULOS RELACIONADOS:**
+
+```json
+{
+  "related_articles": [
+    {
+      "title": "Psicología educativa: definición, conceptos y teorías",
+      "url": "/desarrollo/psicologia-educativa",
+      "relevance": "high",
+      "type": "internal"
+    },
+    {
+      "title": "¿Está la IA cambiando nuestra idea de Empatía?",
+      "url": "/social/esta-ia-cambiando-nuestra-empatia",
+      "relevance": "medium",
+      "type": "internal"
+    }
+  ]
+}
+```
+
+### **🎨 Schema Markup Avanzado:**
+
+```json
+{
+  "schema_markup": {
+    "@context": "https://schema.org",
+    "@type": ["Article", "BlogPosting", "EducationalContent"],
+    "headline": "¿Qué habilidades necesitan mis hijos en la época de la inteligencia artificial?",
+    "alternativeHeadline": "Un repaso a las aptitudes fundamentales en la infancia de la era de la IA",
+    "author": {
+      "@type": "Person",
+      "name": "Nerea Moreno",
+      "jobTitle": "Psicóloga",
+      "qualifications": "Graduada en Psicología, Máster en Psicología General Sanitaria"
+    },
+    "datePublished": "2025-09-04",
+    "dateModified": "2025-09-04",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Psicología Infantil Pro"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://psicologia-infantil.com/blog/habilidades-ia"
+    },
+    "educationalLevel": "intermediate",
+    "teaches": "Child development skills for AI era",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "parents"
+    }
+  }
+}
 ```
 
 ### **Configuración de Storage**
