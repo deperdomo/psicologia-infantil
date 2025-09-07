@@ -85,11 +85,65 @@ INSERT INTO blog_articles (
     {"tipo": "herramienta", "titulo": "App para monitoreo parental", "url": "https://www.commonsensemedia.org/"}
   ]'::jsonb,
   '[
-    {"seccion": "Introducción", "contenido": "Preocupaciones comunes sobre pantallas en la infancia"},
-    {"seccion": "Impacto en emociones", "contenido": "Análisis de datos y estudios"},
-    {"seccion": "Poner límites con empatía", "contenido": "Recomendaciones prácticas"},
-    {"seccion": "Caso anónimo", "contenido": "Ejemplo real de una madre"},
-    {"seccion": "Cuándo buscar ayuda", "contenido": "Indicadores para apoyo profesional"}
+    {
+      "title": "El dilema moderno de las pantallas en la crianza",
+      "content": "Los límites con las pantallas suelen despertar emociones intensas y se convierten en un desafío familiar que va mucho más allá de la simple obediencia.",
+      "type": "introduction",
+      "order": 1,
+      "word_count": 180,
+      "includes_quote": false
+    },
+    {
+      "title": "Qué dice la ciencia sobre pantallas y emociones infantiles",
+      "content": "Diversos estudios indican que niños de entre 6 y 12 años pasan en promedio 3 a 4 horas diarias frente a pantallas en países de habla hispana, superando las recomendaciones de la OMS.",
+      "type": "research_section",
+      "order": 2,
+      "word_count": 320,
+      "includes_quote": true,
+      "featured_quote": "La tecnología jamás reemplaza la presencia y el acompañamiento que ayudan a los niños a comprender y expresar lo que sienten",
+      "research_citations": ["who2019", "muppalla2023", "oflu2021"]
+    },
+    {
+      "title": "La neurociencia detrás del enganche digital",
+      "content": "La exposición excesiva activa vías de recompensa dopaminérgicas, similar a adicciones, reduciendo la tolerancia a la frustración y afectando el lóbulo frontal responsable del control emocional.",
+      "type": "main_section",
+      "order": 3,
+      "word_count": 280,
+      "includes_professional_box": true,
+      "professional_box": {
+        "title": "¿Necesitas orientación personalizada?",
+        "subtitle": "Nuestros psicólogos infantiles pueden ayudarte con estrategias específicas para tu familia",
+        "cta_text": "Agenda una consulta",
+        "cta_url": "/contacto"
+      }
+    },
+    {
+      "title": "Estrategias prácticas: límites con conexión emocional",
+      "content": "5 recomendaciones basadas en evidencia para poner límites empáticos: validar emociones, ofrecer alternativas, ser ejemplo, reconocer el proceso y practicar autocompasión.",
+      "type": "practical_section",
+      "order": 4,
+      "word_count": 350,
+      "includes_case_study": true,
+      "case_study": {
+        "name": "Marta y Leo",
+        "age": "6 años",
+        "situation": "Dificultades para dejar la tablet sin llanto",
+        "solution": "Validación emocional seguida de límites empáticos y respiración conjunta"
+      }
+    },
+    {
+      "title": "Cuándo buscar apoyo profesional",
+      "content": "Si los conflictos por pantallas son constantes o las rutinas familiares se ven muy afectadas, puede ser útil pedir ayuda profesional para fortalecer el vínculo familiar.",
+      "type": "conclusion_section",
+      "order": 5,
+      "word_count": 200,
+      "includes_newsletter_signup": true,
+      "newsletter_box": {
+        "title": "¿Te interesa este contenido?",
+        "subtitle": "Suscríbete a nuestro newsletter mensual",
+        "description": "Contenido exclusivo sobre crianza consciente y desarrollo emocional infantil"
+      }
+    }
   ]'::jsonb,
   '[
     {"pregunta": "¿Cuánto tiempo de pantalla es recomendable para niños de 6-12 años?", "respuesta": "No más de 2 horas diarias, según la OMS, priorizando contenido educativo."},
@@ -154,8 +208,39 @@ INSERT INTO blog_articles (
     }
   ]'::jsonb,
   '[
-    {"titulo": "Rabietas en niños pequeños: cómo entenderlas y manejarlas", "slug": "rabietas-ninos-pequenos", "relevancia": "Explora la regulación emocional en etapas tempranas"},
-    {"titulo": "Habilidades emocionales en la era digital", "slug": "habilidades-emocionales-digital", "relevancia": "Conecta con el impacto de la tecnología en el desarrollo infantil"}
+    {
+      "title": "Rabietas en niños pequeños: cómo entenderlas y manejarlas",
+      "slug": "rabietas-ninos-pequenos",
+      "category": "Psicología educativa y del desarrollo",
+      "author_name": "Nerea Moreno",
+      "author_image": "/authors/nerea-moreno.webp",
+      "image_url": "/articles/rabietas-ninos-pequenos.webp",
+      "relevance": "high",
+      "type": "internal",
+      "description": "Explora la regulación emocional en etapas tempranas y su conexión con los límites digitales"
+    },
+    {
+      "title": "Habilidades emocionales en la era digital",
+      "slug": "habilidades-emocionales-digital",
+      "category": "Psicología social y relaciones personales",
+      "author_name": "Llenia Monteagudo",
+      "author_image": "/authors/llenia-monteagudo.webp",
+      "image_url": "/articles/habilidades-emocionales-digital.webp",
+      "relevance": "high",
+      "type": "internal",
+      "description": "Conecta con el impacto de la tecnología en el desarrollo infantil y las competencias del futuro"
+    },
+    {
+      "title": "Amor incondicional: el mejor antídoto contra la ansiedad infantil",
+      "slug": "amor-incondicional-mejor-antidoto-contra-ansiedad-infantil",
+      "category": "Psicología educativa y del desarrollo",
+      "author_name": "Nerea Moreno",
+      "author_image": "/authors/nerea-moreno.webp",
+      "image_url": "/articles/amor-incondicional-ansiedad.webp",
+      "relevance": "medium",
+      "type": "internal",
+      "description": "Estrategias para crear vínculos seguros que fortalezcan la regulación emocional"
+    }
   ]'::jsonb,
   '[
     {"url": "https://www.apa.org/news/press/releases/2025/06/screen-time-problems-children", "descripcion": "Artículo de APA sobre tiempo en pantallas y problemas emocionales"},
@@ -185,12 +270,51 @@ INSERT INTO blog_articles (
   ]'::jsonb,
   '[
     {
-      "recommendation": "Terapia familiar cognitivo-conductual para manejar adicciones digitales",
-      "description": "Sesiones estructuradas para fortalecer la regulación emocional y establecer límites saludables en el uso de pantallas."
+      "title": "Encuentra los mejores profesionales cerca de ti",
+      "subtitle": "Accede a una amplia red de psicólogos calificados. Empatía y experiencia a tu servicio.",
+      "cta_text": "Encuentra profesionales",
+      "cta_url": "/directorio-profesionales",
+      "display_type": "professional_grid",
+      "position_after_section": "La neurociencia detrás del enganche digital",
+      "professionals": [
+        {
+          "name": "Ana Ocaña",
+          "specialties": ["Paternidad", "Autoestima", "Límites Digitales"],
+          "location": "Madrid",
+          "rating": 5,
+          "profile_url": "/psicologos/ana-ocana",
+          "image_url": "/professionals/ana-ocana.webp",
+          "verified": true
+        },
+        {
+          "name": "Psicología Devidamente",
+          "specialties": ["Autoestima", "Regulación Emocional"],
+          "location": "Madrid",
+          "rating": 5,
+          "profile_url": "/psicologos/psicologia-devidamente",
+          "image_url": "/professionals/psicologia-devidamente.webp",
+          "verified": true
+        },
+        {
+          "name": "Silvia García Graullera",
+          "specialties": ["Conflictos familiares", "Autoestima", "Crianza Digital"],
+          "location": "Madrid",
+          "rating": 5,
+          "profile_url": "/psicologos/silvia-garcia-graullera",
+          "image_url": "/professionals/silvia-garcia.webp",
+          "verified": true
+        }
+      ]
     },
     {
-      "recommendation": "Talleres de parentalidad positiva",
-      "description": "Programas enfocados en desarrollar habilidades de acompañamiento emocional para padres y cuidadores."
+      "title": "Empieza hoy tu viaje de bienestar",
+      "subtitle": "Apoyo especializado en crianza digital y límites empáticos para toda la familia.",
+      "cta_text": "Encuentra profesionales",
+      "cta_url": "/contacto",
+      "display_type": "cta_box",
+      "position_after_section": "Estrategias prácticas",
+      "background_color": "#f8f9fa",
+      "text_color": "#2c3e50"
     }
   ]'::jsonb,
   'emociones',

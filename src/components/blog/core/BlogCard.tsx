@@ -4,13 +4,18 @@ import type { BlogCardData } from '../../../types/blog';
 interface BlogCardProps {
   article: BlogCardData;
   viewMode?: 'grid' | 'list';
+  onSelect?: (article: BlogCardData) => void;
 }
 
-export default function BlogCard({ article, viewMode = 'grid' }: BlogCardProps) {
+export default function BlogCard({ article, viewMode = 'grid', onSelect }: BlogCardProps) {
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate(`/blog/${article.slug}`);
+    if (onSelect) {
+      onSelect(article);
+    } else {
+      navigate(`/blog/${article.slug}`);
+    }
   };
 
   const formatDate = (dateString: string) => {

@@ -4,7 +4,10 @@
       "Bash(npm run dev:*)",
       "mcp__ide__getDiagnostics",
       "Bash(curl:*)",
-      "WebFetch(domain:psicologiaymente.com)"
+      "WebFetch(domain:psicologiaymente.com)",
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []

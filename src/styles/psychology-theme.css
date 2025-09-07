@@ -1,0 +1,292 @@
+/* ===================================
+   🎨 ESTILOS PERSONALIZADOS PARA ARTÍCULOS ESTILO PSICOLOGÍA Y MENTE
+   ================================== */
+
+/* Mejoras en tipografía y espaciado */
+.prose-psicologia {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.prose-psicologia h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.prose-psicologia h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1f2937;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose-psicologia h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #374151;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Efectos hover y transiciones suaves */
+.article-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Gradientes personalizados */
+.gradient-psychology {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-professional {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.gradient-newsletter {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Bordes y sombras especiales */
+.shadow-psychology {
+  box-shadow: 0 10px 15px -3px rgba(104, 117, 245, 0.1), 0 4px 6px -2px rgba(104, 117, 245, 0.05);
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeInUp-delay-1 {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.animate-fadeInUp-delay-2 {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.animate-fadeInUp-delay-3 {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+/* Estilos para quotes y destacados */
+.quote-highlight {
+  position: relative;
+  padding: 1.5rem;
+  border-left: 4px solid #3b82f6;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 0 8px 8px 0;
+}
+
+.quote-highlight::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 4rem;
+  color: #3b82f6;
+  opacity: 0.3;
+  font-family: serif;
+}
+
+/* Efectos para botones */
+.btn-psychology {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+}
+
+.btn-psychology:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Estilos para profesionales */
+.professional-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.professional-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.professional-card:hover::before {
+  transform: scaleX(1);
+}
+
+.professional-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+/* Estilos para tags */
+.tag-psychology {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+  border: 1px solid #c7d2fe;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tag-psychology:hover {
+  background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+  transform: scale(1.05);
+}
+
+/* Estilos para secciones expandibles */
+.expandable-section {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.expandable-section.expanded {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+}
+
+.expandable-header {
+  background: linear-gradient(90deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.expandable-header:hover {
+  background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+/* Estilos responsive mejorados */
+@media (max-width: 768px) {
+  .prose-psicologia h1 {
+    font-size: 2rem;
+  }
+  
+  .prose-psicologia h2 {
+    font-size: 1.5rem;
+  }
+  
+  .prose-psicologia h3 {
+    font-size: 1.25rem;
+  }
+  
+  .professional-card {
+    padding: 1rem;
+  }
+  
+  .quote-highlight {
+    padding: 1rem;
+  }
+  
+  .quote-highlight::before {
+    font-size: 3rem;
+    top: -5px;
+    left: 15px;
+  }
+}
+
+/* Mejoras en accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .article-card-hover,
+  .professional-card,
+  .btn-psychology,
+  .tag-psychology {
+    transition: none;
+  }
+  
+  .animate-fadeInUp,
+  .animate-fadeInUp-delay-1,
+  .animate-fadeInUp-delay-2,
+  .animate-fadeInUp-delay-3 {
+    animation: none;
+  }
+}
+
+/* Focus states para mejor accesibilidad */
+.btn-psychology:focus,
+.professional-card:focus,
+.expandable-header:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Estilos para el modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  .prose-psicologia {
+    color: #d1d5db;
+  }
+  
+  .prose-psicologia h1,
+  .prose-psicologia h2,
+  .prose-psicologia h3 {
+    color: #f9fafb;
+  }
+  
+  .professional-card {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .expandable-header {
+    background: linear-gradient(90deg, #1f2937 0%, #111827 100%);
+  }
+  
+  .expandable-header:hover {
+    background: linear-gradient(90deg, #111827 0%, #0f172a 100%);
+  }
+}
