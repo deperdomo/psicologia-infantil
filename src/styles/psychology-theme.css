@@ -4,37 +4,67 @@
 
 /* Mejoras en tipografía y espaciado */
 .prose-psicologia {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.8;
   color: #374151;
 }
 
 /* Asegurar que los estilos tomen precedencia sobre Tailwind */
 
+/* Optimizaciones tipográficas para psicología */
+.prose-psicologia {
+  /* Mejorar el renderizado de fuentes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Espaciado óptimo para lectura */
+  word-spacing: 0.1em;
+  letter-spacing: 0.01em;
+}
+
+/* Asegurar compatibilidad tipográfica */
+@supports (font-variation-settings: normal) {
+  .prose-psicologia h1,
+  .prose-psicologia h2,
+  .prose-psicologia h3,
+  .prose-psicologia h4,
+  .prose-psicologia h5,
+  .prose-psicologia h6 {
+    font-variation-settings: "wght" 700;
+  }
+}
+
 .prose-psicologia h1 {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-size: 2.5rem !important;
-  font-weight: 800 !important;
+  font-weight: 900 !important;
   line-height: 1.2 !important;
   color: #111827 !important;
   margin-bottom: 1rem !important;
+  font-display: swap !important;
 }
 
 .prose-psicologia h2 {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-size: 1.875rem !important;
   font-weight: 700 !important;
   line-height: 1.3 !important;
   color: #1f2937 !important;
   margin-top: 2rem !important;
   margin-bottom: 1rem !important;
+  font-display: swap !important;
 }
 
 .prose-psicologia h3 {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-size: 1.5rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   line-height: 1.4 !important;
   color: #374151 !important;
   margin-top: 1.5rem !important;
   margin-bottom: 0.75rem !important;
+  font-display: swap !important;
 }
 
 /* Efectos hover y transiciones suaves */
@@ -332,41 +362,51 @@
 
 /* Estilos adicionales para prose-psicologia */
 .prose-psicologia h4 {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-size: 1.25rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   line-height: 1.4 !important;
   color: #374151 !important;
   margin-top: 1.25rem !important;
   margin-bottom: 0.5rem !important;
+  font-display: swap !important;
 }
 
 .prose-psicologia h5 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #4b5563;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  color: #4b5563 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  font-display: swap !important;
 }
 
 .prose-psicologia h6 {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #6b7280;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  color: #6b7280 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  font-display: swap !important;
 }
 
 .prose-psicologia p {
-  margin-bottom: 1.25rem;
-  line-height: 1.75;
-  color: #374151;
+  font-family: 'Source Sans 3', sans-serif !important;
+  margin-bottom: 1.25rem !important;
+  line-height: 1.75 !important;
+  color: #374151 !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
 }
 
 .prose-psicologia strong {
-  font-weight: 600;
-  color: #1f2937;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-weight: 600 !important;
+  color: #1f2937 !important;
 }
 
 .prose-psicologia em {
@@ -381,17 +421,23 @@
 }
 
 .prose-psicologia li {
-  margin-bottom: 0.5rem;
-  line-height: 1.75;
-  color: #374151;
+  font-family: 'Source Sans 3', sans-serif !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.75 !important;
+  color: #374151 !important;
+  font-weight: 400 !important;
 }
 
 .prose-psicologia blockquote {
-  border-left: 4px solid #e5e7eb;
-  padding-left: 1rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: #6b7280;
+  font-family: 'Merriweather', serif !important;
+  border-left: 4px solid #e5e7eb !important;
+  padding-left: 1rem !important;
+  margin: 1.5rem 0 !important;
+  font-style: italic !important;
+  color: #6b7280 !important;
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  font-weight: 300 !important;
 }
 
 .prose-psicologia code {
@@ -406,24 +452,34 @@
 /* Estilos responsive mejorados */
 @media (max-width: 768px) {
   .prose-psicologia h1 {
-    font-size: 2rem;
+    font-size: 2rem !important;
+    line-height: 1.1 !important;
   }
   
   .prose-psicologia h2 {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
   }
   
   .prose-psicologia h3 {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
   }
   
   .prose-psicologia h4 {
-    font-size: 1.125rem;
+    font-size: 1.125rem !important;
+    line-height: 1.3 !important;
   }
   
   .prose-psicologia h5,
   .prose-psicologia h6 {
-    font-size: 1rem;
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .prose-psicologia p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
   }
   
   .professional-card {

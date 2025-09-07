@@ -35,21 +35,6 @@ export default function BlogCard({ article, viewMode = 'grid', onSelect }: BlogC
     return `${minutes} min de lectura`;
   };
 
-  const getCategoryColor = (category?: string) => {
-    if (!category) return 'bg-gray-100 text-gray-700 border-gray-200';
-    
-    const categoryColors: Record<string, string> = {
-      'desarrollo_infantil': 'bg-blue-100 text-blue-700 border-blue-200',
-      'educacion_emocional': 'bg-purple-100 text-purple-700 border-purple-200',
-      'crianza_positiva': 'bg-pink-100 text-pink-700 border-pink-200',
-      'problemas_comportamiento': 'bg-orange-100 text-orange-700 border-orange-200',
-      'terapia_infantil': 'bg-green-100 text-green-700 border-green-200',
-      'familia_relaciones': 'bg-yellow-100 text-yellow-700 border-yellow-200'
-    };
-    
-    return categoryColors[category] || 'bg-gray-100 text-gray-700 border-gray-200';
-  };
-
   const cardClasses = viewMode === 'grid' 
     ? "group cursor-pointer transform transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1"
     : "group cursor-pointer transform transition-all duration-300 hover:scale-[1.01]";

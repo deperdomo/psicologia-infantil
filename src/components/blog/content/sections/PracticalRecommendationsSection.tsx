@@ -159,58 +159,49 @@ export default function PracticalRecommendationsSection({ article }: PracticalRe
   if (!article.practical_recommendations) return null;
 
   return (
-    <section className="mb-14 py-8">
-      <div className="mb-6">
-        <h2>
-          Estrategias Prácticas
-        </h2>
-        <p className="text-orange-700 font-medium">Herramientas que puedes aplicar hoy mismo</p>
-      </div>
-
-      <div className="space-y-5">
+    <section className="mb-10 py-6">
+      <h3>
+        Estrategias prácticas recomendadas
+      </h3>
+      <ul className="space-y-3">
         {(() => {
           const recommendations = extractRecommendationsComplete(article.practical_recommendations);
 
           if (recommendations.length === 0) {
             return (
-              <div className="p-6">
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                    <span className="text-red-600 text-xl">⚠️</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-red-800 mb-2">
-                      No se pudieron extraer las recomendaciones
-                    </p>
-                    <p className="text-sm text-red-600">
-                      Tipo de datos: <code className="bg-red-100 px-1 rounded">{typeof article.practical_recommendations}</code>
-                    </p>
-                    <p className="text-sm text-red-600">
-                      Contenido: <code className="bg-red-100 px-1 rounded">
-                        {JSON.stringify(article.practical_recommendations).substring(0, 100)}...
-                      </code>
-                    </p>
-                    <button
-                      onClick={() => console.log('Full data:', article.practical_recommendations)}
-                      className="mt-2 text-sm bg-red-100 hover:bg-red-200 px-2 py-1 rounded transition-colors"
-                    >
-                      Ver datos completos en consola
-                    </button>
-                  </div>
+              <li className="flex items-start space-x-3">
+                <span className="flex-shrink-0 w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-xs font-bold mt-1">
+                  ⚠️
+                </span>
+                <div className="flex-1">
+                  <p className="font-semibold text-red-800 mb-2">
+                    No se pudieron extraer las recomendaciones
+                  </p>
+                  <p className="text-sm text-red-600">
+                    Tipo de datos: <code className="bg-red-100 px-1 rounded">{typeof article.practical_recommendations}</code>
+                  </p>
+                  <p className="text-sm text-red-600">
+                    Contenido: <code className="bg-red-100 px-1 rounded">
+                      {JSON.stringify(article.practical_recommendations).substring(0, 100)}...
+                    </code>
+                  </p>
+                  <button
+                    onClick={() => console.log('Full data:', article.practical_recommendations)}
+                    className="mt-2 text-sm bg-red-100 hover:bg-red-200 px-2 py-1 rounded transition-colors"
+                  >
+                    Ver datos completos en consola
+                  </button>
                 </div>
-              </div>
+              </li>
             );
           }
 
           return recommendations.map((recommendation: string, index: number) => (
-            <div
-              key={index}
-              className="flex items-start space-x-4 p-6 mb-4 border-b border-gray-100 last:border-b-0"
-            >
-              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">
+            <li key={index} className="flex items-start space-x-3">
+              <span className="flex-shrink-0 w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mt-1">
                 {index + 1}
-              </div>
-              <div className="flex-1 min-w-0">
+              </span>
+              <span className="text-gray-700 leading-relaxed">
                 {(() => {
                   // Detectar si hay título y descripción separados por ":"
                   const colonIndex = recommendation.indexOf(':');
@@ -221,27 +212,21 @@ export default function PracticalRecommendationsSection({ article }: PracticalRe
 
                     return (
                       <div>
-                        <h4>
-                          {title}
-                        </h4>
-                        <p className="text-gray-700 leading-relaxed">
-                          {description}
-                        </p>
+                        <strong className="font-semibold text-gray-900">
+                          {title}:
+                        </strong>{' '}
+                        {description}
                       </div>
                     );
                   } else {
-                    return (
-                      <p className="text-gray-700 leading-relaxed font-medium text-base">
-                        {recommendation}
-                      </p>
-                    );
+                    return recommendation;
                   }
                 })()}
-              </div>
-            </div>
+              </span>
+            </li>
           ));
         })()}
-      </div>
+      </ul>
     </section>
   );
 }

@@ -40,7 +40,7 @@ UPDATE blog_articles SET
   author_email = 'llenia@psicologiainfantil.com',
   author_bio = 'Llenia es psicóloga especializada en desarrollo emocional infantil y acompañamiento familiar. Con una formación sólida en psicología del desarrollo y neuropsicología infantil, se dedica a ayudar a familias a fortalecer los vínculos emocionales y el bienestar de los niños. Su enfoque integrador combina técnicas basadas en evidencia con un acompañamiento empático y personalizado. Llenia cree firmemente en el poder del apego seguro y la crianza consciente para construir las bases de una autoestima sólida desde la infancia.',
   author_credentials = 'Psicóloga colegiada, Especialista en Desarrollo Emocional Infantil y Acompañamiento Familiar',
-  author_photo_url = 'https://your-project-id.supabase.co/storage/v1/object/public/blog-images/authors/llenia.webp',
+  author_photo_url = 'https://eabqgmhadverstykzcrr.supabase.co/storage/v1/object/public/blog-images/authors/llenia-monteagudo.jpg',
   author_social_links = '{
     "instagram": "https://instagram.com/llenia.psicologia",
     "linkedin": "https://linkedin.com/in/llenia-psicologa",
