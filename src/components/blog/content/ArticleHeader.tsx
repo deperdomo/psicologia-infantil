@@ -3,7 +3,7 @@
 // Componente optimizado para replicar el diseño profesional
 // ===================================
 
-import { Calendar, User, Eye, Share2, Clock } from 'lucide-react';
+import { Calendar, User, Share2, Clock } from 'lucide-react';
 import type { BlogArticle } from '../../../types/blog';
 
 interface ArticleHeaderProps {
@@ -32,30 +32,8 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
   };
 
   return (
-    <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fadeInUp">
-      {/* Breadcrumb Navigation */}
-      {article.breadcrumb_data && (
-        <nav className="mb-6" aria-label="Breadcrumb">
-          <ol className="flex items-center space-x-2 text-sm text-gray-600">
-            {article.breadcrumb_data.map((crumb: any, index: number) => (
-              <li key={index} className="flex items-center">
-                {index > 0 && <span className="mx-2 text-gray-400">/</span>}
-                {crumb.url ? (
-                  <a 
-                    href={crumb.url} 
-                    className="hover:text-blue-600 transition-colors"
-                  >
-                    {crumb.name}
-                  </a>
-                ) : (
-                  <span className="text-gray-800 font-medium">{crumb.name}</span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
-      )}
-
+    <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 animate-fadeInUp prose-psicologia">
+      
       {/* Category and Professional Badge */}
       <div className="flex items-center gap-3 mb-4 animate-fadeInUp-delay-1">
         <span className="tag-psychology">
@@ -72,13 +50,13 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
       </div>
 
       {/* Main Title */}
-      <h1 className="prose-psicologia text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4 animate-fadeInUp-delay-2">
+      <h1 className="animate-fadeInUp-delay-2">
         {article.title}
       </h1>
 
       {/* Subtitle */}
       {article.subtitle && (
-        <h2 className="prose-psicologia text-xl md:text-2xl text-gray-700 leading-relaxed mb-6 font-medium animate-fadeInUp-delay-3">
+        <h2 className="animate-fadeInUp-delay-3">
           {article.subtitle}
         </h2>
       )}
@@ -118,14 +96,6 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
           <div className="flex items-center space-x-2 text-gray-600">
             <Clock className="w-4 h-4" />
             <span className="text-sm">{article.reading_time_minutes} min de lectura</span>
-          </div>
-        )}
-
-        {/* Views Count */}
-        {article.view_count && (
-          <div className="flex items-center space-x-2 text-gray-600">
-            <Eye className="w-4 h-4" />
-            <span className="text-sm">{article.view_count.toLocaleString()} vistas</span>
           </div>
         )}
 

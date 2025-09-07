@@ -39,7 +39,7 @@ function ProfessionalProfile({ recommendation }: { recommendation: ProfessionalR
   if (!professional_info) return null;
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 border border-blue-200 rounded-xl p-8">
+    <div className="py-8">
       {/* Header principal */}
       <div className="text-center mb-8">
         <h3 className="text-3xl font-bold text-gray-900 mb-4">
@@ -51,7 +51,7 @@ function ProfessionalProfile({ recommendation }: { recommendation: ProfessionalR
       </div>
 
       {/* Perfil de Llenia */}
-      <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 mb-6">
+      <div className="p-6 mb-6">
         <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
           {/* Imagen y verificación */}
           <div className="relative flex-shrink-0">
@@ -122,14 +122,8 @@ function ProfessionalProfile({ recommendation }: { recommendation: ProfessionalR
 
 // Componente para CTA box simple
 function CTABox({ recommendation }: { recommendation: ProfessionalRecommendation }) {
-  const bgColor = recommendation.background_color || '#e8f4f8';
-  const textColor = recommendation.text_color || '#2c3e50';
-
   return (
-    <div 
-      className="rounded-lg p-8 text-center shadow-sm"
-      style={{ backgroundColor: bgColor, color: textColor }}
-    >
+    <div className="py-8 text-center">
       <h3 className="text-2xl font-bold mb-3">
         {recommendation.title}
       </h3>
@@ -155,7 +149,7 @@ export default function ProfessionalRecommendations({ article }: ProfessionalRec
   const recommendations: ProfessionalRecommendation[] = article.professional_recommendations;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {recommendations.map((recommendation, index) => (
         <div key={index} className="mb-12 last:mb-0">
           {recommendation.display_type === 'professional_cta' ? (

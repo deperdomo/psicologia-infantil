@@ -1,0 +1,10 @@
+export { default as CallToActionSection } from './CallToActionSection';
+export { default as PsychologicalAnalysisSection } from './PsychologicalAnalysisSection';
+export { default as PracticalRecommendationsSection } from './PracticalRecommendationsSection';
+export { default as ReflectiveQuestionSection } from './ReflectiveQuestionSection';
+export { default as CurrentDataResearchSection } from './CurrentDataResearchSection';
+export { default as AnonymousCaseSection } from './AnonymousCaseSection';
+export { default as FAQSection } from './FAQSection';
+export { default as SummaryPointsSection } from './SummaryPointsSection';
+export { default as EmpatheticClosingSection } from './EmpatheticClosingSection';
+export { default as NewsletterSection } from './NewsletterSection';

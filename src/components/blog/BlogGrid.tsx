@@ -134,50 +134,51 @@ export default function BlogGrid({
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">{title}</h2>
+      <div className="mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">{title}</h1>
+        <p className="text-gray-600 text-lg mb-8">Artículos especializados sobre psicología infantil y desarrollo emocional</p>
         
         {/* Búsqueda y controles */}
-        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
           {/* Búsqueda */}
           {showSearch && (
-            <div className="flex-1 max-w-md">
+            <div className="flex-1 max-w-lg">
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Buscar artículos..."
                   value={searchTerm}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 pl-12 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white shadow-sm"
                 />
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span className="text-gray-400">🔍</span>
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <span className="text-gray-400 text-lg">🔍</span>
                 </div>
               </div>
             </div>
           )}
 
           {/* Controles de vista */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center bg-gray-100 rounded-lg p-1">
             <button
               onClick={() => setCurrentViewMode('grid')}
-              className={`p-2 rounded-md ${
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 currentViewMode === 'grid'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'text-gray-400 hover:text-gray-600'
+                  ? 'bg-white text-blue-600 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              <span className="text-lg">⊞</span>
+              Grid
             </button>
             <button
               onClick={() => setCurrentViewMode('list')}
-              className={`p-2 rounded-md ${
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 currentViewMode === 'list'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'text-gray-400 hover:text-gray-600'
+                  ? 'bg-white text-blue-600 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              <span className="text-lg">☰</span>
+              Lista
             </button>
           </div>
         </div>
@@ -185,26 +186,27 @@ export default function BlogGrid({
 
       {/* Filtros de categoría */}
       {showFilters && categories.length > 0 && (
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-10">
+          <h3 className="text-sm font-medium text-gray-900 mb-3">Categorías</h3>
+          <div className="flex flex-wrap gap-3">
             <button
               onClick={() => handleCategoryFilter('')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors border ${
                 selectedCategory === ''
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
               }`}
             >
-              Todas las categorías
+              Todas
             </button>
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => handleCategoryFilter(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors border ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
                 }`}
               >
                 {formatCategoryName(category)}
@@ -215,16 +217,18 @@ export default function BlogGrid({
       )}
 
       {/* Resultados */}
-      <div className="mb-6">
-        <p className="text-sm text-gray-600">
-          {searchTerm ? (
-            `${displayData.length} resultado${displayData.length !== 1 ? 's' : ''} para "${searchTerm}"`
-          ) : selectedCategory ? (
-            `${displayData.length} artículo${displayData.length !== 1 ? 's' : ''} en ${formatCategoryName(selectedCategory)}`
-          ) : (
-            `${displayData.length} artículo${displayData.length !== 1 ? 's' : ''} disponible${displayData.length !== 1 ? 's' : ''}`
-          )}
-        </p>
+      <div className="mb-8">
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-600">
+            {searchTerm ? (
+              `${displayData.length} resultado${displayData.length !== 1 ? 's' : ''} para "${searchTerm}"`
+            ) : selectedCategory ? (
+              `${displayData.length} artículo${displayData.length !== 1 ? 's' : ''} en ${formatCategoryName(selectedCategory)}`
+            ) : (
+              `${displayData.length} artículo${displayData.length !== 1 ? 's' : ''} publicado${displayData.length !== 1 ? 's' : ''}`
+            )}
+          </p>
+        </div>
       </div>
 
       {/* Grid/List de artículos */}
@@ -236,8 +240,8 @@ export default function BlogGrid({
       ) : (
         <div className={`
           ${currentViewMode === 'grid' 
-            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' 
-            : 'space-y-6'
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' 
+            : 'space-y-8'
           }
         `}>
           {displayData.map((article) => (

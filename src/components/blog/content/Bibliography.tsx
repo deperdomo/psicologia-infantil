@@ -88,11 +88,11 @@ export default function Bibliography({ article }: BibliographyProps) {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
+      <div className="border-b border-gray-200 pb-4">
         {/* Header clickeable */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full px-6 py-4 flex items-center justify-between bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="w-full py-4 flex items-center justify-between transition-colors"
         >
           <div className="flex items-center space-x-3">
             <BookOpen className="w-5 h-5 text-gray-700" />
@@ -109,7 +109,7 @@ export default function Bibliography({ article }: BibliographyProps) {
 
         {/* Contenido expandible */}
         {isExpanded && (
-          <div className="px-6 py-6">
+          <div className="py-6">
             <p className="text-sm text-gray-600 mb-6">
               Este artículo está respaldado por investigación científica actual. 
               Las referencias están formateadas según las normas APA.
@@ -180,7 +180,7 @@ export default function Bibliography({ article }: BibliographyProps) {
             </div>
 
             {/* Footer con información sobre las referencias */}
-            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mt-6 p-4">
               <h4 className="text-sm font-semibold text-blue-900 mb-2">
                 💡 Sobre estas referencias
               </h4>

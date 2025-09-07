@@ -254,16 +254,6 @@ INSERT INTO blog_articles (
         "experience_description": "Especializada en acompañar a familias en el fortalecimiento del bienestar emocional infantil",
         "approach": "Enfoque integrador basado en neuropsicología del desarrollo y apego seguro"
       }
-    },
-    {
-      "title": "Comienza hoy el camino hacia una autoestima sólida",
-      "subtitle": "Acompañamiento especializado para tu familia. Juntos podemos crear las bases para un desarrollo emocional saludable.",
-      "cta_text": "Agendar sesión",
-      "cta_url": "/contacto",
-      "display_type": "cta_box",
-      "position_after_section": "Estrategias prácticas para fortalecer la autoestima",
-      "background_color": "#e8f4f8",
-      "text_color": "#2c3e50"
     }
   ]'::jsonb,
   
