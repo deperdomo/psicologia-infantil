@@ -48,10 +48,10 @@ export default function BlogCard({ article, viewMode = 'grid', onSelect }: BlogC
       <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 h-full">
         <div className={layoutClasses}>
           {/* Imagen destacada */}
-          {article.image_1_url && (
+          {article.featured_image_url && (
             <div className={viewMode === 'grid' ? "relative h-52 overflow-hidden" : "w-1/3 h-48 overflow-hidden"}>
               <img 
-                src={article.image_1_url}
+                src={article.featured_image_url}
                 alt={article.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
@@ -94,12 +94,6 @@ export default function BlogCard({ article, viewMode = 'grid', onSelect }: BlogC
                 <h4 className="text-base font-medium text-gray-600 line-clamp-2 mb-3">
                   {article.subtitle}
                 </h4>
-              )}
-              
-              {article.excerpt && (
-                <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
-                  {article.excerpt}
-                </p>
               )}
             </div>
 

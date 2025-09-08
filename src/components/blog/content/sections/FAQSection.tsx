@@ -5,7 +5,7 @@ interface FAQSectionProps {
 }
 
 export default function FAQSection({ article }: FAQSectionProps) {
-  if (!article.FAQ_data || !article.FAQ_data.length) return null;
+  if (!article.faq_data || !article.faq_data.length) return null;
 
   return (
     <section className="mb-10">
@@ -13,7 +13,7 @@ export default function FAQSection({ article }: FAQSectionProps) {
         Preguntas frecuentes
       </h3>
       <div className="space-y-3">
-        {article.FAQ_data.map((faq: any, index: number) => (
+        {article.faq_data.map((faq: any, index: number) => (
           <details key={index} className="group border-b border-gray-200 py-4 last:border-b-0">
             <summary className="flex items-center justify-between cursor-pointer font-medium text-gray-900 group-open:text-blue-600">
               <span className="flex items-center">

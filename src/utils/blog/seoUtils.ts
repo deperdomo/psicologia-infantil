@@ -14,7 +14,7 @@ export function generateArticleSchema(article: BlogArticle): SchemaMarkup {
     "@type": ["Article", "BlogPosting", "EducationalContent"],
     headline: article.title,
     alternativeHeadline: article.subtitle || article.title,
-    description: article.excerpt || article.meta_description || '',
+    description: article.meta_description || article.introduction?.substring(0, 160) + '...' || '',
     author: {
       "@type": "Person",
       name: article.author_name,
@@ -36,7 +36,7 @@ export function generateArticleSchema(article: BlogArticle): SchemaMarkup {
     ].filter(Boolean) as string[],
     mainEntityOfPage: article.canonical_url || `https://psicologia-infantil.com/blog/${article.slug}`,
     educationalLevel: article.topic_complexity || 'intermediate',
-    teaches: article.excerpt || article.introduction,
+    teaches: article.introduction,
     audience: {
       "@type": "Audience",
       audienceType: Array.isArray(article.target_audience)
@@ -60,7 +60,7 @@ export function generateSEOConfig(article: BlogArticle): SEOConfig {
   
   return {
     title: `${article.title} | Psicología Infantil Pro`,
-    description: article.meta_description || article.excerpt || generateAutoDescription(article),
+    description: article.meta_description || generateAutoDescription(article),
     keywords: article.meta_keywords ? article.meta_keywords.split(',').map(k => k.trim()) : article.tags || [],
     canonical_url: article.canonical_url || `${baseUrl}/blog/${article.slug}`,
     og_image: article.social_share_image || article.featured_image_url,
@@ -88,8 +88,6 @@ function calculateWordCount(article: BlogArticle): number {
  * Genera descripción automática si no existe
  */
 function generateAutoDescription(article: BlogArticle): string {
-  if (article.excerpt) return article.excerpt;
-  
   const intro = article.introduction || '';
   const words = intro.split(' ').slice(0, 25).join(' ');
   return words.length > 0 ? `${words}...` : 'Artículo especializado sobre psicología infantil y desarrollo emocional.';

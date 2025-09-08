@@ -54,7 +54,7 @@ export default function ArticleContent({ article }: ArticleContentProps) {
         <EmpatheticClosingSection article={article} />
 
         {/* 🔵 IMPORTANCIA BAJA - Newsletter */}
-        <NewsletterSection article={article} />
+        <NewsletterSection />
 
       </article>
     </div>

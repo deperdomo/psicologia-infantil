@@ -4,11 +4,57 @@
 
 import { supabase } from './supabase'
 import type { BlogArticle } from '../types/blog'
-import { parseArticleFromDB } from '../types/blogDatabase'
 
 // ===================================
 // 🔧 FUNCIONES HELPER
 // ===================================
+
+// Función para normalizar datos que vienen de la base de datos
+function parseArticleFromDB(raw: any): BlogArticle {
+  // Función helper para asegurar que un campo sea un array
+  const ensureArray = (value: any): any[] => {
+    if (!value) return [];
+    if (Array.isArray(value)) return value;
+    
+    // Si es string, intentar parsearlo como JSON
+    if (typeof value === 'string') {
+      try {
+        const parsed = JSON.parse(value);
+        return Array.isArray(parsed) ? parsed : [parsed];
+      } catch {
+        return [value];
+      }
+    }
+    
+    // Si es objeto, intentar convertirlo
+    if (typeof value === 'object' && value !== null) {
+      const keys = Object.keys(value);
+      if (keys.every(key => !isNaN(Number(key)))) {
+        return keys.sort((a, b) => Number(a) - Number(b)).map(key => value[key]);
+      }
+      return [value];
+    }
+    
+    return [value];
+  };
+
+  return {
+    ...raw,
+    additional_resources: ensureArray(raw.additional_resources),
+    key_sections: ensureArray(raw.key_sections),
+    faq_data: ensureArray(raw.faq_data),
+    summary_points: ensureArray(raw.summary_points),
+    bibliography: ensureArray(raw.bibliography),
+    related_articles: ensureArray(raw.related_articles),
+    external_links: ensureArray(raw.external_links),
+    tags: ensureArray(raw.tags),
+    recommended_products: ensureArray(raw.recommended_products),
+    professional_recommendations: ensureArray(raw.professional_recommendations),
+    is_featured: Boolean(raw.is_featured),
+    is_trending: Boolean(raw.is_trending),
+    is_professional_content: Boolean(raw.is_professional_content),
+  };
+}
 
 // Helper para parsear arrays de artículos
 const parseArticleArray = (data: any[]): BlogArticle[] => {
@@ -149,7 +195,7 @@ export const searchBlogArticles = async (searchTerm: string): Promise<BlogArticl
   const { data, error } = await supabase
     .from('blog_articles')
     .select('*')
-    .or(`title.ilike.%${searchTerm}%, excerpt.ilike.%${searchTerm}%, introduction.ilike.%${searchTerm}%`)
+    .or(`title.ilike.%${searchTerm}%, introduction.ilike.%${searchTerm}%, meta_description.ilike.%${searchTerm}%`)
     .eq('status', 'published')
     .order('published_at', { ascending: false })
 

@@ -23,7 +23,7 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
     if (navigator.share) {
       await navigator.share({
         title: article.title,
-        text: article.meta_description || article.excerpt,
+        text: article.meta_description || article.introduction?.substring(0, 200) + '...',
         url: window.location.href
       });
     } else {
@@ -33,7 +33,7 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
 
   return (
     <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 animate-fadeInUp prose-psicologia">
-      
+
       {/* Category and Professional Badge */}
       <div className="flex items-center gap-3 mb-4 animate-fadeInUp-delay-1">
         <span className="tag-psychology">
@@ -66,10 +66,11 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
         {/* Author Info */}
         <div className="flex items-center space-x-3">
           {article.author_photo_url && (
-            <img 
-              src={article.author_photo_url} 
+            <img
+              src={article.author_photo_url}
               alt={article.author_name}
-              className="w-12 h-12 rounded-full object-cover"
+              className="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
+              style={{ aspectRatio: '1 / 1' }}
             />
           )}
           <div>
@@ -112,7 +113,7 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
       {/* Featured Image */}
       {article.featured_image_url && (
         <div className="mb-8">
-          <img 
+          <img
             src={article.featured_image_url}
             alt={article.image_1_alt || article.title}
             className="w-full h-64 md:h-80 lg:h-96 object-cover rounded-lg shadow-lg"
@@ -124,6 +125,8 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
           )}
         </div>
       )}
+
+
 
       {/* Introduction */}
       {article.introduction && (

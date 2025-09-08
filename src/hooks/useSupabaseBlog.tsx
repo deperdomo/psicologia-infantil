@@ -48,13 +48,17 @@ export const useSupabaseBlog = () => {
   );
 
   const categories = useMemo(() => {
-    const categorySet = new Set(articles.map(article => article.category));
+    const categorySet = new Set(
+      articles
+        .map(article => article.category || 'sin_categoria')
+        .filter(category => category !== 'sin_categoria')
+    );
     return Array.from(categorySet).sort();
   }, [articles]);
 
   const articlesByCategory = useMemo(() => {
     return articles.reduce((acc, article) => {
-      const category = article.category;
+      const category = article.category || 'sin_categoria';
       if (!acc[category]) {
         acc[category] = [];
       }
@@ -120,13 +124,12 @@ export const useBlogSearch = () => {
         id: article.id,
         title: article.title,
         subtitle: article.subtitle,
-        excerpt: article.excerpt,
         slug: article.slug,
-        category: article.category,
+        category: article.category || '', // Puede ser null en BD
         tags: article.tags || [],
         published_at: article.published_at || '',
         reading_time_minutes: article.reading_time_minutes,
-        hero_image_url: article.featured_image_url,
+        featured_image_url: article.featured_image_url,
         author_name: article.author_name
       }));
       
@@ -166,21 +169,18 @@ export const useBlogCards = (limit?: number) => {
             id: article.id,
             title: article.title,
             subtitle: article.subtitle,
-            excerpt: article.excerpt,
             slug: article.slug,
-            category: article.category,
+            category: article.category || 'sin_categoria', // Fallback para category nullable
             tags: article.tags || [],
             author_name: article.author_name,
-            author_credentials: article.author_credentials,
+            author_credentials: article.author_credentials || '',
             published_at: article.published_at || '',
             reading_time_minutes: article.reading_time_minutes,
-            image_1_url: article.image_1_path, // Usamos image_1_path que viene de la DB
-            is_featured: article.is_featured,
-            is_trending: article.is_trending,
-            view_count: article.view_count,
-            likes_count: article.likes_count
+            featured_image_url: article.image_1_path, // Usamos image_1_path que viene de la DB
+            is_featured: article.is_featured || false,
+            is_trending: article.is_trending || false
           }))
-          .sort((a: BlogCardData, b: BlogCardData) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+          .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
           .slice(0, limit);
 
         setCards(cardData);

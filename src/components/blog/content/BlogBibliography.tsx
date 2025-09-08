@@ -68,25 +68,6 @@ export default function BlogBibliography({
     }
   };
 
-  const getEvidenceLevelBadge = (level?: string) => {
-    if (!level) return null;
-    
-    const badges = {
-      high: { color: 'bg-green-100 text-green-800', label: 'Alto nivel de evidencia' },
-      medium: { color: 'bg-yellow-100 text-yellow-800', label: 'Evidencia moderada' },
-      low: { color: 'bg-gray-100 text-gray-800', label: 'Evidencia limitada' }
-    };
-    
-    const badge = badges[level as keyof typeof badges];
-    if (!badge) return null;
-    
-    return (
-      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${badge.color}`}>
-        {badge.label}
-      </span>
-    );
-  };
-
   return (
     <section className={`bg-gray-50 rounded-lg p-6 ${className}`} id="bibliografia">
       {/* Header */}
@@ -153,9 +134,6 @@ export default function BlogBibliography({
                         {getCitationTypeIcon(originalCitation.type)}
                         <span className="ml-1">{getCitationTypeLabel(originalCitation.type)}</span>
                       </span>
-                      
-                      {/* Nivel de evidencia */}
-                      {getEvidenceLevelBadge(originalCitation.evidence_level)}
                       
                       {/* Revisión por pares */}
                       {originalCitation.peer_reviewed && (

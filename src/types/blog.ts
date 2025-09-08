@@ -2,33 +2,54 @@
 // 📝 TIPOS PARA EL BLOG DE PSICOLOGÍA INFANTIL
 // ===================================
 
+// Tipo para el análisis psicológico con título dinámico
+export interface PsychologicalAnalysis {
+  title: string;
+  content: string;
+}
+
+// Tipo para la investigación actual con título dinámico
+export interface CurrentDataResearch {
+  title: string;
+  content: string;
+}
+
+// Tipo para el cierre empático con título dinámico
+export interface EmpatheticClosing {
+  title: string;
+  content: string;
+}
+
+export interface AnonymousCase {
+  title: string;
+  content: string;
+}
 export interface BlogArticle {
   id: string;
   title: string;
   subtitle?: string;
   slug: string;
-  excerpt?: string;
   
   // Contenido principal
   introduction: string;
-  current_data_research?: string;
+  current_data_research?: CurrentDataResearch;
   reflective_question?: string;
-  anonymous_case?: string;
-  psychological_analysis: string;
-  practical_recommendations: string[] | string; // Array en DB, pero puede venir como string
+  anonymous_case?: AnonymousCase;
+  psychological_analysis?: PsychologicalAnalysis;
+  practical_recommendations: string;
   call_to_action?: string;
-  empathetic_closing?: string;
-  additional_resources?: any; // JSONB en DB
+  empathetic_closing?: EmpatheticClosing;
+  additional_resources?: any;
   
-  // Contenido estructurado (JSONB en la DB)
-  key_sections?: any; // JSONB
-  FAQ_data?: any; // JSONB 
-  summary_points?: any; // JSONB
+  // Contenido estructurado
+  key_sections?: any;
+  faq_data?: any;
+  summary_points?: any;
   
-  // Referencias (JSONB en la DB)
-  bibliography?: any; // JSONB
-  related_articles?: any; // JSONB
-  external_links?: any; // JSONB
+  // Referencias
+  bibliography?: any;
+  related_articles?: any;
+  external_links?: any;
   
   // Imágenes
   image_1_path?: string;
@@ -40,26 +61,23 @@ export interface BlogArticle {
   featured_image_url?: string;
   social_share_image?: string;
   
-  // Productos y recomendaciones (JSONB en la DB)
-  recommended_products?: any; // JSONB
-  professional_recommendations?: any; // JSONB
+  // Productos y recomendaciones
+  recommended_products?: any;
+  professional_recommendations?: any;
   
   // SEO
   meta_description?: string;
   meta_keywords?: string;
   canonical_url?: string;
-  schema_markup?: any; // JSONB
-  breadcrumb_data?: any; // JSONB
+  schema_markup?: any;
   
   // Categorización
-  category: string;
+  category?: string;
   subcategory?: string;
-  tags?: string[]; // Array en DB
-  target_audience?: string[]; // Array en DB
+  tags?: string[];
+  target_audience?: string;
   age_range?: string;
-  topic_complexity: string; // enum en DB
-  psychological_approach?: string;
-  evidence_level?: string;
+  topic_complexity?: string;
   
   // Autoría
   author_name: string;
@@ -67,40 +85,25 @@ export interface BlogArticle {
   author_bio?: string;
   author_credentials?: string;
   author_photo_url?: string;
-  author_social_links?: any; // JSONB
+  author_social_links?: any;
   
   // Estado
-  status: string; // enum en DB
-  review_status: string; // enum en DB
+  status?: string;
   published_at?: string;
-  last_reviewed_at?: string;
-  is_featured: boolean;
-  is_trending: boolean;
-  is_professional_content: boolean;
+  is_featured?: boolean;
+  is_trending?: boolean;
+  is_professional_content?: boolean;
+  sort_order?: number;
   
   // Timestamps
   created_at?: string;
   updated_at?: string;
   
   // Métricas
-  view_count: number;
-  likes_count: number;
-  shares_count: number;
   reading_time_minutes?: number;
-  
-  // Configuración
-  comments_enabled: boolean;
-  professional_feedback_enabled: boolean;
-  newsletter_mention?: string;
-  related_newsletter_content?: any; // JSONB
 }
 
-// Tipo simplificado con URLs de imágenes generadas
-export interface BlogArticleWithImages extends Omit<BlogArticle, 'image_1_path' | 'image_2_path' | 'image_3_path'> {
-  image_1_url?: string;
-  image_2_url?: string;
-  image_3_url?: string;
-}
+// NOTA: BlogArticleWithImages eliminado - usando solo BlogArticle con featured_image_url
 
 // ===== TIPOS AUXILIARES =====
 
@@ -181,7 +184,6 @@ export interface BlogComment {
   is_professional_feedback: boolean;
   
   // Métricas
-  likes_count: number;
   replies_count: number;
   
   // Timestamps
@@ -205,7 +207,7 @@ export interface BlogFilters {
 
 export interface BlogSearchParams extends BlogFilters {
   search_term?: string;
-  sort_by?: 'published_at' | 'view_count' | 'likes_count' | 'title';
+  sort_by?: 'published_at' | 'title';
   sort_order?: 'asc' | 'desc';
   limit?: number;
   offset?: number;
@@ -215,13 +217,12 @@ export interface BlogSearchResult {
   id: string;
   title: string;
   subtitle?: string;
-  excerpt?: string;
   slug: string;
   category: string;
   tags: string[];
   published_at: string;
   reading_time_minutes?: number;
-  hero_image_url?: string;
+  featured_image_url?: string;
   author_name: string;
   rank?: number;
 }
@@ -232,7 +233,6 @@ export interface BlogCardData {
   id: string;
   title: string;
   subtitle?: string;
-  excerpt?: string;
   slug: string;
   category: string;
   tags: string[];
@@ -240,11 +240,9 @@ export interface BlogCardData {
   author_credentials?: string;
   published_at: string;
   reading_time_minutes?: number;
-  image_1_url?: string;
+  featured_image_url?: string;
   is_featured: boolean;
   is_trending: boolean;
-  view_count: number;
-  likes_count: number;
 }
 
 // ===== TIPOS PARA ESTADÍSTICAS =====
@@ -254,9 +252,6 @@ export interface BlogStats {
   published_articles: number;
   featured_articles: number;
   trending_articles: number;
-  total_views: number;
-  total_likes: number;
-  total_comments: number;
   articles_by_category: Record<string, number>;
   top_articles: BlogCardData[];
 }

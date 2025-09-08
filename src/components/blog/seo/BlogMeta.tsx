@@ -84,7 +84,7 @@ export default function BlogMeta({
     if (article.updated_at) {
       updateMetaTag('article:modified_time', article.updated_at, true);
     }
-    updateMetaTag('article:section', article.category, true);
+    updateMetaTag('article:section', article.category || 'psicologia-infantil', true);
     
     // Tags del artículo
     if (article.tags) {
@@ -121,9 +121,6 @@ export default function BlogMeta({
     // Meta tags para profesionales
     updateMetaTag('content-type', 'educational-article');
     updateMetaTag('specialty', 'child-psychology');
-    if (article.evidence_level) {
-      updateMetaTag('evidence-level', article.evidence_level);
-    }
     
     // Canonical URL
     updateLinkTag('canonical', seoConfig.canonical_url);
@@ -136,29 +133,6 @@ export default function BlogMeta({
       document.head.appendChild(schemaScript);
     }
     schemaScript.textContent = JSON.stringify(schema, null, 2);
-    
-    // Breadcrumb schema si existe
-    if (article.breadcrumb_data && article.breadcrumb_data.length > 0) {
-      const breadcrumbSchema = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": article.breadcrumb_data.map((item: any, index: number) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "name": item.name,
-          "item": seoConfig.canonical_url
-        }))
-      };
-      
-      let breadcrumbScript = document.querySelector('script[data-schema="breadcrumb"]') as HTMLScriptElement;
-      if (!breadcrumbScript) {
-        breadcrumbScript = document.createElement('script');
-        breadcrumbScript.type = 'application/ld+json';
-        breadcrumbScript.setAttribute('data-schema', 'breadcrumb');
-        document.head.appendChild(breadcrumbScript);
-      }
-      breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema, null, 2);
-    }
     
     // Cleanup function para remover meta tags al desmontar
     return () => {

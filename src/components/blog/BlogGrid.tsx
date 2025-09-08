@@ -51,7 +51,6 @@ export default function BlogGrid({
         id: result.id,
         title: result.title,
         subtitle: result.subtitle,
-        excerpt: result.excerpt,
         slug: result.slug,
         category: result.category,
         tags: result.tags,
@@ -59,11 +58,9 @@ export default function BlogGrid({
         author_credentials: '',
         published_at: result.published_at,
         reading_time_minutes: result.reading_time_minutes,
-        image_1_url: result.hero_image_url,
+        featured_image_url: result.featured_image_url,
         is_featured: false,
-        is_trending: false,
-        view_count: 0,
-        likes_count: 0
+        is_trending: false
       }));
     }
     
@@ -75,19 +72,16 @@ export default function BlogGrid({
       id: article.id,
       title: article.title,
       subtitle: article.subtitle,
-      excerpt: article.excerpt,
       slug: article.slug,
-      category: article.category,
+      category: article.category || '', // Puede ser null en BD
       tags: article.tags || [],
       author_name: article.author_name,
-      author_credentials: article.author_credentials,
+      author_credentials: article.author_credentials || '',
       published_at: article.published_at || '',
       reading_time_minutes: article.reading_time_minutes,
-      image_1_url: article.image_1_path,
-      is_featured: article.is_featured,
-      is_trending: article.is_trending,
-      view_count: article.view_count,
-      likes_count: article.likes_count
+      featured_image_url: article.featured_image_url, 
+      is_featured: article.is_featured || false, // Puede ser null en BD
+      is_trending: article.is_trending || false // Puede ser null en BD
     }));
   }, [searchTerm, searchResults, selectedCategory, cards, maxItems, articles]);
 
@@ -268,7 +262,9 @@ export default function BlogGrid({
                   ✕
                 </button>
               </div>
-              <p className="text-gray-600 mb-4">{selectedArticle.excerpt}</p>
+              {selectedArticle.subtitle && (
+                <p className="text-gray-600 mb-4">{selectedArticle.subtitle}</p>
+              )}
               <div className="flex items-center text-sm text-gray-500">
                 <span>Por {selectedArticle.author_name}</span>
                 <span className="mx-2">•</span>
