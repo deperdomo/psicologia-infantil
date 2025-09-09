@@ -9,7 +9,7 @@ import type { BlogArticle } from '../types/blog'
 // 🔧 FUNCIONES HELPER
 // ===================================
 
-// Función para normalizar datos que vienen de la base de datos
+// Función para normalizar datos que vienen de la base de datos  
 function parseArticleFromDB(raw: any): BlogArticle {
   // Función helper para asegurar que un campo sea un array
   const ensureArray = (value: any): any[] => {
@@ -40,7 +40,7 @@ function parseArticleFromDB(raw: any): BlogArticle {
 
   return {
     ...raw,
-    additional_resources: ensureArray(raw.additional_resources),
+    additional_resources: raw.additional_resources || null,
     key_sections: ensureArray(raw.key_sections),
     faq_data: ensureArray(raw.faq_data),
     summary_points: ensureArray(raw.summary_points),
@@ -57,12 +57,12 @@ function parseArticleFromDB(raw: any): BlogArticle {
 }
 
 // Helper para parsear arrays de artículos
-const parseArticleArray = (data: any[]): BlogArticle[] => {
+const parseArticleArray = (data: Record<string, unknown>[]): BlogArticle[] => {
   if (!data || data.length === 0) {
     return [];
   }
 
-  return data.map((article: any) => {
+  return data.map((article: Record<string, unknown>) => {
     try {
       return parseArticleFromDB(article);
     } catch (error) {

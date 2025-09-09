@@ -10,26 +10,12 @@ interface RelatedArticlesProps {
   article: BlogArticle;
 }
 
-interface RelatedArticle {
-  title: string;
-  slug: string;
-  category: string;
-  author_name: string;
-  author_image: string;
-  image_url: string;
-  relevance: 'high' | 'medium' | 'low';
-  type: 'internal' | 'external';
-  description: string;
-  reading_time?: number;
-  published_date?: string;
-}
-
 export default function RelatedArticles({ article }: RelatedArticlesProps) {
   if (!article.related_articles || !Array.isArray(article.related_articles) || article.related_articles.length === 0) {
     return null;
   }
 
-  const relatedArticles: RelatedArticle[] = article.related_articles;
+  const relatedArticles = article.related_articles;
 
   const getRelevanceColor = (relevance: string) => {
     switch (relevance) {

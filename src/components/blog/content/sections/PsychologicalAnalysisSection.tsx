@@ -1,4 +1,5 @@
 import type { BlogArticle } from '../../../../types/blog';
+import { formatText } from '../../../../utils/blog/textFormatter';
 
 // Perspectiva Psicológica
 interface PsychologicalAnalysisSectionProps {
@@ -19,11 +20,7 @@ export default function PsychologicalAnalysisSection({ article }: PsychologicalA
         <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mt-3 rounded-full"></div>
       </div>
       <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-        {content.split('\n').map((paragraph, index) => (
-          <p key={index} className="mb-5 last:mb-0 text-justify">
-            {paragraph}
-          </p>
-        ))}
+        {formatText(content)}
       </div>
     </section>
   );

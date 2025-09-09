@@ -5,7 +5,7 @@
 
 import { Calendar, User, Share2, Clock } from 'lucide-react';
 import type { BlogArticle } from '../../../types/blog';
-
+import { formatText } from '../../../utils/blog/textFormatter';
 interface ArticleHeaderProps {
   article: BlogArticle;
 }
@@ -111,10 +111,10 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
       </div>
 
       {/* Featured Image */}
-      {article.featured_image_url && (
+      {article.image_1_url && (
         <div className="mb-8">
           <img
-            src={article.featured_image_url}
+            src={article.image_1_url}
             alt={article.image_1_alt || article.title}
             className="w-full h-64 md:h-80 lg:h-96 object-cover rounded-lg shadow-lg"
           />
@@ -129,13 +129,15 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
 
 
       {/* Introduction */}
+      {/* Introduction con párrafos múltiples */}
       {article.introduction && (
         <div className="prose prose-lg max-w-none mb-8">
-          <p className="text-xl leading-relaxed text-gray-700 font-medium">
-            {article.introduction}
-          </p>
+          <div className="text-xl leading-relaxed text-gray-700 font-medium">
+            {formatText(article.introduction)}
+          </div>
         </div>
       )}
+      
     </header>
   );
 }

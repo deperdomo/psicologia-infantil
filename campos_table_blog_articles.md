@@ -4,22 +4,17 @@
 | 2                | title                        | character varying        | NO          |
 | 3                | subtitle                     | text                     | YES         |
 | 4                | slug                         | character varying        | NO          |
-| 5                | image_1_path                 | text                     | YES         |
 | 6                | image_1_alt                  | character varying        | YES         |
-| 7                | image_2_path                 | text                     | YES         |
-| 8                | image_2_alt                  | character varying        | YES         |
-| 9                | image_3_path                 | text                     | YES         |
-| 10               | image_3_alt                  | character varying        | YES         |
-| 11               | featured_image_url           | text                     | YES         |
+| 11               | image_1_url                  | text                     | YES         |
 | 12               | social_share_image           | text                     | YES         |
 | 13               | introduction                 | text                     | NO          |
-| 14               | current_data_research        | text                     | YES         |
+| 14               | current_data_research        | jsonb                    | YES         |
 | 15               | reflective_question          | text                     | YES         |
-| 16               | anonymous_case               | text                     | YES         |
+| 16               | anonymous_case               | jsonb                    | YES         |
 | 17               | psychological_analysis       | jsonb                    | NO          |
-| 18               | practical_recommendations    | text                     | NO          |
+| 18               | practical_recommendations    | jsonb                    | NO          |
 | 19               | call_to_action               | text                     | YES         |
-| 20               | empathetic_closing           | text                     | YES         |
+| 20               | empathetic_closing           | jsonb                    | YES         |
 | 21               | additional_resources         | text                     | YES         |
 | 22               | key_sections                 | jsonb                    | YES         |
 | 23               | faq_data                     | jsonb                    | YES         |

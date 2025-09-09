@@ -31,7 +31,7 @@ export function generateArticleSchema(article: BlogArticle): SchemaMarkup {
     datePublished: article.published_at,
     dateModified: article.updated_at || article.published_at,
     image: [
-      article.featured_image_url,
+      article.image_1_url,
       article.social_share_image
     ].filter(Boolean) as string[],
     mainEntityOfPage: article.canonical_url || `https://psicologia-infantil.com/blog/${article.slug}`,
@@ -47,7 +47,7 @@ export function generateArticleSchema(article: BlogArticle): SchemaMarkup {
     wordCount: calculateWordCount(article),
     articleSection: article.category,
     keywords: article.meta_keywords ? article.meta_keywords.split(',').map(k => k.trim()) : article.tags,
-    citation: article.bibliography?.map((ref: { url: string }) => ref.url).filter(Boolean) as string[] || [],
+    citation: article.bibliography?.map((ref: any) => ref.url ?? '').filter((url: any): url is string => !!url) || [],
     isAccessibleForFree: true
   };
 }
@@ -63,7 +63,7 @@ export function generateSEOConfig(article: BlogArticle): SEOConfig {
     description: article.meta_description || generateAutoDescription(article),
     keywords: article.meta_keywords ? article.meta_keywords.split(',').map(k => k.trim()) : article.tags || [],
     canonical_url: article.canonical_url || `${baseUrl}/blog/${article.slug}`,
-    og_image: article.social_share_image || article.featured_image_url,
+    og_image: article.social_share_image || article.image_1_url,
     twitter_card: 'summary_large_image',
     structured_data: generateArticleSchema(article)
   };
@@ -73,14 +73,15 @@ export function generateSEOConfig(article: BlogArticle): SEOConfig {
  * Calcula el número de palabras en el artículo
  */
 function calculateWordCount(article: BlogArticle): number {
-  const textContent = [
+  const textParts: string[] = [
     article.introduction,
-    article.current_data_research,
-    article.psychological_analysis,
-    article.practical_recommendations,
-    article.empathetic_closing
-  ].filter(Boolean).join(' ');
+    typeof article.current_data_research === 'object' ? article.current_data_research?.content : article.current_data_research,
+    typeof article.psychological_analysis === 'object' ? article.psychological_analysis?.content : article.psychological_analysis,
+    typeof article.practical_recommendations === 'object' ? article.practical_recommendations?.content : article.practical_recommendations,
+    typeof article.empathetic_closing === 'object' ? article.empathetic_closing?.content : article.empathetic_closing
+  ].filter(Boolean) as string[];
   
+  const textContent = textParts.join(' ');
   return textContent.split(/\s+/).length;
 }
 

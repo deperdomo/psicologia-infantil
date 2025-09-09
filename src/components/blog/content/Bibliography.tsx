@@ -11,22 +11,6 @@ interface BibliographyProps {
   article: BlogArticle;
 }
 
-interface Reference {
-  id: string;
-  authors: string[];
-  year: number;
-  title: string;
-  journal?: string;
-  volume?: string;
-  pages?: string;
-  doi?: string;
-  publisher?: string;
-  type: 'journal_article' | 'book' | 'report' | 'website';
-  cited_in_text: boolean;
-  citation_format: 'apa' | 'chicago' | 'mla';
-  url?: string;
-}
-
 export default function Bibliography({ article }: BibliographyProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -34,9 +18,11 @@ export default function Bibliography({ article }: BibliographyProps) {
     return null;
   }
 
-  const references: Reference[] = article.bibliography;
+  const references = article.bibliography;
 
-  const formatAuthors = (authors: string[]) => {
+  const formatAuthors = (authors: any) => {
+    if (!authors || !Array.isArray(authors)) return 'Autor desconocido';
+    if (authors.length === 1) return authors[0];
     if (authors.length === 1) return authors[0];
     if (authors.length === 2) return `${authors[0]} y ${authors[1]}`;
     if (authors.length > 2) {
@@ -45,9 +31,9 @@ export default function Bibliography({ article }: BibliographyProps) {
     return '';
   };
 
-  const formatAPACitation = (ref: Reference) => {
+  const formatAPACitation = (ref: any) => {
     const authors = formatAuthors(ref.authors);
-    let citation = `${authors} (${ref.year}). ${ref.title}`;
+    let citation = `${authors} (${ref.year || 'Sin fecha'}). ${ref.title || 'Título no disponible'}`;
 
     if (ref.type === 'journal_article' && ref.journal) {
       citation += `. *${ref.journal}*`;

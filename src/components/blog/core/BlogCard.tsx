@@ -48,10 +48,10 @@ export default function BlogCard({ article, viewMode = 'grid', onSelect }: BlogC
       <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 h-full">
         <div className={layoutClasses}>
           {/* Imagen destacada */}
-          {article.featured_image_url && (
+          {article.image_1_url && (
             <div className={viewMode === 'grid' ? "relative h-52 overflow-hidden" : "w-1/3 h-48 overflow-hidden"}>
               <img 
-                src={article.featured_image_url}
+                src={article.image_1_url}
                 alt={article.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"

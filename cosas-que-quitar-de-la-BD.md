@@ -14,9 +14,9 @@ Campos a eliminar de  la BD y del front-end:
 - evidence_level
 - psychological_approach
 - excerpt
-- image_1_path  -> a partir de aqui no he eliminado en la base de datos
-- image_1_alt
+- image_1_path
 - image_2_path
 - image_2_alt
 - image_3_path
 - image_3_alt
+- featured_image_url cambiado por -> image_1_url

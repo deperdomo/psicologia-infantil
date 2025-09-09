@@ -1,5 +1,6 @@
 // Un mensaje final
 import type { BlogArticle } from '../../../../types/blog';
+import { formatText } from '../../../../utils/blog/textFormatter';
 
 interface EmpatheticClosingSectionProps {
   article: BlogArticle;
@@ -18,11 +19,7 @@ export default function EmpatheticClosingSection({ article }: EmpatheticClosingS
             {title}
           </h3>
           <div className="text-gray-700 leading-relaxed">
-            {content.split('\n').map((paragraph, index) => (
-              <p key={index} className="mb-3 last:mb-0">
-                {paragraph}
-              </p>
-            ))}
+            {formatText(content)}
           </div>
         </div>
       </div>

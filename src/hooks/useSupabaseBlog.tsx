@@ -129,7 +129,7 @@ export const useBlogSearch = () => {
         tags: article.tags || [],
         published_at: article.published_at || '',
         reading_time_minutes: article.reading_time_minutes,
-        featured_image_url: article.featured_image_url,
+        image_1_url: article.image_1_url,
         author_name: article.author_name
       }));
       
@@ -176,7 +176,7 @@ export const useBlogCards = (limit?: number) => {
             author_credentials: article.author_credentials || '',
             published_at: article.published_at || '',
             reading_time_minutes: article.reading_time_minutes,
-            featured_image_url: article.image_1_path, // Usamos image_1_path que viene de la DB
+            image_1_url: article.image_1_url, // Campo correcto de la DB
             is_featured: article.is_featured || false,
             is_trending: article.is_trending || false
           }))
@@ -211,7 +211,7 @@ export const useBlogFilters = () => {
   });
 
   // Actualizar filtro específico
-  const updateFilter = (key: keyof BlogFilters, value: any) => {
+  const updateFilter = (key: keyof BlogFilters, value: BlogFilters[typeof key]) => {
     setFilters(prev => ({
       ...prev,
       [key]: value

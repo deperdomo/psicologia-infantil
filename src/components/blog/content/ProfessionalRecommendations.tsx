@@ -146,7 +146,7 @@ export default function ProfessionalRecommendations({ article }: ProfessionalRec
     return null;
   }
 
-  const recommendations: ProfessionalRecommendation[] = article.professional_recommendations;
+  const recommendations = article.professional_recommendations;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

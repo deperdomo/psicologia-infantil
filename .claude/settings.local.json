@@ -7,7 +7,9 @@
       "WebFetch(domain:psicologiaymente.com)",
       "Bash(tree:*)",
       "Bash(find:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)"
     ],
     "deny": [],
     "ask": []

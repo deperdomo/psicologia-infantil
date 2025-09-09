@@ -19,6 +19,11 @@ export interface EmpatheticClosing {
   title: string;
   content: string;
 }
+// Tipo para las recomendaciones prácticas con título dinámico
+export interface PracticalRecommendations {
+  title: string;
+  content: string;
+}
 
 export interface AnonymousCase {
   title: string;
@@ -30,13 +35,18 @@ export interface BlogArticle {
   subtitle?: string;
   slug: string;
   
+  // Imágenes
+  image_1_alt?: string;
+  image_1_url?: string;
+  social_share_image?: string;
+  
   // Contenido principal
   introduction: string;
   current_data_research?: CurrentDataResearch;
   reflective_question?: string;
   anonymous_case?: AnonymousCase;
-  psychological_analysis?: PsychologicalAnalysis;
-  practical_recommendations: string;
+  psychological_analysis: PsychologicalAnalysis;
+  practical_recommendations: PracticalRecommendations;
   call_to_action?: string;
   empathetic_closing?: EmpatheticClosing;
   additional_resources?: any;
@@ -51,20 +61,6 @@ export interface BlogArticle {
   related_articles?: any;
   external_links?: any;
   
-  // Imágenes
-  image_1_path?: string;
-  image_1_alt?: string;
-  image_2_path?: string;
-  image_2_alt?: string;
-  image_3_path?: string;
-  image_3_alt?: string;
-  featured_image_url?: string;
-  social_share_image?: string;
-  
-  // Productos y recomendaciones
-  recommended_products?: any;
-  professional_recommendations?: any;
-  
   // SEO
   meta_description?: string;
   meta_keywords?: string;
@@ -78,6 +74,10 @@ export interface BlogArticle {
   target_audience?: string;
   age_range?: string;
   topic_complexity?: string;
+  
+  // Productos y recomendaciones
+  recommended_products?: any;
+  professional_recommendations?: any;
   
   // Autoría
   author_name: string;
@@ -103,7 +103,7 @@ export interface BlogArticle {
   reading_time_minutes?: number;
 }
 
-// NOTA: BlogArticleWithImages eliminado - usando solo BlogArticle con featured_image_url
+// NOTA: BlogArticleWithImages eliminado - usando solo BlogArticle con image_1_url
 
 // ===== TIPOS AUXILIARES =====
 
@@ -132,6 +132,16 @@ export interface ExternalLink {
   url: string;
   description?: string;
   domain: string;
+}
+
+export interface BibliographyItem {
+  title: string;
+  authors?: string;
+  year?: string;
+  journal?: string;
+  url?: string;
+  doi?: string;
+  type: 'article' | 'book' | 'website' | 'study';
 }
 
 export interface RecommendedProduct {
@@ -222,7 +232,7 @@ export interface BlogSearchResult {
   tags: string[];
   published_at: string;
   reading_time_minutes?: number;
-  featured_image_url?: string;
+  image_1_url?: string;
   author_name: string;
   rank?: number;
 }
@@ -240,7 +250,7 @@ export interface BlogCardData {
   author_credentials?: string;
   published_at: string;
   reading_time_minutes?: number;
-  featured_image_url?: string;
+  image_1_url?: string;
   is_featured: boolean;
   is_trending: boolean;
 }

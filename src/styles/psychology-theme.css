@@ -7,6 +7,7 @@
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.8;
   color: #374151;
+  font-size: 1.125rem; /* Aumentado de 1rem a 1.125rem */
 }
 
 /* Asegurar que los estilos tomen precedencia sobre Tailwind */
@@ -37,33 +38,33 @@
 
 .prose-psicologia h1 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-  font-size: 2.5rem !important;
+  font-size: 2.75rem !important; /* Aumentado de 2.5rem a 2.75rem */
   font-weight: 900 !important;
   line-height: 1.2 !important;
   color: #111827 !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 1.25rem !important; /* Aumentado de 1rem a 1.25rem */
   font-display: swap !important;
 }
 
 .prose-psicologia h2 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-  font-size: 1.875rem !important;
+  font-size: 2.125rem !important; /* Aumentado de 1.875rem a 2.125rem */
   font-weight: 700 !important;
   line-height: 1.3 !important;
   color: #1f2937 !important;
-  margin-top: 2rem !important;
-  margin-bottom: 1rem !important;
+  margin-top: 2.5rem !important; /* Aumentado de 2rem a 2.5rem */
+  margin-bottom: 1.25rem !important; /* Aumentado de 1rem a 1.25rem */
   font-display: swap !important;
 }
 
 .prose-psicologia h3 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-  font-size: 1.5rem !important;
+  font-size: 1.75rem !important; /* Aumentado de 1.5rem a 1.75rem */
   font-weight: 700 !important;
   line-height: 1.4 !important;
   color: #374151 !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.75rem !important;
+  margin-top: 2rem !important; /* Aumentado de 1.5rem a 2rem */
+  margin-bottom: 1rem !important; /* Aumentado de 0.75rem a 1rem */
   font-display: swap !important;
 }
 
@@ -134,13 +135,15 @@
 /* Estilos para quotes y destacados */
 .quote-highlight {
   position: relative;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
+  padding: 2rem; /* Aumentado de 1.5rem a 2rem */
+  margin: 2rem 0; /* Aumentado de 1.5rem a 2rem */
   border-left: 4px solid #3b82f6;
   background-color: #f8fafc;
   border-radius: 0 8px 8px 0;
   font-style: italic;
   color: #475569;
+  font-size: 1.125rem; /* Añadido para hacer el texto más grande */
+  line-height: 1.7; /* Añadido para mejor espaciado */
 }
 
 .quote-highlight::before {
@@ -157,8 +160,8 @@
 
 /* Estilos para secciones de artículos */
 .article-section {
-  margin: 2rem 0;
-  padding: 1.5rem 0;
+  margin: 2.5rem 0; /* Aumentado de 2rem a 2.5rem */
+  padding: 2rem 0; /* Aumentado de 1.5rem a 2rem */
 }
 
 .article-section:not(:last-child) {
@@ -205,9 +208,10 @@
   background: #3b82f6;
   border: none;
   color: white;
-  padding: 12px 24px;
+  padding: 14px 28px; /* Aumentado de 12px 24px a 14px 28px */
   border-radius: 8px;
   font-weight: 600;
+  font-size: 1.1rem; /* Añadido para hacer el texto del botón más grande */
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25);
   display: inline-flex;
@@ -259,7 +263,7 @@
 .professional-card {
   background: white;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2rem; /* Aumentado de 1.5rem a 2rem */
   border: 1px solid #e5e7eb;
   transition: all 0.3s ease;
   position: relative;
@@ -293,9 +297,9 @@
   background: #e0e7ff;
   color: #3730a3;
   border: 1px solid #c7d2fe;
-  padding: 0.25rem 0.75rem;
+  padding: 0.375rem 1rem; /* Aumentado de 0.25rem 0.75rem a 0.375rem 1rem */
   border-radius: 9999px;
-  font-size: 0.875rem;
+  font-size: 1rem; /* Aumentado de 0.875rem a 1rem */
   font-weight: 500;
   transition: all 0.2s ease;
   display: inline-block;
@@ -351,9 +355,10 @@
 
 .expandable-header {
   background: linear-gradient(90deg, #f8fafc 0%, #f1f5f9 100%);
-  padding: 1rem 1.5rem;
+  padding: 1.25rem 2rem; /* Aumentado de 1rem 1.5rem a 1.25rem 2rem */
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 1.1rem; /* Añadido para hacer el texto del header más grande */
 }
 
 .expandable-header:hover {
@@ -363,43 +368,43 @@
 /* Estilos adicionales para prose-psicologia */
 .prose-psicologia h4 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-  font-size: 1.25rem !important;
+  font-size: 1.5rem !important; /* Aumentado de 1.25rem a 1.5rem */
   font-weight: 700 !important;
   line-height: 1.4 !important;
   color: #374151 !important;
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: 1.75rem !important; /* Aumentado de 1.25rem a 1.75rem */
+  margin-bottom: 0.75rem !important; /* Aumentado de 0.5rem a 0.75rem */
   font-display: swap !important;
 }
 
 .prose-psicologia h5 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-  font-size: 1.125rem !important;
+  font-size: 1.375rem !important; /* Aumentado de 1.125rem a 1.375rem */
   font-weight: 700 !important;
   line-height: 1.4 !important;
   color: #4b5563 !important;
-  margin-top: 1rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: 1.5rem !important; /* Aumentado de 1rem a 1.5rem */
+  margin-bottom: 0.75rem !important; /* Aumentado de 0.5rem a 0.75rem */
   font-display: swap !important;
 }
 
 .prose-psicologia h6 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-  font-size: 1rem !important;
+  font-size: 1.25rem !important; /* Aumentado de 1rem a 1.25rem */
   font-weight: 700 !important;
   line-height: 1.4 !important;
   color: #6b7280 !important;
-  margin-top: 1rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: 1.25rem !important; /* Aumentado de 1rem a 1.25rem */
+  margin-bottom: 0.75rem !important; /* Aumentado de 0.5rem a 0.75rem */
   font-display: swap !important;
 }
 
 .prose-psicologia p {
   font-family: 'Source Sans 3', sans-serif !important;
-  margin-bottom: 1.25rem !important;
-  line-height: 1.75 !important;
+  margin: 0.75rem 0 !important; /* Aumentado de 0.50rem a 0.75rem */
+  line-height: 1.8 !important; /* Aumentado de 1.75 a 1.8 */
   color: #374151 !important;
-  font-size: 1rem !important;
+  font-size: 1.125rem !important; /* Aumentado de 1rem a 1.125rem */
   font-weight: 400 !important;
 }
 
@@ -416,35 +421,36 @@
 
 .prose-psicologia ul,
 .prose-psicologia ol {
-  margin: 1.25rem 0;
-  padding-left: 1.5rem;
+  margin: 1.5rem 0; /* Aumentado de 1.25rem a 1.5rem */
+  padding-left: 1.75rem; /* Aumentado de 1.5rem a 1.75rem */
 }
 
 .prose-psicologia li {
   font-family: 'Source Sans 3', sans-serif !important;
-  margin-bottom: 0.5rem !important;
-  line-height: 1.75 !important;
+  margin-bottom: 0.75rem !important; /* Aumentado de 0.5rem a 0.75rem */
+  line-height: 1.8 !important; /* Aumentado de 1.75 a 1.8 */
   color: #374151 !important;
   font-weight: 400 !important;
+  font-size: 1.125rem !important; /* Añadido para hacer el texto de las listas más grande */
 }
 
 .prose-psicologia blockquote {
   font-family: 'Merriweather', serif !important;
   border-left: 4px solid #e5e7eb !important;
-  padding-left: 1rem !important;
-  margin: 1.5rem 0 !important;
+  padding-left: 1.5rem !important; /* Aumentado de 1rem a 1.5rem */
+  margin: 2rem 0 !important; /* Aumentado de 1.5rem a 2rem */
   font-style: italic !important;
   color: #6b7280 !important;
-  font-size: 1.1rem !important;
-  line-height: 1.6 !important;
+  font-size: 1.25rem !important; /* Aumentado de 1.1rem a 1.25rem */
+  line-height: 1.7 !important; /* Aumentado de 1.6 a 1.7 */
   font-weight: 300 !important;
 }
 
 .prose-psicologia code {
   background-color: #f3f4f6;
-  padding: 0.125rem 0.375rem;
+  padding: 0.25rem 0.5rem; /* Aumentado de 0.125rem 0.375rem a 0.25rem 0.5rem */
   border-radius: 0.375rem;
-  font-size: 0.875rem;
+  font-size: 1rem; /* Aumentado de 0.875rem a 1rem */
   color: #1f2937;
   font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
 }
@@ -452,48 +458,63 @@
 /* Estilos responsive mejorados */
 @media (max-width: 768px) {
   .prose-psicologia h1 {
-    font-size: 2rem !important;
+    font-size: 2.25rem !important; /* Aumentado de 2rem a 2.25rem */
     line-height: 1.1 !important;
   }
   
   .prose-psicologia h2 {
-    font-size: 1.5rem !important;
+    font-size: 1.75rem !important; /* Aumentado de 1.5rem a 1.75rem */
     line-height: 1.2 !important;
   }
   
   .prose-psicologia h3 {
-    font-size: 1.25rem !important;
+    font-size: 1.5rem !important; /* Aumentado de 1.25rem a 1.5rem */
     line-height: 1.3 !important;
   }
   
   .prose-psicologia h4 {
-    font-size: 1.125rem !important;
+    font-size: 1.375rem !important; /* Aumentado de 1.125rem a 1.375rem */
     line-height: 1.3 !important;
   }
   
   .prose-psicologia h5,
   .prose-psicologia h6 {
-    font-size: 1rem !important;
+    font-size: 1.25rem !important; /* Aumentado de 1rem a 1.25rem */
     line-height: 1.4 !important;
   }
   
   .prose-psicologia p {
-    font-size: 16px !important;
-    line-height: 1.6 !important;
+    font-size: 18px !important; /* Aumentado de 16px a 18px */
+    line-height: 1.7 !important; /* Aumentado de 1.6 a 1.7 */
+  }
+  
+  .prose-psicologia li {
+    font-size: 18px !important; /* Añadido para mantener consistencia en móvil */
   }
   
   .professional-card {
-    padding: 1rem;
+    padding: 1.5rem; /* Aumentado de 1rem a 1.5rem */
   }
   
   .quote-highlight {
-    padding: 1rem;
+    padding: 1.5rem; /* Aumentado de 1rem a 1.5rem */
+    font-size: 1.125rem; /* Añadido para mantener tamaño en móvil */
   }
   
   .quote-highlight::before {
     font-size: 3rem;
     top: -5px;
     left: 15px;
+  }
+  
+  .btn-psychology {
+    padding: 12px 24px; /* Ajustado para móvil */
+    font-size: 1rem; /* Ajustado para móvil */
+  }
+  
+  .tag-psychology {
+    padding: 0.25rem 0.75rem; /* Ajustado para móvil */
+    font-size: 0.875rem; /* Ajustado para móvil */
   }
 }
 
@@ -524,15 +545,15 @@
 
 /* Utilidades de espaciado para artículos */
 .article-spacing > * + * {
-  margin-top: 1.5rem;
+  margin-top: 2rem; /* Aumentado de 1.5rem a 2rem */
 }
 
 .tight-spacing > * + * {
-  margin-top: 0.75rem;
+  margin-top: 1rem; /* Aumentado de 0.75rem a 1rem */
 }
 
 .loose-spacing > * + * {
-  margin-top: 2rem;
+  margin-top: 2.5rem; /* Aumentado de 2rem a 2.5rem */
 }
 
 /* Estilos para listas mejoradas */
@@ -543,8 +564,10 @@
 
 .custom-list li {
   position: relative;
-  padding-left: 2rem;
-  margin-bottom: 0.75rem;
+  padding-left: 2.5rem; /* Aumentado de 2rem a 2.5rem */
+  margin-bottom: 1rem; /* Aumentado de 0.75rem a 1rem */
+  font-size: 1.125rem; /* Añadido para hacer el texto más grande */
+  line-height: 1.8; /* Añadido para mejor espaciado */
 }
 
 .custom-list li::before {
@@ -554,13 +577,12 @@
   top: 0;
   color: #10b981;
   font-weight: bold;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.75rem; /* Aumentado de 1.5rem a 1.75rem */
+  height: 1.75rem; /* Aumentado de 1.5rem a 1.75rem */
   background: #d1fae5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.875rem; /* Aumentado de 0.75rem a 0.875rem */
 }
-

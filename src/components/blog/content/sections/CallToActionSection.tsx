@@ -1,5 +1,6 @@
 import { Phone } from 'lucide-react';
 import type { BlogArticle } from '../../../../types/blog';
+import { formatText } from '../../../../utils/blog/textFormatter';
 
 interface CallToActionSectionProps {
   article: BlogArticle;
@@ -11,17 +12,13 @@ export default function CallToActionSection({ article }: CallToActionSectionProp
   return (
     <section className="mb-12 p-6">
       <div className="flex items-start space-x-4">
-        
+
         <div className="flex-1">
           <h3>
             Cuándo buscar ayuda profesional
           </h3>
           <div className="text-gray-700 leading-relaxed mb-4">
-            {article.call_to_action.split('\n').map((paragraph, index) => (
-              <p key={index} className="mb-3 last:mb-0">
-                {paragraph}
-              </p>
-            ))}
+            {formatText(article.call_to_action)}
           </div>
           <a
             href="/contacto"

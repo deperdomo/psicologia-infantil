@@ -1,4 +1,5 @@
 import type { BlogArticle } from '../../../../types/blog';
+import { formatText } from '../../../../utils/blog/textFormatter';
 
 interface CurrentDataResearchSectionProps {
   article: BlogArticle;
@@ -17,11 +18,7 @@ export default function CurrentDataResearchSection({ article }: CurrentDataResea
             {title}
           </h3>
           <div className="text-gray-700 leading-relaxed">
-            {content.split('\n').map((paragraph, index) => (
-              <p key={index} className="mb-3 last:mb-0">
-                {paragraph}
-              </p>
-            ))}
+            {formatText(content)}
           </div>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function BlogGrid({
         author_credentials: '',
         published_at: result.published_at,
         reading_time_minutes: result.reading_time_minutes,
-        featured_image_url: result.featured_image_url,
+        image_1_url: result.image_1_url,
         is_featured: false,
         is_trending: false
       }));
@@ -79,7 +79,7 @@ export default function BlogGrid({
       author_credentials: article.author_credentials || '',
       published_at: article.published_at || '',
       reading_time_minutes: article.reading_time_minutes,
-      featured_image_url: article.featured_image_url, 
+      image_1_url: article.image_1_url, 
       is_featured: article.is_featured || false, // Puede ser null en BD
       is_trending: article.is_trending || false // Puede ser null en BD
     }));

@@ -4,229 +4,131 @@ interface PracticalRecommendationsSectionProps {
   article: BlogArticle;
 }
 
-function extractRecommendationsComplete(data: string[] | string | any): string[] {
+function extractRecommendations(data: any): string[] {
   console.log('🔍 Datos recibidos:', data, typeof data);
-  let recommendations: string[] = [];
-
+  
   try {
-    // CASO 1: Array directo limpio (el formato ideal que quieres)
-    if (Array.isArray(data) && data.length > 1) {
-      console.log('✅ Detectado: Array limpio con múltiples elementos');
-      return data
-        .filter(item => typeof item === 'string' && item.trim().length > 15)
-        .slice(0, 10);
+    // Si ya es un array de strings, devolverlo directamente
+    if (Array.isArray(data) && data.every(item => typeof item === 'string')) {
+      return data.filter(item => item.trim().length > 10);
     }
 
-    // CASO 2: Array con un solo elemento que contiene texto malformado
-    if (Array.isArray(data) && data.length === 1 && typeof data[0] === 'string') {
-      const rawString = data[0];
-      console.log('🔧 Detectado: JSON malformado en array[0]');
-      console.log('Raw string:', rawString);
-
-      // ESTRATEGIA A: Buscar patrones completos "texto completo": ""
-      const fullTextPattern = /["']([^"']{20,}?)["']\s*:\s*["']["']/g;
-      let matches;
-
-      while ((matches = fullTextPattern.exec(rawString)) !== null) {
-        let fullRecommendation = matches[1]
-          .replace(/\\"/g, '"')
-          .replace(/\\'/g, "'")
-          .replace(/\\\\/g, '\\')
-          .replace(/\\n/g, ' ')
-          .replace(/\s+/g, ' ')
-          .trim();
-
-        if (fullRecommendation.length > 20) {
-          recommendations.push(fullRecommendation);
+    // Si es un objeto con title y content (nuevo formato)
+    if (data && typeof data === 'object' && 'content' in data) {
+      const content = data.content;
+      
+      if (typeof content === 'string') {
+        // Dividir por saltos de línea numerados (1., 2., etc.)
+        const numberedItems = content.split(/\d+\.\s+/).filter(item => item.trim().length > 0);
+        
+        if (numberedItems.length > 1) {
+          // Remover el primer elemento vacío si existe
+          return numberedItems.slice(1).map(item => item.trim().replace(/\n/g, ' '));
         }
-      }
-
-      // ESTRATEGIA B: Si no encuentra nada, dividir manualmente
-      if (recommendations.length === 0) {
-        console.log('🔄 Estrategia A falló, usando división manual...');
-
-        // Limpiar el string de caracteres problemáticos
-        let cleanedString = rawString
-          .replace(/\\"/g, '"')
-          .replace(/\\'/g, "'")
-          .replace(/\\\\/g, '\\')
-          .replace(/^\["|"\]$/g, '')  // Remover [" y "]
-          .replace(/^{"|"}$/g, '')    // Remover {" y "}
-          .replace(/^"|"$/g, '');     // Remover " al inicio/final
-
-        console.log('String limpio:', cleanedString);
-
-        // Dividir por patrones que separan recomendaciones
-        // Buscar: ","  seguido de espacio y comilla
-        const separators = [
-          /",\s*"/g,           // ","
-          /'\s*,\s*'/g,        // ', '
-          /:"\s*,\s*"/g        // :", "
-        ];
-
-        let parts: string[] = [];
-
-        for (const separator of separators) {
-          parts = cleanedString.split(separator);
-          if (parts.length > 1) {
-            console.log(`✅ Separación exitosa con patrón: ${separator.source}`);
-            break;
-          }
+        
+        // Si no hay numeración, dividir por saltos de línea dobles
+        const lineBreakItems = content.split('\n').filter(item => item.trim().length > 10);
+        if (lineBreakItems.length > 1) {
+          return lineBreakItems.map(item => item.trim());
         }
-
-        // Si no se pudo dividir, intentar extraer manualmente
-        if (parts.length <= 1) {
-          console.log('🎯 División manual por posiciones...');
-
-          // Buscar todas las ocurrencias de texto largo seguido de ":"
-          const manualPattern = /([^"'{}\[\],]{25,?})(?:\s*:\s*["']?["']?)/g;
-          let manualMatches;
-
-          while ((manualMatches = manualPattern.exec(cleanedString)) !== null) {
-            const text = manualMatches[1].trim();
-            if (text.length > 20) {
-              parts.push(text);
-            }
-          }
-        }
-
-        // Procesar cada parte
-        parts.forEach((part, index) => {
-          console.log(`Procesando parte ${index + 1}:`, part);
-
-          // Limpiar la parte
-          let cleanPart = part
-            .replace(/["{}\[\]]/g, '')     // Remover caracteres especiales
-            .replace(/:\s*$/, '')          // Remover : al final
-            .replace(/^[,\s]+|[,\s]+$/g, '') // Remover comas y espacios al inicio/final
-            .trim();
-
-          if (cleanPart.length > 20) {
-            recommendations.push(cleanPart);
-          }
-        });
-      }
-
-      // ESTRATEGIA C: Última opción - regex más agresiva
-      if (recommendations.length === 0) {
-        console.log('🚨 Estrategias anteriores fallaron, usando regex agresiva...');
-
-        // Buscar cualquier texto largo entre comillas o delimitadores
-        const aggressivePattern = /['""]([^'""\[\]{}]{30,?}?)['""](?:\s*[:\,]|$)/g;
-        let aggressiveMatches;
-
-        while ((aggressiveMatches = aggressivePattern.exec(rawString)) !== null) {
-          let text = aggressiveMatches[1]
-            .replace(/\\./g, ' ')  // Reemplazar escapes por espacios
-            .replace(/\s+/g, ' ')  // Normalizar espacios
-            .trim();
-
-          if (text.length > 25 && !text.includes('":') && !text.includes('",')) {
-            recommendations.push(text);
-          }
-        }
+        
+        // Como último recurso, devolver el contenido completo
+        return [content.trim()];
       }
     }
 
-    // CASO 3: String directo
+    // Si es un string directo
     if (typeof data === 'string') {
-      console.log('📝 Detectado: String directo');
-      if (data.length > 20) {
-        recommendations = [data];
+      // Intentar parsear como JSON si parece serlo
+      if (data.trim().startsWith('{') || data.trim().startsWith('[')) {
+        try {
+          const parsed = JSON.parse(data);
+          return extractRecommendations(parsed);
+        } catch {
+          // Si no se puede parsear, tratar como string normal
+        }
       }
+      
+      // Dividir por numeración
+      const numberedItems = data.split(/\d+\.\s+/).filter(item => item.trim().length > 0);
+      if (numberedItems.length > 1) {
+        return numberedItems.slice(1).map(item => item.trim().replace(/\\n/g, ' '));
+      }
+      
+      return [data.trim()];
     }
 
-    console.log('🎉 Recomendaciones extraídas:', recommendations);
+    console.warn('⚠️ Formato de datos no reconocido');
+    return [];
 
   } catch (error) {
     console.error('💥 Error extrayendo recomendaciones:', error);
-
+    
     // Fallback de emergencia
-    const emergency = Array.isArray(data) ? data[0] : String(data);
-    if (emergency && emergency.length > 20) {
-      recommendations = [emergency.substring(0, 500)]; // Truncar si es muy largo
+    const fallbackText = typeof data === 'string' ? data : JSON.stringify(data);
+    if (fallbackText && fallbackText.length > 10) {
+      return [fallbackText.substring(0, 500)];
     }
+    
+    return [];
   }
-
-  // Filtrar y limpiar resultados finales
-  return recommendations
-    .filter(rec => rec && rec.trim().length > 20)
-    .slice(0, 10)
-    .map(rec => rec.trim());
 }
 
 export default function PracticalRecommendationsSection({ article }: PracticalRecommendationsSectionProps) {
   if (!article.practical_recommendations) return null;
 
+  const recommendations = extractRecommendations(article.practical_recommendations);
+  
+  // Obtener el título dinámico si está disponible
+  const sectionTitle = (
+    typeof article.practical_recommendations === 'object' && 
+    'title' in article.practical_recommendations
+  ) ? article.practical_recommendations.title : 'Estrategias prácticas recomendadas';
+
   return (
+    
     <section className="mb-10 py-6">
-      <h3>
-        Estrategias prácticas recomendadas
+      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+        {sectionTitle}
       </h3>
-      <ul className="space-y-3">
-        {(() => {
-          const recommendations = extractRecommendationsComplete(article.practical_recommendations);
-
-          if (recommendations.length === 0) {
-            return (
-              <li className="flex items-start space-x-3">
-                <span className="flex-shrink-0 w-5 h-5 bg-red-100 rounded-full flex items-center justify-center text-xs font-bold mt-1">
-                  ⚠️
-                </span>
-                <div className="flex-1">
-                  <p className="font-semibold text-red-800 mb-2">
-                    No se pudieron extraer las recomendaciones
-                  </p>
-                  <p className="text-sm text-red-600">
-                    Tipo de datos: <code className="bg-red-100 px-1 rounded">{typeof article.practical_recommendations}</code>
-                  </p>
-                  <p className="text-sm text-red-600">
-                    Contenido: <code className="bg-red-100 px-1 rounded">
-                      {JSON.stringify(article.practical_recommendations).substring(0, 100)}...
-                    </code>
-                  </p>
-                  <button
-                    onClick={() => console.log('Full data:', article.practical_recommendations)}
-                    className="mt-2 text-sm bg-red-100 hover:bg-red-200 px-2 py-1 rounded transition-colors"
-                  >
-                    Ver datos completos en consola
-                  </button>
-                </div>
-              </li>
-            );
-          }
-
-          return recommendations.map((recommendation: string, index: number) => (
+        <ul className="space-y-4">
+          {recommendations.map((recommendation: string, index: number) => (
             <li key={index} className="flex items-start space-x-3">
-              <span className="flex-shrink-0 w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold mt-1">
+              <span className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-1">
                 {index + 1}
               </span>
-              <span className="text-gray-700 leading-relaxed">
+              <div className="flex-1 text-gray-700 leading-relaxed">
                 {(() => {
                   // Detectar si hay título y descripción separados por ":"
                   const colonIndex = recommendation.indexOf(':');
 
-                  if (colonIndex > 0 && colonIndex < 80) {
+                  if (colonIndex > 0 && colonIndex < 100) {
                     const title = recommendation.substring(0, colonIndex).trim();
                     const description = recommendation.substring(colonIndex + 1).trim();
 
                     return (
                       <div>
-                        <strong className="font-semibold text-gray-900">
+                        <strong className="font-semibold text-gray-900 block mb-1">
                           {title}:
-                        </strong>{' '}
-                        {description}
+                        </strong>
+                        <span className="text-gray-700">
+                          {description}
+                        </span>
                       </div>
                     );
                   } else {
-                    return recommendation;
+                    return (
+                      <span className="text-gray-700">
+                        {recommendation}
+                      </span>
+                    );
                   }
                 })()}
-              </span>
+              </div>
             </li>
-          ));
-        })()}
-      </ul>
+          ))}
+        </ul>
+      
     </section>
   );
 }

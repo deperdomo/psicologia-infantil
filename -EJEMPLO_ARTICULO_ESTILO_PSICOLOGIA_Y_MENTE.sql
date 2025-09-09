@@ -1,15 +1,13 @@
+DELETE FROM blog_articles
+WHERE slug = 'como-presion-social-afecta-autoestima-ninos';
+
 INSERT INTO blog_articles (
   id,
   title,
   subtitle,
   slug,
-  image_1_path,
   image_1_alt,
-  image_2_path,
-  image_2_alt,
-  image_3_path,
-  image_3_alt,
-  featured_image_url,
+  image_1_url,
   social_share_image,
   introduction,
   current_data_research,
@@ -54,33 +52,31 @@ INSERT INTO blog_articles (
   'Cómo la presión social afecta la autoestima de los niños',
   'Estrategias para proteger el bienestar emocional infantil en un mundo de comparaciones constantes',
   'como-presion-social-afecta-autoestima-ninos',
-  'blog-images/articles/2025/09/presion-social-autoestima/hero-image.webp',
   'Niño mostrando inseguridad al compararse con otros, ilustrando impacto de presión social en autoestima',
-  'blog-images/articles/2025/09/presion-social-autoestima/nino-comparandose.webp',
-  'Niño comparándose con contenido digital en dispositivo, reflejando influencia de redes sociales',
-  'blog-images/articles/2025/09/presion-social-autoestima/familia-conectando.webp',
-  'Familia conectando emocionalmente sin dispositivos, representando espacios seguros para autoestima',
   'https://eabqgmhadverstykzcrr.supabase.co/storage/v1/object/public/blog-images/articles/2025/09/hero-imagen.png',
   'https://eabqgmhadverstykzcrr.supabase.co/storage/v1/object/public/blog-images/articles/2025/09/hero-imagen.png',
-  'En la consulta de psicología infantil, cada vez es más frecuente escuchar a padres preocupados por frases como: "No soy bueno en nada", "Los otros niños son mejores que yo" o "Nunca voy a poder hacerlo". Estas expresiones reflejan cómo la presión social puede infiltrarse en la mente infantil desde edades muy tempranas. Tradicionalmente, los niños construían su autoestima principalmente a través de las interacciones familiares y escolares. Sin embargo, en la era digital actual, están expuestos a un bombardeo constante de comparaciones a través de redes sociales, competencias académicas intensificadas y expectativas sociales cada vez más altas.',
+  'En la consulta de psicología infantil, cada vez es más frecuente escuchar a padres preocupados por frases como: **"No soy bueno en nada"**, *"Los otros niños son mejores que yo"* o ***"Nunca voy a poder hacerlo"***.\n\nEstas expresiones reflejan cómo la **presión social** puede infiltrarse en la mente infantil desde edades muy tempranas.\n\nTradicionalmente, los niños construían su autoestima principalmente a través de las *interacciones familiares y escolares*. Sin embargo, en la era digital actual, están expuestos a un bombardeo constante de comparaciones sociales, tanto en persona como a través de las redes sociales y medios digitales.\n\nEste artículo explora cómo la presión social afecta la autoestima de los niños, basándonos en investigaciones recientes y casos clínicos, y ofrece estrategias prácticas para que los padres puedan proteger y fortalecer el bienestar emocional de sus hijos.',
   '{
-    "title": "Lo que dice la investigación Dinámico",
-    "content": "Según un estudio reciente de la Universidad Complutense de Madrid (2024), el 68% de los niños entre 8 y 12 años reportan sentirse \"no suficientemente buenos\" en al menos un área de su vida, comparado con el 41% hace una década. La investigación, que siguió a 1,200 familias españolas durante tres años, revela que la exposición temprana a plataformas digitales correlaciona significativamente con niveles más bajos de autoestima infantil (r=0.73, p<0.001). Además, datos del Instituto Nacional de Estadística muestran que el 54% de niños españoles de 10-15 años usa redes sociales diariamente, superando las recomendaciones internacionales. La Organización Mundial de la Salud (2023) identifica la baja autoestima como un factor de riesgo para trastornos de ansiedad y depresión en la adolescencia temprana, estableciendo la urgencia de intervenciones preventivas."
+    "title": "Lo que dice la investigación",
+    "content": "Según un estudio reciente de la Universidad Complutense de Madrid (2024), el **68% de los niños entre 8 y 12 años** reportan sentirse *\"no suficientemente buenos\"* en al menos un área de su vida, comparado con el 41% hace una década.\n\nLa investigación, que siguió a **1,200 familias españolas durante tres años**, revela que la exposición temprana a plataformas digitales correlaciona significativamente con niveles más bajos de autoestima infantil (r=0.73, p<0.001).\n\nAdemás, datos del Instituto Nacional de Estadística muestran que el **54% de niños españoles de 10-15 años** usa redes sociales diariamente, superando las recomendaciones internacionales.\n\nLa Organización Mundial de la Salud (2023) identifica la baja autoestima como un ***factor de riesgo para trastornos de ansiedad y depresión*** en la adolescencia temprana, estableciendo la urgencia de intervenciones preventivas."
   }'::jsonb,
   '¿Has notado que tu hijo se compara constantemente con otros niños? ¿Te preguntas cómo puedes proteger su autoestima sin aislarlo del mundo social?',
   '{
-    "title": "Caso real (nombre modificado por privacidad) Dinámico",
+    "title": "Caso real (nombre modificado por privacidad)",
     "content": "Carmen, madre de Sofía (9 años), compartía en sesión: Después de ver videos en YouTube de niñas haciendo manualidades perfectas, Sofía dejó de intentar crear cosas. Decía que las suyas eran feas comparadas con esas. Tuve que ayudarla a entender que no todo lo que vemos es real y que el proceso de crear es más importante que el resultado."
   }'::jsonb,
   '{
-    "title": "Análisis desde la Psicología del Desarrollo Dinámico",
-    "content": "Desde la psicología del desarrollo, la autoestima infantil se construye a través de experiencias de competencia, conexión social y autonomía (Teoría de la Autodeterminación, Deci & Ryan, 2000). Sin embargo, la exposición prematura a estándares externos a través de medios digitales puede interrumpir este proceso natural. Neurobiológicamente, el córtex prefrontal, responsable de la autorregulación y autoconcepto, no completa su desarrollo hasta los 25 años, haciendo que los niños sean especialmente vulnerables a influencias externas. La comparación social constante activa el sistema de estrés del hipotálamo-hipófisis-adrenal, elevando cortisol y afectando tanto el aprendizaje como el bienestar emocional. Estudios de neuroimagen muestran que niños con baja autoestima presentan menor activación en áreas asociadas con recompensa y mayor activación en regiones de procesamiento de amenazas."
+    "title": "Análisis desde la Psicología del Desarrollo",
+    "content": "Desde la psicología del desarrollo, la autoestima infantil se construye a través de experiencias de **competencia, conexión social y autonomía** (*Teoría de la Autodeterminación, Deci & Ryan, 2000*). Sin embargo, la ***exposición prematura a estándares externos*** a través de medios digitales puede interrumpir este proceso natural.\n\nNeurobiológicamente, el *córtex prefrontal*, responsable de la autorregulación y autoconcepto, **no completa su desarrollo hasta los 25 años**, haciendo que los niños sean especialmente vulnerables a influencias externas.\n\nLa comparación social constante activa el **sistema de estrés del hipotálamo-hipófisis-adrenal**, elevando cortisol y afectando tanto el aprendizaje como el bienestar emocional.\n\nEstudios de neuroimagen muestran que niños con baja autoestima presentan ***menor activación en áreas asociadas con recompensa*** y mayor activación en regiones de procesamiento de amenazas."
   }'::jsonb,
-  '1. Valida el esfuerzo sobre el resultado: Celebra el proceso de aprendizaje con frases como "Vi cómo te esforzaste en esa tarea" en lugar de solo "Qué inteligente eres".\n2. Establece "momentos sin comparaciones": Crea espacios familiares libres de dispositivos donde el foco esté en la conexión y el disfrute mutuo.\n3. Enseña pensamiento crítico digital: Ayuda a tu hijo a cuestionar lo que ve online con preguntas como "¿Crees que esto muestra toda la realidad?".\n4. Fomenta sus fortalezas únicas: Identifica y celebra los talentos individuales de tu hijo, evitando comparaciones con hermanos o compañeros.\n5. Modela autocompasión: Comparte cómo manejas tus propios "errores" y muestra que equivocarse es parte del crecimiento humano.',
-  'Si notas que la autoestima de tu hijo se ve persistentemente afectada por comparaciones sociales, o si observas signos de ansiedad, evitación social o comentarios negativos frecuentes sobre sí mismo, considera buscar apoyo profesional. Un psicólogo infantil puede ofrecer estrategias personalizadas para fortalecer la autoestima y desarrollar herramientas de afrontamiento saludables. La intervención temprana es clave para prevenir dificultades emocionales más complejas en el futuro.',
   '{
-    "title": "Un mensaje final Dinámico",
-    "content": "Proteger la autoestima de nuestros hijos en un mundo lleno de comparaciones no significa aislarlos de la realidad, sino equiparlos con herramientas emocionales sólidas. Recuerda que tu validación y amor incondicional siguen siendo los pilares más importantes de su bienestar. No hay padres perfectos, pero sí padres conscientes que buscan el crecimiento conjunto. Cada pequeño paso cuenta en este camino de acompañamiento."
+    "title": "Recomendaciones prácticas para padres",
+    "content": "1. Fomenta una mentalidad de crecimiento: Enseña a tu hijo que las habilidades se desarrollan con esfuerzo y práctica, no son innatas. Usa frases como \"No lo lograste esta vez, pero con práctica mejorarás\".\n2. Limita el tiempo en redes sociales: Establece horarios claros para el uso de dispositivos y supervisa el contenido al que accede tu hijo. Promueve actividades offline que fortalezcan su autoconcepto.\n3. Refuerza sus logros personales: Celebra los esfuerzos y progresos individuales sin compararlos con los de otros niños. Esto ayuda a construir una autoestima basada en el autoconocimiento.\n4. Modela autocompasión: Los niños aprenden observando. Muestra cómo manejas tus propios errores y fracasos con amabilidad hacia ti mismo.\n5. Fomenta relaciones sociales saludables: Anima a tu hijo a desarrollar amistades basadas en intereses comunes y apoyo mutuo, en lugar de competencia."
+  }'::jsonb,
+  'Si notas que la autoestima de tu hijo se ve persistentemente afectada por comparaciones sociales, o si observas signos de **ansiedad, evitación social o comentarios negativos frecuentes** sobre sí mismo, considera buscar apoyo profesional.\n\nUn psicólogo infantil puede ofrecer estrategias personalizadas para fortalecer la autoestima y desarrollar herramientas de afrontamiento saludables. La ***intervención temprana es clave*** para prevenir dificultades emocionales más complejas en el futuro.',
+  '{
+    "title": "Un mensaje final",
+    "content": "Proteger la autoestima de nuestros hijos en un mundo lleno de comparaciones no significa aislarlos de la realidad, sino **equiparlos con herramientas emocionales sólidas**.\n\nRecuerda que tu ***validación y amor incondicional*** siguen siendo los pilares más importantes de su bienestar.\n\nNo hay padres perfectos, pero sí *padres conscientes* que buscan el crecimiento conjunto. **Cada pequeño paso cuenta** en este camino de acompañamiento."
   }'::jsonb,
   '[
     {"tipo": "libro", "titulo": "Mindset: La actitud del éxito", "autor": "Carol Dweck", "url": "https://amazon.es/dp/8417810188"},
@@ -88,16 +84,16 @@ INSERT INTO blog_articles (
     {"tipo": "herramienta", "titulo": "Aplicación Headspace for Kids - Meditación infantil", "url": "https://headspace.com/kids"}
   ]'::jsonb,
   '[
-    {"pregunta": "¿A qué edad empiezan los niños a compararse con otros?", "respuesta": "Las comparaciones sociales básicas comienzan alrededor de los 4-5 años, pero se intensifican significativamente entre los 8-12 años cuando desarrollan mayor conciencia social."},
-    {"pregunta": "¿Las redes sociales siempre afectan negativamente la autoestima?", "respuesta": "No necesariamente. El impacto depende del tipo de contenido, tiempo de exposición y acompañamiento adulto. El uso consciente y limitado puede tener efectos neutros o incluso positivos."},
-    {"pregunta": "¿Cómo puedo saber si mi hijo tiene problemas de autoestima?", "respuesta": "Señales incluyen: comentarios negativos frecuentes sobre sí mismo, evitación de actividades nuevas, comparaciones constantes, cambios en el rendimiento escolar o aislamiento social."}
+    {"pregunta": "¿A qué edad empiezan los niños a compararse con otros?", "respuesta": "Las comparaciones sociales básicas comienzan alrededor de los **4-5 años**, pero se intensifican significativamente entre los ***8-12 años*** cuando desarrollan mayor conciencia social."},
+    {"pregunta": "¿Las redes sociales siempre afectan negativamente la autoestima?", "respuesta": "No necesariamente. El impacto depende del *tipo de contenido*, *tiempo de exposición* y **acompañamiento adulto**. El uso consciente y limitado puede tener efectos neutros o incluso positivos."},
+    {"pregunta": "¿Cómo puedo saber si mi hijo tiene problemas de autoestima?", "respuesta": "Señales incluyen: **comentarios negativos frecuentes** sobre sí mismo, *evitación de actividades nuevas*, comparaciones constantes, cambios en el rendimiento escolar o ***aislamiento social***."}
   ]'::jsonb,
   '[
-    {"point": "La presión social actual afecta la autoestima infantil desde edades tempranas"},
-    {"point": "El cerebro infantil es especialmente vulnerable a comparaciones externas"},
-    {"point": "Validar el esfuerzo sobre el resultado fortalece la autoestima genuina"},
-    {"point": "El pensamiento crítico digital es una habilidad esencial en la era actual"},
-    {"point": "La intervención temprana previene dificultades emocionales futuras"}
+    {"point": "La **presión social actual** afecta la autoestima infantil desde edades tempranas"},
+    {"point": "El ***cerebro infantil*** es especialmente vulnerable a comparaciones externas"},
+    {"point": "Validar el **esfuerzo sobre el resultado** fortalece la autoestima genuina"},
+    {"point": "El *pensamiento crítico digital* es una habilidad esencial en la era actual"},
+    {"point": "La ***intervención temprana*** previene dificultades emocionales futuras"}
   ]'::jsonb,
   '[
     {
@@ -262,7 +258,7 @@ INSERT INTO blog_articles (
   ]'::jsonb,
   'Llenia Monteagudo',
   'vinculoycrecimiento@gmail.com',
-  'Llenia Monteagudo es graduada en psicología, con mención en psicología clínica, por la Universidad de Barcelona. Cursó el Máster en Psicología General Sanitaria con la Universidad Autónoma de Barcelona. Posteriormente, se formó como experta en psicología de las emergencias y catástrofes. Tanto esta formación como la experiencia laboral en el campo, supusieron para Llenia el descubrimiento de un nuevo mundo: el trauma. Desde entonces, trabaja desde un enfoque integrador y no ha parado de formarse en trauma, sistema nervioso, apego, duelo y emociones. Su especialización actual se centra en el desarrollo emocional infantil y el impacto de los factores sociales en la autoestima.',
+  'Llenia Monteagudo es graduada en psicología, con mención en psicología clínica, por la Universidad de Barcelona. Cursó el **Máster en Psicología General Sanitaria** con la Universidad Autónoma de Barcelona.\n\nPosteriormente, se formó como experta en psicología de las emergencias y catástrofes. Tanto esta formación como la experiencia laboral en el campo, supusieron para Llenia el descubrimiento de un nuevo mundo: ***el trauma***.\n\nDesde entonces, trabaja desde un *enfoque integrador* y no ha parado de formarse en trauma, sistema nervioso, apego, duelo y emociones. Su **especialización actual** se centra en el desarrollo emocional infantil y el impacto de los factores sociales en la autoestima.',
   'Graduada en Psicología (Universidad de Barcelona), Máster en Psicología General Sanitaria (Universidad Autónoma de Barcelona), Especialista en Desarrollo Emocional Infantil',
   'https://eabqgmhadverstykzcrr.supabase.co/storage/v1/object/public/blog-images/authors/llenia-monteagudo.jpg',
   '{
