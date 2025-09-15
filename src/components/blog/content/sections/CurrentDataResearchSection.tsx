@@ -11,8 +11,8 @@ export default function CurrentDataResearchSection({ article }: CurrentDataResea
   const { title, content } = article.current_data_research;
 
   return (
-    <section className="mb-12 p-6">
-      <div className="flex items-start space-x-4">
+    <section className="mb-12">
+      <div className="flex items-start">
         <div className="flex-1">
           <h3>
             {title}

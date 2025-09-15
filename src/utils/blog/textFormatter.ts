@@ -75,7 +75,7 @@ function processInlineFormatting(text: string): React.ReactNode[] {
  * - **texto** para negrita
  * - *texto* para cursiva  
  * - ***texto*** para negrita y cursiva
- * - \\n para saltos de línea (nuevos párrafos)
+ * - \n para saltos de línea (nuevos párrafos)
  * 
  * @param text - Texto a formatear
  * @returns Array de elementos React JSX o null si no hay texto
@@ -83,20 +83,21 @@ function processInlineFormatting(text: string): React.ReactNode[] {
 export function formatText(text: string | null | undefined): React.ReactNode[] | null {
   if (!text) return null;
 
-  // Dividir el texto por saltos de línea explícitos
-  const paragraphs = text.split('\\n').filter(paragraph => paragraph.trim() !== '');
-  
+  // Dividir el texto por saltos de línea explícitos - CORREGIDO: usar \n en lugar de \\n
+  const paragraphs = text.split('\n').filter(paragraph => paragraph.trim() !== '');
+    
   return paragraphs.map((paragraph, paragraphIndex) => {
     // Procesar cada párrafo para formatear negritas y cursivas
-    const processedParagraph = processInlineFormatting(paragraph.trim());
-    
+    const processedParagraph = processInlineFormatting(paragraph.replace(/\\n/g, ' ').replace(/\n/g, ' ').replace(/\\/g, ' ').trim());
+        
     return React.createElement(
       'p',
       { 
-        key: paragraphIndex, 
-        className: 'mb-2 last:mb-0' 
+        key: paragraphIndex,
+        className: 'mb-2 last:mb-0'
       },
       processedParagraph
+      
     );
   });
 }
@@ -108,12 +109,12 @@ export function formatText(text: string | null | undefined): React.ReactNode[] |
  */
 export function stripFormatting(text: string | null | undefined): string {
   if (!text) return '';
-  
+    
   return text
     .replace(/\*\*\*([^*]+)\*\*\*/g, '$1') // Remover negrita + cursiva
     .replace(/\*\*([^*]+)\*\*/g, '$1')     // Remover negrita
     .replace(/\*([^*]+)\*/g, '$1')         // Remover cursiva
-    .replace(/\\n/g, ' ')                  // Reemplazar saltos de línea con espacios
+    .replace(/\\n/g, ' ')                  // Reemplazar \\n literal con espacios
+    .replace(/\n/g, ' ')                   // Reemplazar \n real con espacios
     .trim();
 }
-

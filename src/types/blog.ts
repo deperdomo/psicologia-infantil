@@ -52,14 +52,12 @@ export interface BlogArticle {
   additional_resources?: any;
   
   // Contenido estructurado
-  key_sections?: any;
   faq_data?: any;
   summary_points?: any;
   
   // Referencias
   bibliography?: any;
   related_articles?: any;
-  external_links?: any;
   
   // SEO
   meta_description?: string;
@@ -245,6 +243,7 @@ export interface BlogCardData {
   subtitle?: string;
   slug: string;
   category: string;
+  subcategory?: string;
   tags: string[];
   author_name: string;
   author_credentials?: string;

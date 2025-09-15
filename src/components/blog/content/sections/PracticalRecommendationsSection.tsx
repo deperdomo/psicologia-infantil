@@ -21,9 +21,11 @@ function extractRecommendations(data: any): string[] {
         // Dividir por saltos de línea numerados (1., 2., etc.)
         const numberedItems = content.split(/\d+\.\s+/).filter(item => item.trim().length > 0);
         
-        if (numberedItems.length > 1) {
-          // Remover el primer elemento vacío si existe
-          return numberedItems.slice(1).map(item => item.trim().replace(/\n/g, ' '));
+        if (numberedItems.length > 0) {
+          // Si el primer elemento está vacío (porque el string empieza con "1."), lo removemos
+          // Si no está vacío, mantenemos todos los elementos
+          const startIndex = numberedItems[0].trim() === '' ? 1 : 0;
+          return numberedItems.slice(startIndex).map(item => item.trim().replace(/\n/g, ' '));
         }
         
         // Si no hay numeración, dividir por saltos de línea dobles
@@ -51,8 +53,9 @@ function extractRecommendations(data: any): string[] {
       
       // Dividir por numeración
       const numberedItems = data.split(/\d+\.\s+/).filter(item => item.trim().length > 0);
-      if (numberedItems.length > 1) {
-        return numberedItems.slice(1).map(item => item.trim().replace(/\\n/g, ' '));
+      if (numberedItems.length > 0) {
+        const startIndex = numberedItems[0].trim() === '' ? 1 : 0;
+        return numberedItems.slice(startIndex).map(item => item.trim().replace(/\\n/g, ' '));
       }
       
       return [data.trim()];

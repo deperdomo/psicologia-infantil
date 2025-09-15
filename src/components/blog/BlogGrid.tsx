@@ -26,6 +26,7 @@ export default function BlogGrid({
   // Estados locales
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(initialCategory || '');
+  const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [selectedArticle, setSelectedArticle] = useState<BlogCardData | null>(null);
   const [currentViewMode, setCurrentViewMode] = useState<'grid' | 'list'>(propViewMode);
 
@@ -42,6 +43,17 @@ export default function BlogGrid({
   // Estados derivados
   const isLoading = articlesLoading || cardsLoading || searchLoading;
   const hasError = articlesError || cardsError || searchError;
+
+  // Obtener subcategorías únicas de los artículos
+  const subcategories = useMemo(() => {
+    const subcats = new Set<string>();
+    cards.forEach(card => {
+      if (card.subcategory) {
+        subcats.add(card.subcategory);
+      }
+    });
+    return Array.from(subcats).sort();
+  }, [cards]);
 
   // Determinar qué datos mostrar
   const displayData: BlogCardData[] = useMemo(() => {
@@ -64,9 +76,19 @@ export default function BlogGrid({
       }));
     }
     
+    let filteredCards = cards;
+    
+    // Filtrar por categoría
     if (selectedCategory) {
-      return cards.filter(card => card.category === selectedCategory);
+      filteredCards = filteredCards.filter(card => card.category === selectedCategory);
     }
+    
+    // Filtrar por subcategoría
+    if (selectedSubcategory) {
+      filteredCards = filteredCards.filter(card => card.subcategory === selectedSubcategory);
+    }
+    
+    return filteredCards;
     
     return maxItems ? cards : articles.map(article => ({
       id: article.id,
@@ -83,7 +105,7 @@ export default function BlogGrid({
       is_featured: article.is_featured || false, // Puede ser null en BD
       is_trending: article.is_trending || false // Puede ser null en BD
     }));
-  }, [searchTerm, searchResults, selectedCategory, cards, maxItems, articles]);
+  }, [searchTerm, searchResults, selectedCategory, selectedSubcategory, cards, maxItems, articles]);
 
   // Handlers
   const handleSearch = (term: string) => {
@@ -95,7 +117,13 @@ export default function BlogGrid({
 
   const handleCategoryFilter = (category: string) => {
     setSelectedCategory(category === selectedCategory ? '' : category);
+    setSelectedSubcategory(''); // Limpiar subcategoría al cambiar categoría
     setSearchTerm(''); // Limpiar búsqueda al filtrar por categoría
+  };
+
+  const handleSubcategoryFilter = (subcategory: string) => {
+    setSelectedSubcategory(subcategory === selectedSubcategory ? '' : subcategory);
+    setSearchTerm(''); // Limpiar búsqueda al filtrar por subcategoría
   };
 
   const formatCategoryName = (category: string) => {
@@ -210,12 +238,46 @@ export default function BlogGrid({
         </div>
       )}
 
+      {/* Filtros de subcategoría - Solo mostrar si hay subcategorías y alguna categoría seleccionada */}
+      {showFilters && subcategories.length > 0 && (
+        <div className="mb-10">
+          <h3 className="text-sm font-medium text-gray-900 mb-3">Subcategorías</h3>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => handleSubcategoryFilter('')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors border ${
+                selectedSubcategory === ''
+                  ? 'bg-purple-600 text-white border-purple-600'
+                  : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
+              }`}
+            >
+              Todas las subcategorías
+            </button>
+            {subcategories.map((subcategory) => (
+              <button
+                key={subcategory}
+                onClick={() => handleSubcategoryFilter(subcategory)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors border ${
+                  selectedSubcategory === subcategory
+                    ? 'bg-purple-600 text-white border-purple-600'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
+                }`}
+              >
+                {subcategory.replace('-', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Resultados */}
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-600">
             {searchTerm ? (
               `${displayData.length} resultado${displayData.length !== 1 ? 's' : ''} para "${searchTerm}"`
+            ) : selectedSubcategory ? (
+              `${displayData.length} artículo${displayData.length !== 1 ? 's' : ''} en ${selectedSubcategory.replace('-', ' ')}`
             ) : selectedCategory ? (
               `${displayData.length} artículo${displayData.length !== 1 ? 's' : ''} en ${formatCategoryName(selectedCategory)}`
             ) : (

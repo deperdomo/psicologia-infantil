@@ -20,3 +20,5 @@ Campos a eliminar de  la BD y del front-end:
 - image_3_path
 - image_3_alt
 - featured_image_url cambiado por -> image_1_url
+- external_links -> eliminado de la tabla, y del front-end
+- key_sections

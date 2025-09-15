@@ -122,8 +122,23 @@ export default function BlogMeta({
     updateMetaTag('content-type', 'educational-article');
     updateMetaTag('specialty', 'child-psychology');
     
-    // Canonical URL
-    updateLinkTag('canonical', seoConfig.canonical_url);
+    // Canonical URL - usar el campo canonical_url del artículo si existe
+    const canonicalUrl = article.canonical_url || seoConfig.canonical_url;
+    updateLinkTag('canonical', canonicalUrl);
+    
+    // Schema markup - usar el campo schema_markup del artículo si existe
+    let schemaData = schema;
+    if (article.schema_markup) {
+      try {
+        const customSchema = typeof article.schema_markup === 'string' 
+          ? JSON.parse(article.schema_markup) 
+          : article.schema_markup;
+        // Combinar schema por defecto con schema personalizado
+        schemaData = { ...schema, ...customSchema };
+      } catch (error) {
+        console.warn('Error parsing custom schema markup:', error);
+      }
+    }
     
     // Actualizar o crear schema markup
     let schemaScript = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
@@ -132,7 +147,7 @@ export default function BlogMeta({
       schemaScript.type = 'application/ld+json';
       document.head.appendChild(schemaScript);
     }
-    schemaScript.textContent = JSON.stringify(schema, null, 2);
+    schemaScript.textContent = JSON.stringify(schemaData, null, 2);
     
     // Cleanup function para remover meta tags al desmontar
     return () => {

@@ -8,3 +8,5 @@ export { default as FAQSection } from './FAQSection';
 export { default as SummaryPointsSection } from './SummaryPointsSection';
 export { default as EmpatheticClosingSection } from './EmpatheticClosingSection';
 export { default as NewsletterSection } from './NewsletterSection';
+export { default as AdditionalResourcesSection } from './AdditionalResourcesSection';
+export { default as AuthorProfileSection } from './AuthorProfileSection';

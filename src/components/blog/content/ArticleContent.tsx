@@ -14,7 +14,9 @@ import {
   FAQSection,
   SummaryPointsSection,
   EmpatheticClosingSection,
-  NewsletterSection
+  NewsletterSection,
+  AdditionalResourcesSection,
+  AuthorProfileSection
 } from './sections';
 
 interface ArticleContentProps {
@@ -50,8 +52,14 @@ export default function ArticleContent({ article }: ArticleContentProps) {
         {/* 🔵 IMPORTANCIA BAJA - Puntos Clave */}
         <SummaryPointsSection article={article} />
 
+        {/* 📚 RECURSOS ADICIONALES - Libros y herramientas */}
+        <AdditionalResourcesSection article={article} />
+
         {/* 💙 CIERRE EMPÁTICO - Importancia emocional */}
         <EmpatheticClosingSection article={article} />
+
+        {/* 👨‍⚕️ PERFIL DEL AUTOR - Información profesional */}
+        <AuthorProfileSection article={article} />
 
         {/* 🔵 IMPORTANCIA BAJA - Newsletter */}
         <NewsletterSection />

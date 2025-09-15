@@ -41,12 +41,10 @@ function parseArticleFromDB(raw: any): BlogArticle {
   return {
     ...raw,
     additional_resources: raw.additional_resources || null,
-    key_sections: ensureArray(raw.key_sections),
     faq_data: ensureArray(raw.faq_data),
     summary_points: ensureArray(raw.summary_points),
     bibliography: ensureArray(raw.bibliography),
     related_articles: ensureArray(raw.related_articles),
-    external_links: ensureArray(raw.external_links),
     tags: ensureArray(raw.tags),
     recommended_products: ensureArray(raw.recommended_products),
     professional_recommendations: ensureArray(raw.professional_recommendations),
