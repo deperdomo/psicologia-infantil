@@ -1,11 +1,10 @@
 import Navbar from "../../components/Navbar";
 import HeroSection from "./HeroSection";
 import ApproachSection from "./ApproachSection";
-import PhilosophySection from "./PhilosophySection";
-import WorkMethodSection from "./WorkMethodSection";
 import CTASection from "./CTASection";
 import Footer from "../../components/Footer";
 import { usePageTitle } from "../../hooks/usePageTitle";
+import ApproachAndMethodSection from "./ApproachAndMethodSection";
 
 export default function SobreMi() {
   usePageTitle({
@@ -20,8 +19,9 @@ export default function SobreMi() {
       <main>
         <HeroSection />
         <ApproachSection />
-        <PhilosophySection />
-        <WorkMethodSection />
+        {/* <PhilosophySection /> */}
+        {/* <WorkMethodSection /> */}
+        <ApproachAndMethodSection />
         <CTASection />        
         <Footer />
       </main>

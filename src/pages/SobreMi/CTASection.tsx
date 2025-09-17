@@ -40,12 +40,6 @@ export default function CTASection() {
             : 'opacity-0 translate-y-12'
             }`}
         >
-          <div className={`inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-full mb-8 shadow-2xl transition-all duration-1000 delay-200 ${heroVisible
-            ? 'opacity-100 scale-100 rotate-0'
-            : 'opacity-0 scale-75 rotate-12'
-            }`}>
-            <IoHeart className="text-4xl text-white animate-pulse" />
-          </div>
 
           <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 transition-all duration-1000 delay-400 ${heroVisible
             ? 'opacity-100 translate-y-0'

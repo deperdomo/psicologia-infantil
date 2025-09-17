@@ -82,9 +82,11 @@ export default function Navbar() {
           {/* Logo Simple */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-sm font-bold">L</span>
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="Llenia Monteagudo - Psicóloga Infantil" 
+                className="w-8 h-8 rounded-lg object-contain"
+              />
               <div>
                 <h1 className="text-lg font-semibold text-gray-900">
                   Llenia Monteagudo

@@ -12,16 +12,14 @@ export default function EmpatheticClosingSection({ article }: EmpatheticClosingS
   const { title, content } = article.empathetic_closing;
 
   return (
-    <section className="mb-12 py-8">
-      <div className="flex items-start space-x-4">
-        <div className="flex-1">
-          <h3>
-            {title}
-          </h3>
-          <div className="text-gray-700 leading-relaxed">
-            {formatText(content)}
-          </div>
-        </div>
+    <section className="mb-14 py-8">
+      <div className="border-b border-gray-200 pb-4 mb-6">
+        <h2 className="prose-h2">
+          {title}
+        </h2>
+      </div>
+      <div className="prose prose-lg max-w-none leading-relaxed">
+        {formatText(content)}
       </div>
     </section>
   );

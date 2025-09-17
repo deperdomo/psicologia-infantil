@@ -1,12 +1,52 @@
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 // react-icons imports - replacing emojis with proper icons
-import { GiSprout } from 'react-icons/gi';
 import { IoLink, IoHeart, IoConstruct } from 'react-icons/io5';
+import ApproachCard from './ApproachCard';
 
 export default function ApproachSection() {
   // Hooks para animaciones de scroll
   const { elementRef: sectionRef, isVisible: sectionVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
+
+  // Datos de las tarjetas de enfoque
+  const approachData = [
+    {
+      title: "Sistémico",
+      description: "Porque los niños no crecen en el vacío, sino dentro de una red de relaciones que los sostienen y los afectan.",
+      IconComponent: IoLink,
+      features: [
+        "Entorno familiar y escolar",
+        "Dinámicas relacionales", 
+        "Acompañamiento a padres"
+      ],
+      colorScheme: 'blue' as const,
+      delay: 300
+    },
+    {
+      title: "Humanista",
+      description: "Cada persona merece ser vista, escuchada y aceptada tal como es, sin juicios ni etiquetas.",
+      IconComponent: IoHeart,
+      features: [
+        "Mirada empática y cálida",
+        "Aceptación incondicional",
+        "Crecimiento desde el amor"
+      ],
+      colorScheme: 'purple' as const,
+      delay: 500
+    },
+    {
+      title: "Integrador",
+      description: "La realidad es compleja y requiere múltiples herramientas para abordar cada situación única.",
+      IconComponent: IoConstruct,
+      features: [
+        "Juego terapéutico",
+        "Terapia emocional",
+        "Psicoeducación"
+      ],
+      colorScheme: 'pink' as const,
+      delay: 700
+    }
+  ];
 
   return (
     <section 
@@ -28,13 +68,7 @@ export default function ApproachSection() {
               : 'opacity-0 translate-y-12'
           }`}
         >
-          <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl mb-6 shadow-lg transition-all duration-1000 delay-200 ${
-            headerVisible 
-              ? 'opacity-100 scale-100 rotate-0' 
-              : 'opacity-0 scale-75 -rotate-12'
-          }`}>
-            <GiSprout className="text-3xl text-white" />
-          </div>
+          
           <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 transition-all duration-1000 delay-400 ${
             headerVisible 
               ? 'opacity-100 translate-y-0' 
@@ -54,123 +88,18 @@ export default function ApproachSection() {
 
         {/* Grid de enfoques con diseño moderno */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-          {/* Enfoque Sistémico */}
-          <div className={`relative transition-all duration-1000 delay-300 ${
-            sectionVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-12'
-          }`}>
-            <div className="relative bg-white/80 backdrop-blur-sm border border-blue-200 rounded-3xl p-8 h-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              {/* Decoración de fondo */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200/50 to-purple-200/50 rounded-full blur-2xl"></div>
-              
-              <div className="relative space-y-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <IoLink className="text-2xl text-white" />
-                </div>
-                
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Sistémico</h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    Porque los niños no crecen en el vacío, sino dentro de una red de relaciones que los sostienen y los afectan.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Entorno familiar y escolar</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Dinámicas relacionales</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Acompañamiento a padres</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Enfoque Humanista */}
-          <div className={`relative transition-all duration-1000 delay-500 ${
-            sectionVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-12'
-          }`}>
-            <div className="relative bg-white/80 backdrop-blur-sm border border-purple-200 rounded-3xl p-8 h-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              {/* Decoración de fondo */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200/50 to-pink-200/50 rounded-full blur-2xl"></div>
-              
-              <div className="relative space-y-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <IoHeart className="text-2xl text-white" />
-                </div>
-                
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Humanista</h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    Cada persona merece ser vista, escuchada y aceptada tal como es, sin juicios ni etiquetas.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-purple-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Mirada empática y cálida</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-purple-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Aceptación incondicional</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-purple-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Crecimiento desde el amor</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Enfoque Integrador */}
-          <div className={`relative transition-all duration-1000 delay-700 ${
-            sectionVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-12'
-          }`}>
-            <div className="relative bg-white/80 backdrop-blur-sm border border-pink-200 rounded-3xl p-8 h-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              {/* Decoración de fondo */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-200/50 to-orange-200/50 rounded-full blur-2xl"></div>
-              
-              <div className="relative space-y-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <IoConstruct className="text-2xl text-white" />
-                </div>
-                
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Integrador</h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    La realidad es compleja y requiere múltiples herramientas para abordar cada situación única.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-pink-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Juego terapéutico</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-pink-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Terapia emocional</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-pink-500 rounded-full shadow-sm"></div>
-                      <span className="text-sm text-gray-700 font-medium">Psicoeducación</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {approachData.map((approach) => (
+            <ApproachCard
+              key={approach.title}
+              title={approach.title}
+              description={approach.description}
+              IconComponent={approach.IconComponent}
+              features={approach.features}
+              colorScheme={approach.colorScheme}
+              isVisible={sectionVisible}
+              delay={approach.delay}
+            />
+          ))}
         </div>
 
         {/* Sección adicional con call-to-action sutil */}

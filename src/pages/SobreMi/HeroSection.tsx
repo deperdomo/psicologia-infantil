@@ -114,14 +114,14 @@ export default function HeroSection() {
                   {/* Placeholder para la foto de Llenia */}
                   <div className="w-80 h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center shadow-inner">
                   <div className="w-full h-full flex items-center justify-center">
-                    <img src="img/llenia/llenia.jpg" alt="Foto de Llenia" className="w-full h-full object-cover rounded-2xl" />
+                    <img src="img/llenia/llenia.jpg" alt="Logo" className="w-full h-full object-cover rounded-2xl" />
                   </div>
                   </div>
                   
                   {/* Badge flotante de credencial */}
-                  <div className="absolute -top-3 -right-3 bg-white rounded-full p-3 shadow-lg border border-gray-200">
-                  <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full flex items-center justify-center">
-                    <GiSprout className="text-white text-lg" />
+                  <div className="absolute -top-3 -right-3 bg-white rounded-full p-2 shadow-lg border border-gray-200">
+                  <div className="">
+                    <img src="/logo.png" alt="Logo" className="w-12 h-12" />
                   </div>
                   </div>
                   

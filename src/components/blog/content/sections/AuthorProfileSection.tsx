@@ -3,7 +3,7 @@
 // Componente mejorado con diseño moderno y profesional
 // ===================================
 
-import { Mail, Globe, Twitter, Linkedin, Instagram, Award, Star, CheckCircle } from 'lucide-react';
+import { Mail, Globe, Linkedin, Instagram, Award, Star, CheckCircle } from 'lucide-react';
 import type { BlogArticle } from '../../../../types/blog';
 import { formatText } from '../../../../utils/blog/textFormatter';
 import { SiX } from 'react-icons/si';
