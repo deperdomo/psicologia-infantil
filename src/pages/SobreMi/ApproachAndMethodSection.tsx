@@ -5,23 +5,20 @@ export default function ApproachAndMethodSection() {
     <section className="relative py-24 lg:py-32 overflow-hidden">
       {/* Fondo con gradiente y elementos decorativos */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
-     
+
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Principal con animación */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-gray-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent">
-              Mi metodología de
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-gray-900 mb-6 transition-all duration-1000 delay-400">
+            Mi metodología de <br />
+            <span className="text-transparent pt-3 font-heading bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 text-4xl md:text-5xl lg:text-6xl font-bold block mb-6 transition-all duration-1000 delay-400">
+            acompañamiento
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              acompañamiento
-            </span>
-          </h2>
-          
+            </h2>
+
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Un espacio donde la comprensión profunda se encuentra con herramientas prácticas 
+            Un espacio donde la comprensión profunda se encuentra con herramientas prácticas
             para el bienestar familiar
           </p>
         </div>
@@ -37,18 +34,18 @@ export default function ApproachAndMethodSection() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="text-center max-w-4xl mx-auto pt-6">
               <blockquote className="text-2xl md:text-3xl font-light text-gray-700 leading-relaxed mb-8">
                 <span className="text-6xl text-purple-300 leading-none">"</span>
                 Trabajo con una mirada amplia, sensible y práctica, que une la comprensión profunda con herramientas concretas
                 <span className="text-6xl text-purple-300 leading-none">"</span>
               </blockquote>
-              
+
               <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto mb-8 rounded-full"></div>
-              
+
               <p className="text-lg text-gray-600 leading-relaxed mb-10">
-                Mi objetivo es que tanto el niño como los adultos encuentren nuevas formas de estar, 
+                Mi objetivo es que tanto el niño como los adultos encuentren nuevas formas de estar,
                 sentir y vincularse desde un lugar más sano y auténtico.
               </p>
             </div>
@@ -57,7 +54,7 @@ export default function ApproachAndMethodSection() {
 
         {/* Grid principal rediseñado */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
+
           {/* Metodología con diseño moderno */}
           <div className="group">
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/50 transition-all duration-500 h-full">
@@ -65,11 +62,11 @@ export default function ApproachAndMethodSection() {
                 <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl p-3 mr-4">
                   <Lightbulb className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-purple-900 bg-clip-text text-transparent">
+                <h3 className="text-2xl font-bold font-heading bg-gradient-to-r from-gray-900 to-purple-900 bg-clip-text text-transparent">
                   Mi metodología
                 </h3>
               </div>
-              
+
               <div className="space-y-6">
                 {[
                   { title: "Personalizada", desc: "Adaptada a cada familia", icon: Users },
@@ -93,7 +90,7 @@ export default function ApproachAndMethodSection() {
           {/* Experiencia rediseñada */}
           <div className="group">
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/50 transition-all duration-500 h-full">
-              
+
               {/* Badge de experiencia */}
               <div className="flex items-center justify-center mb-8">
                 <div className="relative">
@@ -105,14 +102,14 @@ export default function ApproachAndMethodSection() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-purple-900 bg-clip-text text-transparent mb-2">
+                <h3 className="text-2xl font-bold font-heading bg-gradient-to-r from-gray-900 to-purple-900 bg-clip-text text-transparent mb-2">
                   Años de experiencia
                 </h3>
                 <p className="text-gray-600">Acompañando familias en su crecimiento</p>
               </div>
-            
+
               {/* Cita inspiracional */}
               <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-6 mb-8 border border-purple-100/50">
                 <div className="flex items-start space-x-3">

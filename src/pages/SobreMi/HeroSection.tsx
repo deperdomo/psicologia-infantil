@@ -1,5 +1,5 @@
+import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { GiSprout } from 'react-icons/gi';
 import { FaUserMd } from 'react-icons/fa';
 
 export default function HeroSection() {
@@ -47,21 +47,21 @@ export default function HeroSection() {
                 <span className="text-sm font-medium text-gray-700">Máster en Psicología Infantil y Juvenil</span>
               </div>
               
-              <h1 
+              <motion.h1
                 ref={titleRef}
-                className={`text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight transition-all duration-1000 delay-400 ${
+                className={`text-5xl md:text-6xl lg:text-7xl font-bold font-heading text-gray-900 leading-tight transition-all duration-1000 delay-400 ${
                   titleVisible 
                     ? 'opacity-100 translate-y-0 scale-100' 
                     : 'opacity-0 translate-y-8 scale-95'
                 }`}
               >
-                <span className="block">Hola, soy</span>
-                <span className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 block transition-all duration-1000 delay-600 ${
+                <span className="block font-heading">Hola, soy</span>
+                <span className={`text-transparent font-heading bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 block transition-all duration-1000 delay-600 ${
                   titleVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-4'
                 }`}>Llenia</span>
-              </h1>
+              </motion.h1>
                 
               <div className={`max-w-3xl mx-auto lg:mx-0 space-y-4 transition-all duration-1000 delay-800 ${
                 contentVisible 

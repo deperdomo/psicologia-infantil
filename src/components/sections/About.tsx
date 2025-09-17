@@ -15,12 +15,9 @@ export default function About() {
           <div className="space-y-8">
             {/* Header con icono */}
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mb-6">
-                <span className="text-3xl">👩‍⚕️</span>
-              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Hola, soy
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                <span className="block text-transparent font-heading bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
                   Llenia Monteagudo
                 </span>
               </h2>
@@ -70,7 +67,7 @@ export default function About() {
                 <div className="relative inline-block">
                   <div className="w-40 h-40 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full p-1 shadow-lg">
                     <img
-                      src="/img/doctora.jpg"
+                      src="/img/llenia/llenia.jpg"
                       alt="Llenia Monteagudo Rodríguez - Psicóloga especializada en infancia"
                       className="w-full h-full rounded-full object-cover"
                     />

@@ -32,7 +32,7 @@ export default function Philosophy() {
         
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Un espacio donde el dolor
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+            <span className="block text-transparent font-heading bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
               no se evita, se acompaña
             </span>
           </h2>

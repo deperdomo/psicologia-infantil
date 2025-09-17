@@ -1,5 +1,5 @@
 // react-icons imports modernos y con más personalidad
-import { HiOutlineSparkles, HiOutlineChatBubbleLeftRight, HiOutlineBookOpen, HiOutlineCalendarDays, HiOutlineHeart, HiOutlinePhone, HiOutlineEnvelope, HiOutlineArrowRight } from 'react-icons/hi2';
+import { HiOutlineChatBubbleLeftRight, HiOutlineBookOpen, HiOutlineCalendarDays, HiOutlineHeart, HiOutlinePhone, HiOutlineEnvelope, HiOutlineArrowRight } from 'react-icons/hi2';
 
 export default function CallToAction() {
 
@@ -46,7 +46,7 @@ export default function CallToAction() {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
+    <section id="contact" className="py-30 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
       {/* Elementos decorativos de fondo */}
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
@@ -57,9 +57,6 @@ export default function CallToAction() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header principal */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mb-8 shadow-2xl">
-            <HiOutlineSparkles className="text-3xl text-white" />
-          </div>
           
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
             ¿Lista para dar el siguiente paso?
@@ -80,63 +77,58 @@ export default function CallToAction() {
           {actionCards.map((card) => (
             <div
               key={card.id}
-              className="group relative transform transition-all duration-500 hover:scale-105"
+              className="group relative transform transition-all duration-500 hover:scale-105 flex flex-col h-full"
             >
-              <div className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500">
-                {/* Imagen */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                  />
-                  {/* Sombra inferior discreta con altura delimitada */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t ${card.color}/60 to-transparent`}></div>
-                  
-                  {/* Icono flotante */}
-                  <div className={`absolute top-6 right-6 w-16 h-16 bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}>
-                    {card.icon}
-                  </div>
-
-                  {/* Número de paso */}
-                  <div className="absolute top-6 left-6 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-sm font-bold text-gray-900">{card.id}</span>
-                  </div>
+              <div className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 flex flex-col h-full">
+              {/* Imagen */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                src={card.image}
+                alt={card.title}
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                {/* Sombra inferior discreta con altura delimitada */}
+                <div className={`absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t ${card.color}/60 to-transparent`}></div>
+                
+                {/* Icono flotante */}
+                <div className={`absolute top-6 right-6 w-16 h-16 bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}>
+                {card.icon}
                 </div>
+              </div>
 
-                {/* Contenido */}
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    {card.title}
-                  </h3>
-                  
-                  <p className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
-                    {card.subtitle}
-                  </p>
-                  
-                  <p className="text-gray-700 mb-6 leading-relaxed">
-                    {card.description}
-                  </p>
+              {/* Contenido */}
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                {card.title}
+                </h3>
+                
+                <p className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
+                {card.subtitle}
+                </p>
+                
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                {card.description}
+                </p>
 
-                  {/* Features */}
-                  <ul className="space-y-2 mb-8">
-                    {card.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-gray-600">
-                        <div className={`w-2 h-2 bg-gradient-to-r ${card.color} rounded-full mr-3`}></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                {/* Features */}
+                <ul className="space-y-2 mb-8">
+                {card.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center text-sm text-gray-600">
+                  <div className={`w-2 h-2 bg-gradient-to-r ${card.color} rounded-full mr-3`}></div>
+                  {feature}
+                  </li>
+                ))}
+                </ul>
 
-                  {/* Botón de acción */}
-                  <a
-                    href={card.link}
-                    className={`w-full bg-gradient-to-r ${card.color} text-white py-4 px-6 rounded-2xl font-bold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center group-hover:transform group-hover:scale-105`}
-                  >
-                    {card.action}
-                    <HiOutlineArrowRight className="ml-2 text-xl transform group-hover:translate-x-1 transition-transform duration-300" />
-                  </a>
-                </div>
+                {/* Botón de acción */}
+                <a
+                href={card.link}
+                className={`mt-auto w-full bg-gradient-to-r ${card.color} text-white py-4 px-6 rounded-2xl font-bold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center group-hover:transform group-hover:scale-105`}
+                >
+                {card.action}
+                <HiOutlineArrowRight className="ml-2 text-xl transform group-hover:translate-x-1 transition-transform duration-300" />
+                </a>
+              </div>
               </div>
             </div>
           ))}

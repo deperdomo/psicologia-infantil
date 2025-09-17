@@ -6,7 +6,7 @@ import SEOMeta from "../../components/SEOMeta";
 import StructuredData from "../../components/StructuredData";
 import { BibliotecaGrid } from "./BibliotecaGrid";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
-import { IoLibrary, IoBook, IoDownload } from 'react-icons/io5';
+import { IoBook, IoDownload } from 'react-icons/io5';
 import { FaGraduationCap, FaHeart } from 'react-icons/fa';
 
 export default function Recursos() {
@@ -96,22 +96,14 @@ export default function Recursos() {
                     : 'opacity-0 translate-y-12'
                 }`}
               >
-                <div className="space-y-6">
-                  <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl shadow-lg transition-all duration-1000 delay-200 ${
-                    titleVisible 
-                      ? 'opacity-100 scale-100 rotate-0' 
-                      : 'opacity-0 scale-75 rotate-12'
-                  }`}>
-                    <IoLibrary className="text-3xl text-white" aria-hidden="true" />
-                  </div>
-                  
+                <div className="space-y-6">                 
                   <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold leading-tight transition-all duration-1000 delay-400 ${
                     titleVisible 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-8'
                   }`}>
-                    <span className="text-gray-900">Biblioteca</span>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 block">
+                    <span className="text-gray-900 font-heading">Biblioteca</span>
+                    <span className="text-transparent bg-clip-text font-heading  bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 block">
                       Emocional
                     </span>
                   </h1>

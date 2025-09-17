@@ -96,13 +96,13 @@ export const EnhancedHero: React.FC<EnhancedHeroProps> = ({
 
             {/* Main Headline */}
             <motion.h1
-              className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+              className="text-5xl lg:text-6xl font-bold font-heading text-gray-900 leading-tight"
               variants={itemVariants}
             >
               Acompañamos el{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-pink-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-pink-600 font-serif" style={{ fontFamily: 'Merriweather, serif' }}>
                 desarrollo emocional
-              </span>{' '}
+                </span>{' '}
               de tu hijo
             </motion.h1>
 
@@ -124,8 +124,8 @@ export const EnhancedHero: React.FC<EnhancedHeroProps> = ({
               {trustIndicators.map((indicator, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center space-x-3 p-4 bg-white/70 backdrop-blur-sm rounded-lg border border-gray-100 hover:bg-white/90 transition-all duration-300"
-                  whileHover={{ y: -2, boxShadow: "0 8px 25px rgba(0,0,0,0.1)" }}
+                  className="flex items-center space-x-3 p-4 bg-white/70 backdrop-blur-sm rounded-lg border border-gray-200"
+                  
                 >
                   <div className="p-2 bg-blue-100 rounded-lg">
                     <indicator.icon className="w-5 h-5 text-blue-600" />

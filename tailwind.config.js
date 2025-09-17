@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'heading': ['Merriweather', 'Georgia', 'Times New Roman', 'serif'],
+        'body': ['Source Sans 3', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        'sans': ['Source Sans 3', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        'serif': ['Merriweather', 'Georgia', 'Times New Roman', 'serif'],
+      },
       keyframes: {
         fadeInUp: {
           'from': {

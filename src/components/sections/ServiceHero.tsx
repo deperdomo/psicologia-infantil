@@ -41,7 +41,7 @@ export default function ServiceHero({
             </div>
             
             {/* Título principal */}
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-5xl lg:text-6xl font-bold font-heading text-gray-900 leading-tight">
               {title}
             </h1>
             

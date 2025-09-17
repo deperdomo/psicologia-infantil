@@ -60,6 +60,11 @@
   /* 🧊 Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.3);
+
+  /* 📝 TIPOGRAFÍA - Fuentes del sistema */
+  --font-heading: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-monospace: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
 }
 
 /* ===================================

@@ -58,7 +58,7 @@ export default function Navbar() {
     { to: '/sobre-mi', label: 'Sobre mí' },
     { to: '/recursos', label: 'Recursos' },
     { to: '/blog', label: 'Blog' },
-    { to: '/testimonios', label: 'Testimonios' },
+    // { to: '/testimonios', label: 'Testimonios' },
     { to: '/contacto', label: 'Contacto' },
   ];
 

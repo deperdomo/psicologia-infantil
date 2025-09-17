@@ -69,13 +69,13 @@ export default function ApproachSection() {
           }`}
         >
           
-          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 transition-all duration-1000 delay-400 ${
+          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-gray-900 mb-6 transition-all duration-1000 delay-400 ${
             headerVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
             Mi enfoque 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> terapéutico</span>
+            <span className="text-transparent font-heading bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> terapéutico</span>
           </h2>
           <p className={`text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto transition-all duration-1000 delay-600 ${
             headerVisible 

@@ -176,9 +176,9 @@ export default function Contacto() {
             Respuesta en menos de 24 horas
           </div>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading text-gray-900 mb-6 leading-tight">
             Ponte en{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-serif" style={{ fontFamily: 'Merriweather, serif' }}>
               Contacto
             </span>
           </h1>

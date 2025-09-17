@@ -4,7 +4,12 @@
 
 /* Configuración global */
 * {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-family: var(--font-body);
+}
+
+/* Asegurar que todos los headings usen Merriweather */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading) !important;
 }
 
 html {

@@ -31,7 +31,7 @@ export default function Hero() {
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[var(--text)] mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-[var(--text)] mb-6 leading-tight">
               Acompañando la infancia con
               <span className={`block text-[var(--highlight)] mt-2 transition-all duration-1000 delay-300 ${
                 titleVisible 

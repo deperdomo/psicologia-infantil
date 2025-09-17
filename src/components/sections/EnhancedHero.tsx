@@ -96,7 +96,7 @@ export default function EnhancedHero() {
                 Especialista en Psicología Infantil
               </motion.div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-[var(--text)] leading-tight">
                 Acompañando la infancia con
                 <motion.span 
                   className="block text-[var(--highlight)] mt-2"

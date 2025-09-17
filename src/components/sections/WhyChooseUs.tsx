@@ -1,6 +1,6 @@
 import { useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
 // react-icons imports modernos y con más personalidad
-import { HiOutlineHeart, HiOutlineShieldCheck, HiOutlineClock, HiOutlineChatBubbleLeftRight, HiOutlineCheckBadge, HiOutlineUserGroup, HiOutlineSparkles } from 'react-icons/hi2';
+import { HiOutlineHeart, HiOutlineShieldCheck, HiOutlineClock, HiOutlineChatBubbleLeftRight, HiOutlineCheckBadge, HiOutlineUserGroup } from 'react-icons/hi2';
 
 export default function WhyChooseUs() {
   const { setRef, visibleItems } = useStaggeredScrollAnimation(6, 250);
@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden">
+    <section className="py-45 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden">
       {/* Elementos decorativos de fondo */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-pink-200/30 to-orange-200/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
@@ -83,9 +83,6 @@ export default function WhyChooseUs() {
       <div className="max-w-7xl mx-auto px-6 relative">
         {/* Header mejorado */}
         <div className="text-center mb-24">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full mb-8 shadow-2xl">
-            <HiOutlineSparkles className="text-3xl text-white" />
-          </div>
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             ¿Por qué confiar en mí?
           </h2>

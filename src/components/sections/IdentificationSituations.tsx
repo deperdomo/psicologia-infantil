@@ -49,7 +49,7 @@ export default function IdentificationSituations() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <section className="py-30 bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <div className="max-w-7xl mx-auto px-6">
         {/* Título de la sección */}
         <div className="text-center mb-20">
@@ -62,7 +62,7 @@ export default function IdentificationSituations() {
         </div>
 
         {/* Situaciones en layout moderno */}
-        <div className="space-y-20">
+        <div className="space-y-35">
           {situations.map((situation, index) => (
             <div
               key={situation.id}
@@ -73,7 +73,7 @@ export default function IdentificationSituations() {
                   : 'opacity-0 translate-y-12'
               }`}
             >
-              <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
+              <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-15`}>
                 {/* Imagen */}
                 <div className="lg:w-1/2">
                   <div className="relative group">

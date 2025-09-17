@@ -2,6 +2,19 @@
    📝 UTILIDADES DE TIPOGRAFÍA
    =================================== */
 
+/* 🎨 Utilidades de fuentes del sistema */
+.font-heading {
+  font-family: var(--font-heading) !important;
+}
+
+.font-body {
+  font-family: var(--font-body) !important;
+}
+
+.font-monospace {
+  font-family: var(--font-monospace) !important;
+}
+
 /* Texto responsivo */
 @media (max-width: 640px) {
   .text-responsive-xl {

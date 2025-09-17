@@ -41,7 +41,7 @@ export default function CTASection() {
             }`}
         >
 
-          <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 transition-all duration-1000 delay-400 ${heroVisible
+          <h2 className={`text-5xl md:text-6xl lg:text-7xl font-bold font-heading text-gray-900 mb-8 transition-all duration-1000 delay-400 ${heroVisible
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-8'
             }`}>
@@ -81,7 +81,7 @@ export default function CTASection() {
 
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <h3 className="text-3xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors duration-300">
+                  <h3 className="text-3xl font-bold font-heading text-gray-900 group-hover:text-purple-700 transition-colors duration-300">
                     Presencial
                   </h3>
                   <div className="flex items-center space-x-3">
@@ -125,7 +125,7 @@ export default function CTASection() {
 
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <h3 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors duration-300">
+                  <h3 className="text-3xl font-bold font-heading text-gray-900 group-hover:text-blue-700 transition-colors duration-300">
                     Online
                   </h3>
                   <div className="flex items-center space-x-3">
