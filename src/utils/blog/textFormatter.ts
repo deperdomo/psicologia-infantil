@@ -31,7 +31,7 @@ function processInlineFormatting(text: string): React.ReactNode[] {
       parts.push(
         React.createElement(
           'strong',
-          { key: key++, className: 'font-bold italic' },
+          { key: key++, className: 'prose-strong prose-em' },
           match[2]
         )
       );
@@ -40,7 +40,7 @@ function processInlineFormatting(text: string): React.ReactNode[] {
       parts.push(
         React.createElement(
           'strong',
-          { key: key++, className: 'font-bold' },
+          { key: key++, className: 'prose-strong' },
           match[3]
         )
       );
@@ -49,7 +49,7 @@ function processInlineFormatting(text: string): React.ReactNode[] {
       parts.push(
         React.createElement(
           'em',
-          { key: key++, className: 'italic' },
+          { key: key++, className: 'prose-em' },
           match[4]
         )
       );
@@ -94,7 +94,7 @@ export function formatText(text: string | null | undefined): React.ReactNode[] |
       'p',
       { 
         key: paragraphIndex,
-        className: 'mb-2 last:mb-0'
+        className: 'prose-p mb-2 last:mb-0'
       },
       processedParagraph
       

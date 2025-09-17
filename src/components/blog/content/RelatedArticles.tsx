@@ -40,10 +40,10 @@ export default function RelatedArticles({ article }: RelatedArticlesProps) {
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">
+          <h3 className="prose-h3">
             📚 Artículos relacionados
           </h3>
-          <p className="text-xl text-gray-700">
+          <p className="prose-p">
             Continúa profundizando en estos temas relacionados
           </p>
         </div>

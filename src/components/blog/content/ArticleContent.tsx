@@ -14,7 +14,6 @@ import {
   FAQSection,
   SummaryPointsSection,
   EmpatheticClosingSection,
-  NewsletterSection,
   AdditionalResourcesSection,
   AuthorProfileSection
 } from './sections';
@@ -60,9 +59,6 @@ export default function ArticleContent({ article }: ArticleContentProps) {
 
         {/* 👨‍⚕️ PERFIL DEL AUTOR - Información profesional */}
         <AuthorProfileSection article={article} />
-
-        {/* 🔵 IMPORTANCIA BAJA - Newsletter */}
-        <NewsletterSection />
 
       </article>
     </div>

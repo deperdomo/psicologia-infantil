@@ -14,10 +14,10 @@ export default function CurrentDataResearchSection({ article }: CurrentDataResea
     <section className="mb-12">
       <div className="flex items-start">
         <div className="flex-1">
-          <h3>
+          <h3 className="prose-h3">
             {title}
           </h3>
-          <div className="text-gray-700 leading-relaxed">
+          <div className="leading-relaxed">
             {formatText(content)}
           </div>
         </div>

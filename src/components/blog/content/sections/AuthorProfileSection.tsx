@@ -1,10 +1,12 @@
 // ===================================
 // 👨‍⚕️ PERFIL COMPLETO DEL AUTOR CON BIOGRAFÍA Y ENLACES SOCIALES
-// Componente mejorado para mostrar información profesional completa
+// Componente mejorado con diseño moderno y profesional
 // ===================================
 
-import { Mail, Globe, Twitter, Linkedin, Instagram, Award } from 'lucide-react';
+import { Mail, Globe, Twitter, Linkedin, Instagram, Award, Star, CheckCircle } from 'lucide-react';
 import type { BlogArticle } from '../../../../types/blog';
+import { formatText } from '../../../../utils/blog/textFormatter';
+import { SiX } from 'react-icons/si';
 
 interface AuthorProfileSectionProps {
   article: BlogArticle;
@@ -16,27 +18,6 @@ interface SocialLinks {
   linkedin?: string;
   instagram?: string;
 }
-
-const formatBio = (bio: string) => {
-  return bio.split('\\n\\n').map((paragraph, index) => (
-    <p key={index} className="mb-4 last:mb-0">
-      {paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-               .replace(/\*(.*?)\*/g, '<em>$1</em>')
-               .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
-               .split(/(<strong>.*?<\/strong>|<em>.*?<\/em>|<strong><em>.*?<\/em><\/strong>)/)
-               .map((part, partIndex) => {
-                 if (part.startsWith('<strong><em>') && part.endsWith('</em></strong>')) {
-                   return <strong key={partIndex}><em>{part.replace(/<\/?strong>|<\/?em>/g, '')}</em></strong>;
-                 } else if (part.startsWith('<strong>') && part.endsWith('</strong>')) {
-                   return <strong key={partIndex}>{part.replace(/<\/?strong>/g, '')}</strong>;
-                 } else if (part.startsWith('<em>') && part.endsWith('</em>')) {
-                   return <em key={partIndex}>{part.replace(/<\/?em>/g, '')}</em>;
-                 }
-                 return part;
-               })}
-    </p>
-  ));
-};
 
 export default function AuthorProfileSection({ article }: AuthorProfileSectionProps) {
   if (!article.author_bio && !article.author_email && !article.author_social_links) {
@@ -55,64 +36,82 @@ export default function AuthorProfileSection({ article }: AuthorProfileSectionPr
   }
 
   return (
-    <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl my-8 border border-gray-200">
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">
-            👨‍⚕️ Sobre el autor
+    <section className="relative py-16 my-12 overflow-hidden">
+      {/* Background with gradient and pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,transparent,black)]"></div>
+      </div>
+      
+      <div className="relative max-w-5xl mx-auto px-6">
+        {/* Header with improved typography */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mb-6">
+            <Star className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
+            Sobre el Autor
           </h3>
-          <p className="text-gray-700">
-            Conoce al profesional detrás de este artículo
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Conoce al profesional detrás de este contenido especializado
           </p>
         </div>
 
-        {/* Author Card */}
-        <div className="bg-white rounded-xl p-8 shadow-md border border-gray-100">
-          <div className="flex flex-col md:flex-row gap-6">
-            {/* Author Photo */}
+        {/* Enhanced Author Card */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-2xl border border-white/20 relative">
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500"></div>
+          
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Enhanced Author Photo */}
             {article.author_photo_url && (
-              <div className="flex-shrink-0 text-center md:text-left">
-                <img
-                  src={article.author_photo_url}
-                  alt={article.author_name}
-                  className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg mx-auto md:mx-0"
-                />
+              <div className="flex-shrink-0 text-center lg:text-left">
+                <div className="relative inline-block">
+                  <img
+                    src={article.author_photo_url}
+                    alt={article.author_name}
+                    className="w-36 h-36 md:w-40 md:h-40 rounded-full object-cover border-4 border-white shadow-xl"
+                  />
+                  <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                    <CheckCircle className="w-5 h-5 text-white" />
+                  </div>
+                </div>
               </div>
             )}
 
-            {/* Author Info */}
-            <div className="flex-1">
+            {/* Enhanced Author Info */}
+            <div className="flex-1 space-y-6">
               {/* Name and Credentials */}
-              <div className="mb-4">
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">
+              <div>
+                <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
                   {article.author_name}
                 </h4>
                 {article.author_credentials && (
-                  <div className="flex items-center text-gray-600 mb-2">
-                    <Award className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="text-sm font-medium">{article.author_credentials}</span>
+                  <div className="flex items-center justify-center lg:justify-start">
+                    <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 rounded-full border border-amber-200">
+                      <Award className="w-4 h-4 mr-2 text-amber-600" />
+                      <span className="text-sm font-semibold">{article.author_credentials}</span>
+                    </div>
                   </div>
                 )}
               </div>
 
-              {/* Biography */}
+              {/* Enhanced Biography */}
               {article.author_bio && (
-                <div className="prose prose-sm max-w-none mb-6 text-gray-700 leading-relaxed">
-                  {formatBio(article.author_bio)}
+                <div className="prose prose-lg max-w-none">
+                  {formatText(article.author_bio)}
                 </div>
               )}
 
-              {/* Contact and Social Links */}
-              <div className="flex flex-wrap gap-4">
+              {/* Enhanced Contact and Social Links */}
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                 {/* Email */}
                 {article.author_email && (
                   <a
                     href={`mailto:${article.author_email}`}
-                    className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors duration-200"
+                    className="group inline-flex items-center px-5 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    <Mail className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">Contactar</span>
+                    <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    <span className="font-medium">Contactar</span>
                   </a>
                 )}
 
@@ -122,10 +121,10 @@ export default function AuthorProfileSection({ article }: AuthorProfileSectionPr
                     href={socialLinks.web}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors duration-200"
+                    className="group inline-flex items-center px-5 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    <Globe className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">Website</span>
+                    <Globe className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    <span className="font-medium">Website</span>
                   </a>
                 )}
 
@@ -135,24 +134,24 @@ export default function AuthorProfileSection({ article }: AuthorProfileSectionPr
                     href={socialLinks.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors duration-200"
+                    className="group inline-flex items-center px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    <Linkedin className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">LinkedIn</span>
+                    <Linkedin className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    <span className="font-medium">LinkedIn</span>
                   </a>
                 )}
 
                 {/* Twitter */}
                 {socialLinks.twitter && (
-                  <a
+                    <a
                     href={socialLinks.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-sky-100 text-sky-700 rounded-lg hover:bg-sky-200 transition-colors duration-200"
-                  >
-                    <Twitter className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">Twitter</span>
-                  </a>
+                    className="group inline-flex items-center px-5 py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-xl hover:from-sky-600 hover:to-sky-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    >
+                      <SiX size={24}className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform"  />
+                    <span className="font-medium">X</span>
+                    </a>
                 )}
 
                 {/* Instagram */}
@@ -161,10 +160,10 @@ export default function AuthorProfileSection({ article }: AuthorProfileSectionPr
                     href={socialLinks.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-pink-100 text-pink-700 rounded-lg hover:bg-pink-200 transition-colors duration-200"
+                    className="group inline-flex items-center px-5 py-3 bg-gradient-to-r from-pink-500 to-rose-600 text-white rounded-xl hover:from-pink-600 hover:to-rose-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    <Instagram className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">Instagram</span>
+                    <Instagram className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    <span className="font-medium">Instagram</span>
                   </a>
                 )}
               </div>
@@ -172,14 +171,28 @@ export default function AuthorProfileSection({ article }: AuthorProfileSectionPr
           </div>
         </div>
 
-        {/* Professional Note */}
-        <div className="mt-6 p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
-          <p className="text-sm text-gray-700">
-            <strong>Artículo profesional:</strong> Este contenido ha sido elaborado por un profesional 
-            cualificado en psicología y revisado según estándares académicos.
-          </p>
+        {/* Enhanced Professional Note */}
+        <div className="mt-8 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-2xl"></div>
+          <div className="relative p-6 bg-white/60 backdrop-blur-sm border-l-4 border-blue-500 rounded-r-2xl shadow-lg">
+            <div className="flex items-start space-x-4">
+              <div className="flex-shrink-0">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-white" />
+                </div>
+              </div>
+              <div>
+                <h5 className="font-bold text-gray-900 mb-2">Contenido Profesional Verificado</h5>
+                <p className="text-gray-700 leading-relaxed">
+                  Este artículo ha sido elaborado por un profesional cualificado en psicología, 
+                  revisado según estándares académicos y actualizado con las últimas investigaciones del campo.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
     </section>
   );
 }

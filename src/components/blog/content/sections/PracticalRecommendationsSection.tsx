@@ -91,16 +91,16 @@ export default function PracticalRecommendationsSection({ article }: PracticalRe
   return (
     
     <section className="mb-10 py-6">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+      <h3 className="prose-h3">
         {sectionTitle}
       </h3>
-        <ul className="space-y-4">
+        <ul className="prose-ul space-y-4">
           {recommendations.map((recommendation: string, index: number) => (
-            <li key={index} className="flex items-start space-x-3">
+            <li key={index} className="prose-li flex items-start space-x-3">
               <span className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-1">
                 {index + 1}
               </span>
-              <div className="flex-1 text-gray-700 leading-relaxed">
+              <div className="flex-1 leading-relaxed">
                 {(() => {
                   // Detectar si hay título y descripción separados por ":"
                   const colonIndex = recommendation.indexOf(':');
@@ -111,17 +111,17 @@ export default function PracticalRecommendationsSection({ article }: PracticalRe
 
                     return (
                       <div>
-                        <strong className="font-semibold text-gray-900 block mb-1">
+                        <strong className="prose-strong block mb-1">
                           {title}:
                         </strong>
-                        <span className="text-gray-700">
+                        <span className="prose-p">
                           {description}
                         </span>
                       </div>
                     );
                   } else {
                     return (
-                      <span className="text-gray-700">
+                      <span className="prose-p">
                         {recommendation}
                       </span>
                     );

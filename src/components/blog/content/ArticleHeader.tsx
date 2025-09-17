@@ -3,7 +3,14 @@
 // Componente optimizado para replicar el diseño profesional
 // ===================================
 
-import { Calendar, User, Share2, Clock } from 'lucide-react';
+import {
+  Calendar, Share2, Clock, CheckCircle,
+  Users,
+  Cake,
+  BookOpen,
+  BookText,
+  GraduationCap
+} from 'lucide-react';
 import type { BlogArticle } from '../../../types/blog';
 import { formatText } from '../../../utils/blog/textFormatter';
 interface ArticleHeaderProps {
@@ -35,57 +42,71 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
     <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 animate-fadeInUp prose-psicologia">
 
       {/* Category and Professional Badge */}
-      <div className="flex flex-wrap items-center gap-3 mb-4 animate-fadeInUp-delay-1">
+      <div className="flex flex-wrap items-center gap-3 mb-4">
         <span className="tag-psychology">
-          {article.category}
+          {article.category ? article.category.charAt(0).toUpperCase() + article.category.slice(1) : ''}
         </span>
         {article.is_professional_content && (
           <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 border border-green-200">
-            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
+            <CheckCircle className="w-4 h-4 mr-1" />
             Artículo revisado
           </span>
         )}
-        
+
         {/* Target Audience Badge */}
         {article.target_audience && (
           <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 border border-blue-200">
-            👥 {article.target_audience}
+            <Users className="w-4 h-4 mr-1" />
+            {article.target_audience}
           </span>
         )}
-        
+
         {/* Age Range Badge */}
         {article.age_range && (
           <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 border border-purple-200">
-            🎂 {article.age_range}
+            <Cake className="w-4 h-4 mr-1" />
+            {article.age_range}
           </span>
         )}
-        
+
         {/* Topic Complexity Badge */}
         {article.topic_complexity && (
-          <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${
-            article.topic_complexity === 'beginner' 
-              ? 'bg-green-100 text-green-800 border-green-200' 
+          <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${article.topic_complexity === 'beginner'
+              ? 'bg-green-100 text-green-800 border-green-200'
               : article.topic_complexity === 'intermediate'
-              ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
-              : 'bg-red-100 text-red-800 border-red-200'
-          }`}>
-            {article.topic_complexity === 'beginner' && '📖 Básico'}
-            {article.topic_complexity === 'intermediate' && '📚 Intermedio'}
-            {article.topic_complexity === 'advanced' && '🎓 Avanzado'}
+                ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                : 'bg-red-100 text-red-800 border-red-200'
+            }`}>
+            {article.topic_complexity === 'beginner' && (
+              <>
+                <BookOpen className="w-4 h-4 mr-1" />
+                Básico
+              </>
+            )}
+            {article.topic_complexity === 'intermediate' && (
+              <>
+                <BookText className="w-4 h-4 mr-1" />
+                Intermedio
+              </>
+            )}
+            {article.topic_complexity === 'advanced' && (
+              <>
+                <GraduationCap className="w-4 h-4 mr-1" />
+                Avanzado
+              </>
+            )}
           </span>
         )}
       </div>
 
       {/* Main Title */}
-      <h1 className="animate-fadeInUp-delay-2">
+      <h1 className="prose-h1 animate-fadeInUp-delay-2">
         {article.title}
       </h1>
 
       {/* Subtitle */}
       {article.subtitle && (
-        <h2 className="animate-fadeInUp-delay-3">
+        <h2 className="prose-article-title animate-fadeInUp-delay-3">
           {article.subtitle}
         </h2>
       )}
@@ -104,12 +125,8 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
           )}
           <div>
             <div className="flex items-center space-x-2">
-              <User className="w-4 h-4 text-gray-500" />
-              <span className="font-medium text-gray-900">{article.author_name}</span>
+              <span className="font-medium text-gray-500">{article.author_name}</span>
             </div>
-            {article.author_credentials && (
-              <p className="text-sm text-gray-600">{article.author_credentials}</p>
-            )}
           </div>
         </div>
 
@@ -148,7 +165,7 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
             className="w-full h-64 md:h-80 lg:h-96 object-cover rounded-lg shadow-lg"
           />
           {article.image_1_alt && (
-            <p className="text-sm text-gray-600 mt-2 italic text-center">
+            <p className="text-sm text-gray-500 italic text-center mt-2">
               {article.image_1_alt}
             </p>
           )}
@@ -161,12 +178,12 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
       {/* Introduction con párrafos múltiples */}
       {article.introduction && (
         <div className="prose prose-lg max-w-none mb-8">
-          <div className="text-xl leading-relaxed text-gray-700 font-medium">
+          <div className="prose-p text-xl leading-relaxed font-medium">
             {formatText(article.introduction)}
           </div>
         </div>
       )}
-      
+
     </header>
   );
 }

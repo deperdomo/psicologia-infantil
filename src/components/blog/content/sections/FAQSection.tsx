@@ -13,7 +13,7 @@ export default function FAQSection({ article }: FAQSectionProps) {
 
   return (
     <section className="mb-10">
-      <h3>Preguntas frecuentes</h3>
+      <h3 className="prose-h3">Preguntas frecuentes</h3>
       <div className="space-y-3">
         {article.faq_data.map((faq: any, index: number) => (
           <FAQItem key={index} pregunta={faq.pregunta} respuesta={faq.respuesta} />
@@ -30,7 +30,7 @@ function FAQItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
     <div className="group border-b border-gray-200 py-4 last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between cursor-pointer font-medium text-gray-900 group-open:text-blue-600"
+        className="flex w-full items-center justify-between cursor-pointer prose-strong group-open:text-blue-600"
       >
         <span className="flex items-center text-left">
           <span className="mr-3 text-blue-600 font-bold text-sm">Q:</span>
@@ -46,21 +46,23 @@ function FAQItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
       </button>
 
       <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="pt-2 text-gray-700 leading-relaxed flex items-start">
-              <span className="mr-3 pt-4 text-green-600 font-bold text-sm">A:</span>
-              {formatText(respuesta)}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+  {open && (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="overflow-hidden"
+    >
+      <div className="pt-2 leading-relaxed flex">
+        <span className="mr-3 mt-7.5 text-green-600 font-bold text-sm">A:</span>
+        <div className="prose-p">
+          {formatText(respuesta)}
+        </div>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </div>
   );
 }

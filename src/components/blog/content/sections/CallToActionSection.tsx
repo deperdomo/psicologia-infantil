@@ -14,10 +14,10 @@ export default function CallToActionSection({ article }: CallToActionSectionProp
       <div className="flex items-start space-x-4">
 
         <div className="flex-1">
-          <h3>
+          <h3 className="prose-h3">
             Cuándo buscar ayuda profesional
           </h3>
-          <div className="text-gray-700 leading-relaxed mb-4">
+          <div className="leading-relaxed mb-4">
             {formatText(article.call_to_action)}
           </div>
           <a

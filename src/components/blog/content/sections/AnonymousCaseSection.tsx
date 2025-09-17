@@ -13,10 +13,10 @@ export default function AnonymousCaseSection({ article }: AnonymousCaseSectionPr
   const textoFormateado = formatText(content);
   return (
     <section className="mb-12 py-6">
-      <h3 className="flex items-center">
+      <h3 className="prose-h3 flex items-center">
         {title}
       </h3>
-      <blockquote className="text-gray-700 italic leading-relaxed pl-6">
+      <blockquote className="prose-blockquote pl-6">
         {textoFormateado}
       </blockquote>
     </section>
