@@ -10,16 +10,19 @@ import { IoBook, IoDownload } from 'react-icons/io5';
 import { FaGraduationCap, FaHeart } from 'react-icons/fa';
 
 export default function Recursos() {
-  const { slug } = useParams<{ slug?: string }>();
+  const { slug, resourceId } = useParams<{ slug?: string; resourceId?: string }>();
   
-  // Determinar título dinámico basado en la categoría
-  const dynamicTitle = slug 
-    ? `${slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} - Biblioteca Emocional`
-    : 'Biblioteca Emocional';
+  // Determinar título dinámico basado en la categoría o recurso
+  let dynamicTitle = 'Biblioteca Emocional';
+  let dynamicDescription = 'Explora nuestra biblioteca de recursos emocionales organizados por categorías.';
   
-  const dynamicDescription = slug
-    ? `Recursos terapéuticos específicos para ${slug.split('-').join(' ')}. Materiales profesionales gratuitos.`
-    : 'Explora nuestra biblioteca de recursos emocionales organizados por categorías.';
+  if (resourceId) {
+    dynamicTitle = 'Recurso - Biblioteca Emocional';
+    dynamicDescription = 'Visualiza y descarga recursos terapéuticos específicos de nuestra biblioteca emocional.';
+  } else if (slug) {
+    dynamicTitle = `${slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} - Biblioteca Emocional`;
+    dynamicDescription = `Recursos terapéuticos específicos para ${slug.split('-').join(' ')}. Materiales profesionales gratuitos.`;
+  }
   
   usePageTitle({
     title: dynamicTitle,
@@ -37,13 +40,19 @@ export default function Recursos() {
       <SEOMeta 
         title={dynamicTitle}
         description={dynamicDescription}
-        keywords={slug 
-          ? `recursos ${slug.split('-').join(' ')}, psicología infantil, ${slug.split('-').join(' ')} niños`
-          : "recursos psicología infantil, biblioteca emocional, cartas terapéuticas"
+        keywords={resourceId 
+          ? "recurso psicología infantil, biblioteca emocional, descargar recurso"
+          : slug 
+            ? `recursos ${slug.split('-').join(' ')}, psicología infantil, ${slug.split('-').join(' ')} niños`
+            : "recursos psicología infantil, biblioteca emocional, cartas terapéuticas"
         }
-        url={slug 
-          ? `https://piscologiainfantil.com/recursos/categoria/${slug}`
-          : "https://piscologiainfantil.com/recursos"
+        url={resourceId
+          ? slug 
+            ? `https://piscologiainfantil.com/recursos/categoria/${slug}/${resourceId}`
+            : `https://piscologiainfantil.com/recursos/${resourceId}`
+          : slug 
+            ? `https://piscologiainfantil.com/recursos/categoria/${slug}`
+            : "https://piscologiainfantil.com/recursos"
         }
       />
       <StructuredData 
@@ -51,19 +60,24 @@ export default function Recursos() {
         data={{
           name: dynamicTitle,
           description: dynamicDescription,
-          url: slug 
-            ? `https://piscologiainfantil.com/recursos/categoria/${slug}`
-            : "https://piscologiainfantil.com/recursos"
+          url: resourceId
+            ? slug 
+              ? `https://piscologiainfantil.com/recursos/categoria/${slug}/${resourceId}`
+              : `https://piscologiainfantil.com/recursos/${resourceId}`
+            : slug 
+              ? `https://piscologiainfantil.com/recursos/categoria/${slug}`
+              : "https://piscologiainfantil.com/recursos"
         }}
       />
       
       <Navbar />
       
-      {/* Hero Section Modernizado */}
-      <section 
-        ref={heroRef}
-        className="relative py-24 lg:py-32 overflow-hidden"
-      >
+      {/* Hero Section Modernizado - Solo mostrar si no hay categoría seleccionada */}
+      {!slug && !resourceId && (
+        <section 
+          ref={heroRef}
+          className="relative py-24 lg:py-32 overflow-hidden"
+        >
         {/* Elementos decorativos de fondo */}
         <div className="absolute inset-0">
           <div className={`absolute top-10 right-10 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl transition-all duration-2000 ${
@@ -198,8 +212,10 @@ export default function Recursos() {
           </div>
         </div>
       </section>
+      )}
 
-      <div className="px-4 sm:px-6 lg:px-8 mb-26">
+      {/* Contenedor principal con padding ajustado según si hay Hero o no */}
+      <div className={`px-4 sm:px-6 lg:px-8 ${!slug && !resourceId ? 'mb-26' : 'py-8'}`}>
         <div className="max-w-7xl mx-auto">
           {/* Componente BibliotecaGrid con datos de Supabase */}
           <BibliotecaGrid />

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { BibliotecaCategory, Resource, AgeRange, ResourceType } from '../../types/recursos';
 import BibliotecaCategoryCard from './BibliotecaCategoryCard';
 import FilterPanel from './FilterPanel';
@@ -12,7 +12,7 @@ import ResourceListItem from './ResourceListItem';
 import SubcategorySection from './SubcategorySection';
 import LoadingState from './LoadingState';
 import { useSupabaseRecursos } from '../../hooks/useSupabaseRecursos';
-import { useCategoryRouting } from '../../hooks/useCategoryRouting';
+import { useResourceRouting } from '../../hooks/useResourceRouting';
 
 interface BibliotecaGridProps {
   categories?: BibliotecaCategory[]; // Hacer opcional para compatibilidad
@@ -20,7 +20,6 @@ interface BibliotecaGridProps {
 
 export default function BibliotecaGrid({ categories: propCategories }: BibliotecaGridProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   
@@ -35,12 +34,21 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
   // Usar categorías de Supabase si están disponibles, sino usar las pasadas como props
   const categories = supabaseCategories.length > 0 ? supabaseCategories : (propCategories || []);
 
-  // Hook personalizado para manejo de rutas de categorías
+  // Hook personalizado para manejo de rutas de categorías y recursos
   const { 
     selectedCategory, 
+    selectedResource,
     navigateToCategory, 
-    navigateToCategories 
-  } = useCategoryRouting(categories);
+    navigateToCategories,
+    navigateToResource,
+    closeResource 
+  } = useResourceRouting(categories);
+
+  // Sincronizar el modal con la URL
+  useEffect(() => {
+    // El selectedResource ya viene del hook de routing
+    // No necesitamos estado local para selectedResource
+  }, [selectedResource]);
 
   // Obtener todos los recursos para búsqueda global
   const allResources = useMemo(() => {
@@ -126,7 +134,17 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
   };
 
   const handleResourceSelect = (resource: Resource) => {
-    setSelectedResource(resource);
+    // Encontrar la categoría a la que pertenece el recurso
+    const resourceCategory = categories.find(category => {
+      // Buscar en recursos principales
+      if (category.resources.some(r => r.id === resource.id)) return true;
+      // Buscar en subcategorías
+      return category.subcategories?.some(sub => 
+        sub.resources.some(r => r.id === resource.id)
+      );
+    });
+    
+    navigateToResource(resource, resourceCategory);
   };
 
   const clearFilters = () => {
@@ -209,7 +227,7 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
         {selectedResource && (
           <ResourceModal
             resource={selectedResource}
-            onClose={() => setSelectedResource(null)}
+            onClose={closeResource}
           />
         )}
       </div>
@@ -288,7 +306,7 @@ export default function BibliotecaGrid({ categories: propCategories }: Bibliotec
       {selectedResource && (
         <ResourceModal
           resource={selectedResource}
-          onClose={() => setSelectedResource(null)}
+          onClose={closeResource}
         />
       )}
     </div>

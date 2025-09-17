@@ -76,7 +76,7 @@ export const EnhancedHero: React.FC<EnhancedHeroProps> = ({
       </div>
 
       <motion.div
-        className="container mx-auto px-6 py-20 relative z-10"
+        className="container ml-8 px-6 py-20 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
