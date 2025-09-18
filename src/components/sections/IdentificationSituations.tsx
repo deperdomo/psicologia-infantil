@@ -1,149 +1,245 @@
+import { useState, type JSX } from 'react';
+import ReactCardFlip from 'react-card-flip';
 import { useStaggeredScrollAnimation } from '../../hooks/useScrollAnimation';
-// react-icons imports modernos para el nuevo estilo
-import { HiOutlineFaceFrown, HiOutlineExclamationTriangle, HiOutlineHeart, HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
 
-export default function IdentificationSituations() {
-  const { setRef, visibleItems } = useStaggeredScrollAnimation(4, 200);
+interface Situation {
+  id: number;
+  title: string;
+  question: string;
+  description: string;
+  image: string;
+  symptoms: string[];
+}
 
-  const situations = [
+export default function IdentificationSituations(): JSX.Element {
+  const { setRef, visibleItems } = useStaggeredScrollAnimation(4, 150);
+  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+
+  const handleCardFlip = (cardId: number): void => {
+    const newFlippedCards = new Set(flippedCards);
+    if (newFlippedCards.has(cardId)) {
+      newFlippedCards.delete(cardId);
+    } else {
+      newFlippedCards.add(cardId);
+    }
+    setFlippedCards(newFlippedCards);
+  };
+
+  const situations: Situation[] = [
     {
       id: 1,
-      title: "Emociones intensas y desbordantes",
-      question: "¿Tu hijo/a llora con facilidad, se siente inseguro/a o tiene rabietas muy intensas?",
-      description: "Observas que las emociones de tu hijo/a son muy intensas y le cuesta regularlas, lo que genera momentos difíciles tanto para él/ella como para toda la familia.",
-      icon: <HiOutlineFaceFrown className="text-4xl text-blue-600" />,
+      title: "Emociones Intensas",
+      question: "¿Tu hijo/a tiene rabietas muy intensas o llora con facilidad?",
+      description: "Las emociones son difíciles de regular y los momentos se vuelven desafiantes para toda la familia.",
       image: "https://images.pexels.com/photos/6222771/pexels-photo-6222771.jpeg?auto=compress&cs=tinysrgb&w=800",
-      color: "from-blue-500 to-cyan-500",
-      symptoms: ["Llanto frecuente", "Rabietas intensas", "Inseguridad emocional", "Dificultad para calmarse"]
+      symptoms: ["Llanto frecuente", "Rabietas intensas", "Inseguridad", "Dificultad para calmarse"]
     },
     {
       id: 2,
-      title: "Desafíos en la crianza",
-      question: "¿Te cuesta poner límites sin culpa o no sabes cómo ayudarle tras un cambio importante?",
-      description: "Sientes que no tienes las herramientas adecuadas para acompañar a tu hijo/a, especialmente después de situaciones como mudanzas, cambios de colegio o eventos familiares.",
-      icon: <HiOutlineQuestionMarkCircle className="text-4xl text-purple-600" />,
+      title: "Desafíos de Crianza",
+      question: "¿Te cuesta poner límites o ayudarle tras un cambio importante?",
+      description: "Sientes que no tienes las herramientas adecuadas para acompañar de forma efectiva a tu hijo/a.",
       image: "https://images.pexels.com/photos/8841302/pexels-photo-8841302.jpeg?auto=compress&cs=tinysrgb&w=800",
-      color: "from-purple-500 to-pink-500",
-      symptoms: ["Dudas sobre límites", "Sentimientos de culpa", "Falta de herramientas", "Incertidumbre parental"]
+      symptoms: ["Dudas sobre límites", "Sentimientos de culpa", "Falta de herramientas", "Incertidumbre"]
     },
     {
       id: 3,
-      title: "Crisis emocionales",
-      question: "¿No sabes cómo manejar los berrinches o las crisis emocionales de tu hijo/a?",
-      description: "Los momentos de crisis emocional se vuelven abrumadores y sientes que nada de lo que haces funciona para ayudar a tu hijo/a a regularse.",
-      icon: <HiOutlineExclamationTriangle className="text-4xl text-orange-600" />,
+      title: "Crisis Emocionales",
+      question: "¿No sabes cómo manejar los berrinches o crisis emocionales?",
+      description: "Los momentos de crisis se vuelven abrumadores y sientes que ninguna estrategia funciona realmente.",
       image: "img/identificationSituations/crisis-emocional.jpg",
-      color: "from-orange-500 to-red-500",
       symptoms: ["Berrinches frecuentes", "Crisis emocionales", "Sensación de impotencia", "Desgaste familiar"]
     },
     {
       id: 4,
-      title: "Cambios y transiciones",
-      question: "¿Te preocupa el comportamiento de tu hijo/a después de una separación, mudanza u otro cambio importante?",
-      description: "Has notado cambios significativos en el comportamiento de tu hijo/a tras eventos importantes en la familia, y no estás seguro/a de cómo ayudarle a adaptarse.",
-      icon: <HiOutlineHeart className="text-4xl text-green-600" />,
+      title: "Cambios y Transiciones",
+      question: "¿Te preocupa su comportamiento tras una separación o mudanza?",
+      description: "Has notado cambios significativos en su comportamiento tras eventos importantes en la familia.",
       image: "img/identificationSituations/separacion-padres.jpg",
-      color: "from-green-500 to-teal-500",
       symptoms: ["Cambios de comportamiento", "Dificultad de adaptación", "Regresiones", "Estrés familiar"]
     }
   ];
 
   return (
-    <section className="py-30 bg-gradient-to-br from-gray-50 via-white to-blue-50">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Título de la sección */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            ¿Te identificas con alguna de estas situaciones?
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+      <div className="max-w-6xl mx-auto px-6">
+
+        {/* Header Section */}
+        <div className="flex flex-col items-center mb-20 px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight flex flex-wrap justify-center items-center gap-x-0 text-center">
+            ¿Te Identificas con&nbsp;
+            <span className="text-transparent font-heading bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+              estas situaciones
+            </span>
+            ?
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            No estás sola. Estas son algunas de las situaciones más comunes por las que las familias buscan acompañamiento profesional.
-          </p>
+          <div className="max-w-4xl mx-auto space-y-6">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed text-center">
+              Estas son las situaciones más comunes por las que las familias buscan acompañamiento profesional.
+            </p>
+          </div>
         </div>
 
-        {/* Situaciones en layout moderno */}
-        <div className="space-y-35">
-          {situations.map((situation, index) => (
+        {/* Grid de cartas con efecto flip */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {situations.map((situation: Situation, index: number) => (
             <div
               key={situation.id}
               ref={setRef(index)}
-              className={`transition-all duration-1000 ${
-                visibleItems.has(index)
+              className={`transition-all duration-700 ${visibleItems.has(index)
                   ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-12'
-              }`}
+                  : 'opacity-0 translate-y-8'
+                }`}
             >
-              <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-15`}>
-                {/* Imagen */}
-                <div className="lg:w-1/2">
-                  <div className="relative group">
-                    <img
-                      src={situation.image}
-                      alt={situation.title}
-                      className="w-full h-80 object-cover rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500"
-                    />
-                    {/* Sombra inferior discreta más suave */}
-                    <div className={`absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t ${situation.color}/10 to-transparent rounded-b-3xl`}></div>
-                    {/* Icono flotante */}
-                    <div className="absolute -top-6 -right-6 bg-white rounded-full p-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      {situation.icon}
+              <ReactCardFlip
+                isFlipped={flippedCards.has(situation.id)}
+                flipDirection="horizontal"
+                flipSpeedBackToFront={0.6}
+                flipSpeedFrontToBack={0.6}
+              >
+                {/* Cara frontal de la carta */}
+                <div
+                  className="relative h-96 overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-300 hover:scale-101 shadow-lg hover:shadow-xl group"
+                  onClick={() => handleCardFlip(situation.id)}
+                >
+                  <img
+                    src={situation.image}
+                    alt={situation.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+
+                  {/* Overlay gradiente mejorado para mejor legibilidad */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/20"></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+
+                  {/* Badge de situación con mejor contraste */}
+                  <div className="absolute top-6 left-6 bg-black/40 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 group-hover:bg-black/60 border border-white/20">
+                    Situación {situation.id}
+                  </div>
+
+                  {/* Contenido superpuesto - Dividido en dos secciones */}
+                  <div className="absolute inset-0 flex flex-col p-8 transform transition-all duration-300 group-hover:translate-y-[-4px]">
+
+                    {/* Espacio superior (mitad superior vacía) */}
+                    <div className="flex-1"></div>
+
+                    {/* Contenido principal (mitad inferior) */}
+                    <div className="flex-1 flex flex-col justify-center">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+                        {situation.title}
+                      </h3>
+                      <p className="text-white/95 text-lg font-medium mb-4 leading-relaxed">
+                        {situation.question}
+                      </p>
+                      <p className="text-white/80 leading-relaxed mb-6">
+                        {situation.description}
+                      </p>
+
+                      {/* Hint visual mejorado */}
+                      <div className="flex items-center justify-center space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+                        <span className="text-white/80 text-sm font-medium">Haz clic para ver síntomas</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Cara trasera de la carta - Síntomas */}
+                <div
+                  className="relative h-96 overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-300 hover:scale-101 shadow-lg hover:shadow-xl bg-gradient-to-br from-blue-600 to-purple-700 group"
+                  onClick={() => handleCardFlip(situation.id)}
+                >
+                  {/* Patrón de fondo sutil */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0" style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    }}></div>
+                  </div>
+
+                  {/* Badge de situación */}
+                  <div className="absolute top-6 left-6 bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Situación {situation.id}
+                  </div>
+
+                  {/* Contenido de síntomas */}
+                  <div className="absolute inset-0 p-6 flex flex-col justify-between">
+                    {/* Header */}
+                    <div className="text-center pt-8">
+                      <h3 className="text-xl font-bold text-white mb-1">
+                        {situation.title}
+                      </h3>
+                      <p className="text-white/90 text-sm font-medium">
+                        Síntomas Comunes
+                      </p>
+                    </div>
+
+                    {/* Lista de síntomas optimizada */}
+                    <div className="flex-1 flex flex-col justify-center pb-4">
+                      <div className="space-y-2">
+                        {situation.symptoms.map((symptom: string, idx: number) => (
+                          <div key={idx} className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                            <div className="w-2 h-2 bg-white rounded-full flex-shrink-0"></div>
+                            <span className="text-white font-medium text-sm leading-tight">{symptom}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Footer hint mejorado */}
+                    <div className="text-center pb-2">
+                      <div className="flex items-center justify-center space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+                        <p className="text-white/80 text-xs font-medium">
+                          Haz clic para volver
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Contenido */}
-                <div className="lg:w-1/2 space-y-6">
-                  <div className={`inline-flex items-center px-4 py-2 bg-gradient-to-r ${situation.color} text-white rounded-full text-sm font-semibold shadow-lg`}>
-                    Situación {situation.id}
-                  </div>
-                  
-                  <h3 className="text-3xl font-bold text-gray-900">
-                    {situation.title}
-                  </h3>
-                  
-                  <p className="text-xl text-gray-800 font-medium leading-relaxed">
-                    {situation.question}
-                  </p>
-                  
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {situation.description}
-                  </p>
-
-                  {/* Síntomas principales */}
-                  <div className="grid grid-cols-2 gap-3">
-                    {situation.symptoms.map((symptom, idx) => (
-                      <div key={idx} className="flex items-center space-x-3">
-                        <div className={`w-3 h-3 bg-gradient-to-r ${situation.color} rounded-full shadow-sm`}></div>
-                        <span className="text-gray-700 text-sm font-medium">{symptom}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              </ReactCardFlip>
             </div>
           ))}
         </div>
 
-        {/* Call to action final */}
-        <div className="mt-20 text-center">
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl p-12 shadow-2xl">
-            <h3 className="text-3xl font-bold text-white mb-6">
-              ¿Te sientes identificado/a con alguna de estas situaciones?
-            </h3>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              Si has respondido "sí" a alguna de estas preguntas, puedo ayudarte a encontrar herramientas y estrategias para acompañar a tu hijo/a con mayor seguridad y tranquilidad.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg">
-                Agendar consulta inicial
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300">
-                Conocer más sobre mi trabajo
-              </button>
+        {/* CTA final elegante */}
+        <div className="mt-20">
+          <div className="relative h-64 overflow-hidden rounded-2xl">
+            <img
+              src="https://images.pexels.com/photos/7282805/pexels-photo-7282805.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Consulta psicológica"
+              className="w-full h-full object-cover"
+            />
+
+            {/* Overlay para el CTA */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-purple-900/90 to-pink-900/90"></div>
+
+            {/* Contenido del CTA */}
+            <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                ¿Te Sientes Identificado/a?
+              </h3>
+              <p className="text-white/90 mb-8 max-w-2xl leading-relaxed">
+                Puedo ayudarte a encontrar herramientas para acompañar a tu hijo/a con mayor seguridad y tranquilidad.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/consulta"
+                  className="bg-white text-gray-900 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-200 text-center"
+                >
+                  Agendar Consulta
+                </a>
+                <a
+                  href="/servicios"
+                  className="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors duration-200 text-center"
+                >
+                  Conocer Más
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
