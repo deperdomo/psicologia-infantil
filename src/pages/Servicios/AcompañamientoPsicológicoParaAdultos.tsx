@@ -112,7 +112,7 @@ export default function AcompañamientoPsicológicoParaAdultos() {
         primaryCTA="Reservar Consulta"
         secondaryCTA="Más Información"
         imageAlt="Adulto en proceso de crecimiento personal"
-        imageSrc="/img/servicios/acompañamiento-para-adultos.png"
+        imageSrc="/img/servicios/acompañamiento-para-adultos.webp"
       />
 
       <ServiceContent

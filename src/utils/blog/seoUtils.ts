@@ -25,7 +25,7 @@ export function generateArticleSchema(article: BlogArticle): SchemaMarkup {
     publisher: {
       "@type": "Organization",
       name: "Psicología Infantil Pro",
-      logo: "https://psicologia-infantil.com/logo.png",
+      logo: "https://psicologia-infantil.com/logo.webp",
       url: "https://psicologia-infantil.com"
     },
     datePublished: article.published_at,

@@ -106,7 +106,7 @@ export default function AcompañamientoInfantil() {
         primaryCTA="Reservar Consulta"
         secondaryCTA="Más Información"
         imageAlt="Niño feliz en terapia"
-        imageSrc="/img/servicios/acompañamiento-infantil.png"
+        imageSrc="/img/servicios/acompañamiento-infantil.webp"
       />
 
       <ServiceContent

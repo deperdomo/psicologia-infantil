@@ -77,57 +77,57 @@ export default function CallToAction() {
           {actionCards.map((card) => (
             <div
               key={card.id}
-              className="group relative transform transition-all duration-500 hover:scale-105 flex flex-col h-full"
+              className="relative flex flex-col h-full group"
             >
               <div className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 flex flex-col h-full">
               {/* Imagen */}
               <div className="relative h-48 overflow-hidden">
-                <img
+              <img
                 src={card.image}
                 alt={card.title}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-                {/* Sombra inferior discreta con altura delimitada */}
-                <div className={`absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t ${card.color}/60 to-transparent`}></div>
-                
-                {/* Icono flotante */}
-                <div className={`absolute top-6 right-6 w-16 h-16 bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}>
+                className="w-full h-full object-cover transform"
+              />
+              {/* Sombra inferior discreta con altura delimitada */}
+              <div className={`absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t ${card.color}/60 to-transparent`}></div>
+              
+              {/* Icono flotante */}
+              <div className={`absolute top-6 right-6 w-16 h-16 bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center shadow-xl transition-all duration-300`}>
                 {card.icon}
-                </div>
+              </div>
               </div>
 
               {/* Contenido */}
               <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
                 {card.title}
-                </h3>
-                
-                <p className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
+              </h3>
+              
+              <p className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
                 {card.subtitle}
-                </p>
-                
-                <p className="text-gray-700 mb-6 leading-relaxed">
+              </p>
+              
+              <p className="text-gray-700 mb-6 leading-relaxed">
                 {card.description}
-                </p>
+              </p>
 
-                {/* Features */}
-                <ul className="space-y-2 mb-8">
+              {/* Features */}
+              <ul className="space-y-2 mb-8">
                 {card.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-sm text-gray-600">
+                <li key={idx} className="flex items-center text-sm text-gray-600">
                   <div className={`w-2 h-2 bg-gradient-to-r ${card.color} rounded-full mr-3`}></div>
                   {feature}
-                  </li>
+                </li>
                 ))}
-                </ul>
+              </ul>
 
-                {/* Botón de acción */}
-                <a
+              {/* Botón de acción */}
+              <a
                 href={card.link}
-                className={`mt-auto w-full bg-gradient-to-r ${card.color} text-white py-4 px-6 rounded-2xl font-bold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center group-hover:transform group-hover:scale-105`}
-                >
+                className={`mt-auto w-full bg-gradient-to-r ${card.color} text-white py-4 px-6 rounded-2xl font-bold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center group/button`}
+              >
                 {card.action}
-                <HiOutlineArrowRight className="ml-2 text-xl transform group-hover:translate-x-1 transition-transform duration-300" />
-                </a>
+                <HiOutlineArrowRight className="ml-2 text-xl transition-transform duration-300 group-hover/button:translate-x-2" />
+              </a>
               </div>
               </div>
             </div>

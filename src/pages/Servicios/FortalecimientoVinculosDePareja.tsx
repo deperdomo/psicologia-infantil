@@ -112,7 +112,7 @@ export default function FortalecimientoVinculosDePareja() {
         primaryCTA="Reservar Consulta"
         secondaryCTA="Más Información"
         imageAlt="Pareja fortaleciendo su relación"
-        imageSrc="/img/servicios/fortalecimiento-vinculos-de-pareja.png"
+        imageSrc="/img/servicios/fortalecimiento-vinculos-de-pareja.webp"
       />
 
       <ServiceContent

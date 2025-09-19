@@ -83,7 +83,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-3">
               <img 
-                src="/logo.png" 
+                src="/logo.webp" 
                 alt="Llenia Monteagudo - Psicóloga Infantil" 
                 className="w-8 h-8 rounded-lg object-contain"
               />

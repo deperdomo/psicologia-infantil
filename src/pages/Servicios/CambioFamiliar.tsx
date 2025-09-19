@@ -112,7 +112,7 @@ export default function CambioFamiliar() {
         primaryCTA="Reservar Consulta"
         secondaryCTA="Más Información"
         imageAlt="Familia adaptándose a cambios"
-        imageSrc="/img/servicios/cambio-familiar.png"
+        imageSrc="/img/servicios/cambio-familiar.webp"
       />
 
       <ServiceContent

@@ -112,7 +112,7 @@ export default function AcompañamientoParental() {
         primaryCTA="Reservar Consulta"
         secondaryCTA="Más Información"
         imageAlt="Familia unida y feliz"
-        imageSrc="/img/servicios/acompañamiento-parental.png"
+        imageSrc="/img/servicios/acompañamiento-parental.webp"
       />
 
       <ServiceContent

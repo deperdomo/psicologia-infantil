@@ -47,7 +47,7 @@ export default function IdentificationSituations(): JSX.Element {
       title: "Crisis Emocionales",
       question: "¿No sabes cómo manejar los berrinches o crisis emocionales?",
       description: "Los momentos de crisis se vuelven abrumadores y sientes que ninguna estrategia funciona realmente.",
-      image: "img/identificationSituations/crisis-emocional.jpg",
+      image: "img/identificationSituations/crisis-emocional.webp",
       symptoms: ["Berrinches frecuentes", "Crisis emocionales", "Sensación de impotencia", "Desgaste familiar"]
     },
     {
@@ -55,7 +55,7 @@ export default function IdentificationSituations(): JSX.Element {
       title: "Cambios y Transiciones",
       question: "¿Te preocupa su comportamiento tras una separación o mudanza?",
       description: "Has notado cambios significativos en su comportamiento tras eventos importantes en la familia.",
-      image: "img/identificationSituations/separacion-padres.jpg",
+      image: "img/identificationSituations/separacion-padres.webp",
       symptoms: ["Cambios de comportamiento", "Dificultad de adaptación", "Regresiones", "Estrés familiar"]
     }
   ];
@@ -105,11 +105,11 @@ export default function IdentificationSituations(): JSX.Element {
                   <img
                     src={situation.image}
                     alt={situation.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
                   />
 
                   {/* Overlay gradiente mejorado para mejor legibilidad */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/10"></div>
                   <div className="absolute inset-0 bg-black/20"></div>
 
                   {/* Badge de situación con mejor contraste */}
@@ -222,20 +222,20 @@ export default function IdentificationSituations(): JSX.Element {
               <p className="text-white/90 mb-8 max-w-2xl leading-relaxed">
                 Puedo ayudarte a encontrar herramientas para acompañar a tu hijo/a con mayor seguridad y tranquilidad.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a
                   href="/consulta"
-                  className="bg-white text-gray-900 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-200 text-center"
+                  className="bg-white border-2 border-white text-gray-900 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-200 text-center flex items-center justify-center"
                 >
                   Agendar Consulta
                 </a>
                 <a
-                  href="/servicios"
-                  className="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors duration-200 text-center"
+                  href="/sobre-mi"
+                  className="border-2 border-white text-white px-12 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors duration-200 text-center flex items-center justify-center"
                 >
                   Conocer Más
                 </a>
-              </div>
+                </div>
             </div>
           </div>
         </div>

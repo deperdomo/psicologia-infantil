@@ -3,17 +3,17 @@ export default function Philosophy() {
     {
       title: "Acompañamiento",
       description: "Estamos contigo en cada paso del proceso emocional, brindando apoyo constante y comprensión.",
-      illustration: "acompañamiento.png"
+      illustration: "acompañamiento.webp"
     },
     {
       title: "Crecimiento", 
       description: "Cada emoción es una oportunidad para crecer y aprender sobre nosotros mismos.",
-      illustration: "crecimiento.png"
+      illustration: "crecimiento.webp"
     },
     {
       title: "Ternura",
       description: "Con respeto, calidez y empatía en cada encuentro terapéutico que compartimos.",
-      illustration: "ternura.png"
+      illustration: "ternura.webp"
     }
   ];
 

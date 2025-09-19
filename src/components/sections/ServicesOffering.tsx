@@ -5,7 +5,7 @@ export default function ServicesOffering() {
       category: "Para niños y niñas",
       title: "Terapia Infantil",
       description: "Para niños y niñas que presentan ansiedad, inseguridad, cambios de conducta, baja autoestima, miedos o dificultades para adaptarse a nuevas situaciones.",
-      image: "img/servicesOffering/terapia-ingantil.jpg",
+      image: "img/servicesOffering/terapia-ingantil.webp",
       alt: "Terapia infantil - Psicóloga trabajando con niña",
       color: "blue",
       features: [
@@ -69,15 +69,18 @@ export default function ServicesOffering() {
     <section id="services" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          {/* Título de la sección */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+
+          {/* Header Section */}
+          <div className="flex flex-col items-center mb-20 px-4 sm:px-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight flex flex-wrap justify-center items-center gap-x-0 text-center">
               ¿Qué puedo ofrecerte?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Trabajo desde un enfoque respetuoso, integrador y cercano, que combina psicología infantil, 
-              orientación a madres y padres, y recursos terapéuticos adaptados a cada familia.
-            </p>
+            <div className="max-w-4xl mx-auto space-y-6">
+              <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed text-center">
+                Trabajo desde un enfoque respetuoso, integrador y cercano, que combina psicología infantil,
+                orientación a madres y padres, y recursos terapéuticos adaptados a cada familia.
+              </p>
+            </div>
           </div>
 
           {/* Grid de servicios */}
@@ -85,9 +88,9 @@ export default function ServicesOffering() {
             {services.map((service) => {
               const colors = colorClasses[service.color as keyof typeof colorClasses];
               const isImageLeft = service.imagePosition === 'left';
-              
+
               return (
-                <div 
+                <div
                   key={service.id}
                   className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
                 >
@@ -102,7 +105,7 @@ export default function ServicesOffering() {
                         />
                       </div>
                     </div>
-                    
+
                     {/* Contenido */}
                     <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
                       <div className={`inline-flex items-center px-3 py-1 ${colors.badge} rounded-full text-sm font-medium mb-4 w-fit`}>

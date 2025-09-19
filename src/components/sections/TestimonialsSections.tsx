@@ -4,13 +4,13 @@ export default function TestimonialsSection() {
       quote: "Una profesional muy amable. Me hace sentir tranquila y eso ayuda mucho durante la terapia. Las herramientas que propone sesión a sesión son realmente útiles. He podido ver un gran cambio en como afronto las situaciones de la vida gracias a mis sesiones con Llenia",
       author: "Elena",
       rating: 5,
-      image: "/img/Pacientes/Maria.jpg"
+      image: "/img/Pacientes/Maria.webp"
     },
     {
       quote: "Exelente profesional. La psicóloga Llenia Monteagudo Rodríguez ha sido una gran ayuda para mis hijas y para mí como madre. Gracias a sus terapias y orientaciones, he notado cambios muy positivos en su comportamiento y en la forma en que manejamos las emociones en casa. Es una profesional cercana, empática y muy comprometida. La recomiendo con toda confianza.",
       author: "Dayana",
       rating: 5,
-      image: "/img/Pacientes/Marta.jpg"
+      image: "/img/Pacientes/Marta.webp"
     },
   ];
   return (

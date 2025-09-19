@@ -5,6 +5,7 @@ import CTASection from "./CTASection";
 import Footer from "../../components/Footer";
 import { usePageTitle } from "../../hooks/usePageTitle";
 import ApproachAndMethodSection from "./ApproachAndMethodSection";
+import WorkTools from "../../components/sections/WorkTools";
 
 export default function SobreMi() {
   usePageTitle({
@@ -19,9 +20,8 @@ export default function SobreMi() {
       <main>
         <HeroSection />
         <ApproachSection />
-        {/* <PhilosophySection /> */}
-        {/* <WorkMethodSection /> */}
         <ApproachAndMethodSection />
+        <WorkTools />
         <CTASection />        
         <Footer />
       </main>

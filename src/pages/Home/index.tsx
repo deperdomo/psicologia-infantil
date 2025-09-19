@@ -1,6 +1,4 @@
-import WhyChooseUs from '../../components/sections/WhyChooseUs';
 import Footer from '../../components/Footer';
-import About from '../../components/sections/About';
 import TestimonialsSection from '../../components/sections/TestimonialsSections';
 import Philosophy from '../../components/sections/Philosophy';
 import CallToAction from '../../components/sections/CallToAction';
@@ -11,7 +9,6 @@ import StructuredData from '../../components/StructuredData';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { EnhancedHero } from '../../components/hero/EnhancedHero';
 import ServicesOffering from '../../components/sections/ServicesOffering';
-import WorkTools from '../../components/sections/WorkTools';
 
 export default function Home() {
   usePageTitle({
@@ -69,9 +66,6 @@ export default function Home() {
         <IdentificationSituations />
         <ServicesOffering />
         <Philosophy />
-        <WorkTools />
-        <WhyChooseUs />
-        <About />
         <CallToAction />
         <TestimonialsSection />
       </main>
